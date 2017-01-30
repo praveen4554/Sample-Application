@@ -1,0 +1,351 @@
+<div class="bg-mask" (click)="editOpened = false" *ngIf="editOpened"></div>
+<div class="offer-section" *ngIf="editOpened">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 offer-user-section">
+                <h4>First, select the items that you want to exchange from  </h4>
+                <div class="itemDetail-user__image">
+                    <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items">
+                    <img width="36" height="36" src="{{userInfo.photoURL}}" class="img-circle"/></a>
+                    <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items"><span>{{userInfo.displayName}}</span>'s items</a>
+                </div>
+                <i style="color: #fff; float: right; font-size: 30px;" class="glyphicon glyphicon-remove"></i>
+            </div>
+            <div class="col-md-12 offer-carousel">
+                <div id="carousel-offers" data-interval="false" class="carousel slide">
+                    <a class="up carousel-control" href="#carousel-offers" role="button" data-slide="prev">
+                        <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="down carousel-control" href="#carousel-offers" role="button" data-slide="next">
+                        <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    <div class="carousel-inner product-area" role="listbox">
+                        <!--  inceput carusel sus -->
+                        <div *ngFor="let caruselItem of carouselItems; let i = index;"  class="item  row" [ngClass]="{active : i == 0}">
+                            <div *ngFor="let myItem of caruselItem; let j = index;" class="col-md-3 col-sm-4 col-xs-4 product">
+                                <div  style="margin-bottom: 0px;" class="product-content" (click) = "selectItems(myItem.$key)">
+                                    <!-- Clasa selectata plus incrementarea numarului -->
+                                    <div *ngIf="itemsSelected[myItem.$key]" class="active-select">
+                                        <span>{{ (i * 4)+(j+1)}}</span>
+                                        <p  class="is-clicked">SELECTED</p>
+                                    </div>
+                                    <div *ngIf="myItem.sunmool" class="product-sunmool">
+                                        <img  width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                                    </div>
+                                    <div class="product-image">
+
+                                        <img style="cursor: pointer;" *ngIf="myItem.photos" src="{{configVars.apiServerAdress}}/uploads/{{myItem.photos[0]}}" alt="ceva"/>
+                                        <img style="cursor: pointer;" *ngIf="!myItem.photos" src="common/assets/images/main-before-login-image.png" alt="ceva"/>
+                                    </div>
+
+                                    <div class="product-info">
+                                        <div>
+                                            <p>{{myItem.title}}</p>
+                                            <span>{{myItem.category}}</span>
+                                        </div>
+                                        <p class="offer-size">{{myItem.size}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--  Asta e carouselul din mijloc -->
+                <div id="carousel-middle" class="carousel slide">
+                    <a class="up carousel-control" href="#carousel-middle" role="button" data-slide="prev">
+                        <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="down carousel-control" href="#carousel-middle" role="button" data-slide="next">
+                        <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    <div class="carousel-inner" role="listbox">
+                        <!-- Text if no item is selected  Asta e textul in caz ca sunt goale -->
+                         <!-- <div *ngIf="mySelectedArr.length == 0" class="middle-text">
+                            <h3><b>Offer Basket</b></h3>
+                            <h4>Second, click your items that you want to offer</h4>
+                        </div> -->
+                        <div>
+                        </div>
+                        <!-- inceput carusel mijloc -->
+                        <div *ngFor="let caruselItem of mySelectedArr; let i = index;"  class="item  row" [ngClass]="{active : i == 0}">
+                            <div  class="item-upload">
+                                <img  *ngFor="let myItem of caruselItem; let i = index;" class="img-reponsive" src="{{configVars.apiServerAdress}}/uploads/{{myItem}}" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Asta e carouselul de jos -->
+                <div id="carousel-bottom" class="carousel slide">
+                    <a class="up carousel-control" href="#carousel-bottom" role="button" data-slide="prev">
+                        <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="down carousel-control" href="#carousel-bottom" role="button" data-slide="next">
+                        <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    <div class="carousel-inner product-area" role="listbox">
+                        <!--  inceput carusel jos -->
+
+                        <div *ngFor="let caruselItem of currentLoggedItems; let i = index;"  class="item  row" [ngClass]="{active : i == 0}">
+                            <div *ngFor="let myItem of caruselItem; let j = index;" class="col-md-3 col-sm-4 col-xs-4 product">
+                                <div class="product-content" (click)="mySelectItems(myItem.$key, myItem.photos[0])">
+                                  <div *ngIf="myItemsSelected[myItem.$key] && myItemsSelected[myItem.$key].val" class="active-select">
+                                      <span>{{ (i * 4)+(j+1)}}</span>
+                                      <p  class="is-clicked">SELECTED</p>
+                                  </div>
+                                  <div *ngIf="myItem.sunmool" class="product-sunmool">
+                                      <img  width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                                  </div>
+                                  <div class="product-image">
+
+                                      <img style="cursor: pointer;" *ngIf="myItem.photos" src="{{configVars.apiServerAdress}}/uploads/{{myItem.photos[0]}}" alt="ceva"/>
+                                      <img style="cursor: pointer;" *ngIf="!myItem.photos" src="common/assets/images/main-before-login-image.png" alt="ceva"/>
+                                  </div>
+
+                                  <div class="product-info">
+                                      <div>
+                                          <p>{{myItem.title}}</p>
+                                          <span>{{myItem.category}}</span>
+                                      </div>
+                                      <p class="offer-size">{{myItem.size}}</p>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="offer-bottom-info">
+                    <div class="col-md-8 text">
+                        <p>Third, how many items user can pick from your offer?</p>
+                        <div class="form-group">
+                            <!-- <div class="btn-group">
+                                <button aria-expanded="true" aria-haspopup="true" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" type="button">
+                                <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ><a *ngFor="let itemPhoto of mySelectedArr; let i = index;" (click)="changeItemPickNum(i)" _ngcontent-nap-11="" href="#">{{i+1}}</a>{{itemPickNum}}</li>
+                                </ul>
+                            </div> -->
+                            <!-- Aici ia-te dupa ala de sus. La ala de jos unde am scris "12" trebuie pus numarul selectat din for-ul ala-->
+                            <div class="btn-group">
+                                <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{itemPickNum}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ><a href="#" (click)="changeItemPickNum(-1)"> - </a ></li>
+                                    <li ><a href="#" *ngFor="let itemPhoto of mySelectedArrRaw; let i = index;" (click)="changeItemPickNum(i)">{{i+1}}</a ></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button  style="margin: 0;" type="button" (click)="offerItem()" [disabled]="mySelectedArr.length == 0 || itemPickNum == 0" class="button button-sign-in"><i class="iconmoon icon-add_item_icons_flip-right"></i>EDIT</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+   <div class="col-md-12">
+       <div class="top-product row">
+           <div class="col-md-6" *ngIf="offers[0] && offers[0].mainItemDetails">
+             <img *ngIf="!offers[0].mainItemDetails.photos" src="common/assets/images/main-before-login-image.png" width="90" height="90" alt="product" />
+             <img *ngIf="offers[0].mainItemDetails.photos" src="{{configVars.apiServerAdress}}/uploads/{{offers[0].mainItemDetails.photos[0]}}" width="90" height="90" alt="product" />
+               <div class="top-product-info">
+                   <h4 class="top-product-title">{{offers[0].mainItemDetails.title}}</h4>
+                   <p class="top-product-desc">{{offers[0].mainItemDetails.category}}</p>
+                   <div class="top-product-icons">
+                       <div class="icon-group">
+                           <img src="../../../../common/assets/images/item-vote-up.svg"/>
+                           <span>{{offers.length}}</span>
+                       </div>
+                       <div *ngIf="offers[0].comments" class="icon-group" style="cursor: pointer;">
+                           <img (click)="common.viewItem(offers[0].mainItemDetails.$key)" src="../../../../common/assets/images/icon-item-msg.svg"/>
+                           <span >{{offers[0].comments.length}}</span>
+                       </div>
+                       <div *ngIf="offers[0].likes" class="icon-group">
+                           <i class="iconmoon icon-icon_detail_like"></i>
+                           <span >{{common.getLikesNum(offers[0].likes)}}</span>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="col-md-6">
+               <div class="row">
+                   <div class="col-md-6">
+                       <div class="btn-group">
+                           <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           Show 16 Per Page<span class="caret"></span>
+                           </button>
+                           <ul class="dropdown-menu">
+                               <li><a href="#">8</a></li>
+                               <li><a href="#">16</a></li>
+                               <li><a href="#">32</a></li>
+                               <li><a href="#">64</a></li>
+                           </ul>
+                       </div>
+                   </div>
+                   <div class="col-md-6">
+                       <div class="input-group">
+                           <input placeholder="Search" type="text" class="form-control" id="brand" aria-label="Amount (to the nearest dollar)">
+                           <span class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey"></i></span>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div *ngFor="let offer of offers; let i = index;" class="offer-extend">
+           <div  class="offer-button clearfix" data-toggle="collapse" [attr.data-target]="'#demo'+i">
+               <img class="img-responsive img-circle" *ngIf="offer.offerToDetails" src="{{offer.offerToDetails.photoURL}}" width="40" height="40" alt="product" />
+               <p *ngIf="offer.offerToDetails">Your offer to <b>{{offer.offerToDetails.displayName}}</b>’s <b *ngIf="offer.offerToDetails" class="sunmool-color">{{offer.itemsToOffer.length}}</b>  items.</p><br />
+               <span *ngIf="offer.status == 'counterOffer' && offer.offerToDetails" class="pull-right"> {{offer.offerToDetails.displayName}} has made a counter Offer</span>
+               <span>{{common.time_ago(offer.timestamp*1000)}}</span>
+               <span class="caret"></span>
+           </div>
+           <div id="demo{{i}}" class="collapse">
+               <div class="offer-exchange clearfix">
+
+                   <div id="carousel-right" class="carousel pull-right slide" data-interval="false" *ngIf="offer.offerToDetails">
+                        <p class="col-md-12 pick-font">{{offer.offerToDetails.displayName}} can pick {{offer.itemsToPick}} of the {{offer.itemsToOffer.length}} items you offered. </p>
+                        <a class="up carousel-control" href="#carousel-right" role="button" data-slide="prev">
+                          <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="down carousel-control" href="#carousel-right" role="button" data-slide="next">
+                          <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                          <span class="sr-only">Next</span>
+                        </a>
+                        <div class="carousel-inner product-area" role="listbox">
+
+                          <!--  Aici vin itemurile active -->
+                          <div *ngFor="let oferPhotos of offer.offerPhotos; let i = index;" class="item row" [ngClass]="{active : i == 0}">
+                              <div *ngFor="let oferPhoto of oferPhotos; let i = index;" class="col-md-6 col-sm-6 col-xs-4 product">
+                                  <div class="product-content">
+
+                                      <!--<div class="product-sunmool">
+                                          <img  width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                                      </div>-->
+                                      <div class="product-image">
+
+                                          <img style="cursor: pointer;" src="{{configVars.apiServerAdress}}/uploads/{{oferPhoto.photos[0]}}" alt="ceva"/>
+                                      </div>
+
+                                      <div class="product-info">
+                                          <div>
+                                              <p>{{oferPhoto.title}}</p>
+                                              <span>{{oferPhoto.category}}</span>
+                                          </div>
+                                          <p class="offer-size">{{oferPhoto.size}}</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+                   <img src="../../../../common/assets/images/icon-exchange.svg" class="icon-exchange" />
+                   <div id="carousel-left" class="carousel pull-left slide" data-interval="false" *ngIf="offer.offerToDetails">
+                       <p class="col-md-12 pick-font" >You picked {{offer.itemsToGet.length}} of {{offer.offerToDetails.displayName}}'s items</p>
+                       <a class="up carousel-control" href="#carousel-left" role="button" data-slide="prev">
+                           <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                           <span class="sr-only">Previous</span>
+                       </a>
+                       <a class="down carousel-control" href="#carousel-left" role="button" data-slide="next">
+                           <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                           <span class="sr-only">Next</span>
+                       </a>
+                       <div class="carousel-inner product-area" role="listbox">
+
+
+
+                         <!--  Aici vin itemurile active -->
+                         <div *ngFor="let getPhotos of offer.getPhotos; let i = index;" class="item row" [ngClass]="{active : i ==0}">
+                             <div *ngFor="let getPhoto of getPhotos; let i = index;" class="col-md-6 col-sm-6 col-xs-4 product">
+                                 <div class="product-content">
+
+                                     <!--<div class="product-sunmool">
+                                         <img  width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                                     </div>-->
+                                     <div class="product-image">
+
+                                         <img style="cursor: pointer;" src="{{configVars.apiServerAdress}}/uploads/{{getPhoto.photos[0]}}" alt="ceva"/>
+                                     </div>
+
+                                     <div class="product-info">
+                                         <div>
+                                             <p>{{getPhoto.title}}</p>
+                                             <span>{{getPhoto.category}}</span>
+                                         </div>
+                                         <p class="offer-size">{{getPhoto.size}}</p>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+
+                     </div>
+
+                   </div>
+                   <div class="items-visual" >
+                       <label class="btn btn-default-bg" *ngIf="offer.status != 'declined' && offer.status != 'counterOffer'">
+                           EDIT<input (click)="openEditModal(); setCurrentOffer(offer)" style="display: none;" type="button">
+                       </label>
+                       <label class="btn btn-default-bg" *ngIf="offer.status == 'counterOffer'">
+                           ACCEPT COUNTER OFFER<input (click)="setCurrentOffer(offer); acceptCounterOffer(); " style="display: none;" type="button">
+                       </label>
+                       <label  class="btn btn-default-bg">
+                           DELETE<input (click)="common.deleteOffer(offer.$key, offer.offerTo, offer.mainItem, offer.status)" style="display: none;" type="button">
+                       </label>
+                   </div>
+               </div>
+
+           </div>
+       </div>
+
+   </div>
+</div>

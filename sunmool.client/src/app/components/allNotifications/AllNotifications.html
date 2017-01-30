@@ -1,0 +1,141 @@
+<div *ngIf="notifications.length == 0">No notifications...</div>
+<div *ngIf="notifications.length > 0">
+    <div *ngFor="let notification of notifications; let i = index;">
+
+        <div *ngIf="notification.user && notification.type == 'message' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+            <a href="#/itemDetails/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+              <div class="from-pic col-md-2">
+                  <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+              </div>
+              <div class="from-info col-md-10" style="font-weight: normal;">
+                  <p>{{notification.user.displayName}} commented on {{notification.itemDetails.title}}</p>
+                  <span>{{common.time_ago(notification.timestamp*1000)}}</span>
+              </div>
+            </a>
+        </div>
+
+        <div *ngIf="notification.user && notification.type == 'offer' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+            <a href="#/dashboard/offers/me/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+              <div class="from-pic col-md-2">
+                  <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+              </div>
+              <div class="from-info col-md-10" style="font-weight: normal;">
+                  <p>{{notification.user.displayName}} offered you  <b class="sunmool-color">{{notification.numOffers}}</b> items for {{notification.itemDetails.title}}</p>
+                  <span>{{common.time_ago(notification.timestamp*1000)}}</span>
+              </div>
+            </a>
+        </div>
+
+        <div *ngIf="notification.user && notification.type == 'declineOffer' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+            <a href="#/dashboard/offers/others/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+              <div class="from-pic col-md-2">
+                  <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+              </div>
+              <div class="from-info col-md-10" style="font-weight: normal;">
+                  <p>{{notification.user.displayName}} declined your offer for {{notification.itemDetails.title}}</p>
+                  <span>{{common.time_ago(notification.timestamp*1000)}}</span>
+              </div>
+            </a>
+        </div>
+
+        <div *ngIf="notification.user && notification.type == 'deteleOffer' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+            <a href="#/itemDetails/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+              <div class="from-pic col-md-2">
+                  <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+              </div>
+              <div class="from-info col-md-10" style="font-weight: normal;">
+                  <p>{{notification.user.displayName}} removed his offer for {{notification.itemDetails.title}}</p>
+                  <span>{{common.time_ago(notification.timestamp*1000)}}</span>
+              </div>
+            </a>
+        </div>
+
+        <div *ngIf="notification.user && notification.type == 'sunmoolRequest' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+            <a href="#/dashboard/sunmool/me/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+              <div class="from-pic col-md-2">
+                  <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+              </div>
+              <div class="from-info col-md-10" style="font-weight: normal;">
+                  <p>{{notification.user.displayName}} wrote a story for {{notification.itemDetails.title}}</p>
+                  <span>{{common.time_ago(notification.timestamp*1000)}}</span>
+              </div>
+            </a>
+        </div>
+
+        <div *ngIf="notification.user && notification.type == 'deteleOfferSunmool' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+            <a href="#/itemDetails/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+              <div class="from-pic col-md-2">
+                  <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+              </div>
+              <div class="from-info col-md-10" style="font-weight: normal;">
+                  <p>{{notification.user.displayName}} removed the story for {{notification.itemDetails.title}}</p>
+                  <span>{{common.time_ago(notification.timestamp*1000)}}</span>
+              </div>
+            </a>
+        </div>
+
+        <div *ngIf="notification.user && notification.type == 'declineOfferSunmool' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+            <a href="#/dashboard/sunmool/others/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+              <div class="from-pic col-md-2">
+                  <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+              </div>
+              <div class="from-info col-md-10" style="font-weight: normal;">
+                  <p>{{notification.user.displayName}} declined your story on {{notification.itemDetails.title}}</p>
+                  <span>{{common.time_ago(notification.timestamp*1000)}}</span>
+              </div>
+            </a>
+        </div>
+
+        <div *ngIf="notification.user && notification.type == 'updateOffer' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+            <a href="#/dashboard/offers/me/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+              <div class="from-pic col-md-2">
+                  <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+              </div>
+              <div class="from-info col-md-10" style="font-weight: normal;">
+                  <p>{{notification.user.displayName}} updated the offer on {{notification.itemDetails.title}}</p>
+                  <span>{{common.time_ago(notification.timestamp*1000)}}</span>
+              </div>
+            </a>
+        </div>
+
+
+
+        <div *ngIf="notification.user && notification.type == 'counterOffer' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+            <a href="#/dashboard/offers/others/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+              <div class="from-pic col-md-2">
+                  <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+              </div>
+              <div class="from-info col-md-10" style="font-weight: normal;">
+                  <p>{{notification.user.displayName}} made a counter offer on {{notification.itemDetails.title}}</p>
+                  <span>{{common.time_ago(notification.timestamp*1000)}}</span>
+              </div>
+            </a>
+        </div>
+
+        <div *ngIf="notification.user && notification.type == 'acceptedOther' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+            <a href="#/itemDetails/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+              <div class="from-pic col-md-2">
+                  <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+              </div>
+              <div class="from-info col-md-10" style="font-weight: normal;">
+                  <p>{{notification.user.displayName}} accepted other offer on {{notification.itemDetails.title}}</p>
+                  <span>{{common.time_ago(notification.timestamp*1000)}}</span>
+              </div>
+            </a>
+        </div>
+
+        <div *ngIf="notification.user && notification.type == 'acceptedOffer' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+            <a href="#/dashboard/inprocess/{{notification.inProcessId}}" (click)="markAsRead(notification.$key)">
+              <div class="from-pic col-md-2">
+                  <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+              </div>
+              <div class="from-info col-md-10" style="font-weight: normal;">
+                  <p>{{notification.user.displayName}} accepted your offer on {{notification.itemDetails.title}}</p>
+                  <span>{{common.time_ago(notification.timestamp*1000)}}</span>
+              </div>
+            </a>
+        </div>
+
+
+    </div>
+</div>

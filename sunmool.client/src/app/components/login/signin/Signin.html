@@ -1,0 +1,77 @@
+
+
+    <div id="main" class="container main-modal" *ngIf="!isForgotPassView">
+
+        <div class="row">
+            <div class="bg-white clearfix">
+                <div class="col-md-7 col-sm-7 col-xs-7 main-picture signin-bg">
+                    <!-- <img src="common/assets/images/sign-in-image.png" alt="Main befor login" /> -->
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-6 main-login">
+                    <a (click)="changeView(1)" href="#"><i class="icon icon-outside icon-arrow-left"></i></a>
+                    <p>Give your unused outfits as gifts to friends on Sunmool</p>
+                    <p class="title">Sign in</p>
+                    <div *ngIf="errorMessage && errorMessage != ''" class="form-group has-error"><label class="control-label">{{errorMessage}}</label></div>
+                    <button (click)="loginWithFacebook()" class="button button-facebook button-full"><i class="icon-small icon-small-facebook"></i>Sign in with Facebook</button>
+                    <button (click)="loginWithGoogle()" class="button button-google button-full"><i class="icon-small icon-small-google"></i>Sign in with Google</button>
+                    <span class="main-separator">Or</span>
+                    <!-- <button (click)="changeView(3)">SignupWithEmail</button> -->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="icon-small icon-small-email"></i></div>
+                            <input class="form-control" type="text" [(ngModel)]="username" name="username" placeholder="E-mail Address" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="icon-small icon-small-lock"></i></div>
+                            <input class="form-control" type="password" [(ngModel)]="password" name="password" placeholder="Password" />
+                        </div>
+                    </div>
+                    <div class="pull-right" style="font-size: 12px;" (click)="forgotPasswordView()"><a href="#" >Forgot password?</a></div>
+                    <input class="button button-sign-in button-full" type="submit" (click)="login()" value="Login"/>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div id="main" class="container main-modal" *ngIf="isForgotPassView">
+
+        <div class="row">
+            <div class="bg-white clearfix">
+                <div class="col-md-7 col-sm-7 col-xs-7 main-picture signin-bg">
+                    <!-- <img src="common/assets/images/sign-in-image.png" alt="Main befor login" /> -->
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-6 main-login">
+                    <a (click)="forgotPasswordView()" href="#"><i class="icon icon-outside icon-arrow-left"></i></a>
+                    <p>Gifts to change the world</p>
+                    <p class="title">Forgot password</p>
+                    <div *ngIf="errorMessage && errorMessage != ''" class="form-group has-error"><label class="control-label">{{errorMessage}}</label></div>
+
+                    <!-- <button (click)="changeView(3)">SignupWithEmail</button> -->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="icon-small icon-small-email"></i></div>
+                            <input class="form-control" type="text" [(ngModel)]="username" name="username" placeholder="E-mail Address" />
+                        </div>
+                    </div>
+
+                    <input class="button button-google button-full" type="submit" (click)="auth.resetPassword(username)" value="Reset password"/>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+<div class="bg-mask"></div>

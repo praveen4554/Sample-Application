@@ -1,0 +1,146 @@
+<div class="bg-mask" (click)="editOpened = false" *ngIf="editOpened"></div>
+<div *ngIf="editOpened" class="offer-section offer-section-sunmool" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 offer-user-section">
+                <div class="itemDetail-user__image">
+                    <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items">
+                    <img width="36" height="36" src="{{userInfo.photoURL}}" class="img-circle"/></a>
+                    <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items"> Tell <span>{{userInfo.displayName}}</span> what this gift means to you.</a>
+                </div>
+                <i style="color: #fff; float: right; font-size: 30px;" class="glyphicon glyphicon-remove"></i>
+            </div>
+            <div class="col-md-12 offer-sunmool">
+                <div class="row">
+                    <div class="col-md-3 product-area">
+                        <div  class="product-content" >
+                            <div *ngIf="item.sunmool" class="product-sunmool">
+                                <img  width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                            </div>
+                            <div class="product-image">
+                                <img *ngIf="!item.photos" style="cursor: pointer;" src="common/assets/images/main-before-login-image.png" alt="ceva"/>
+                                <img *ngIf="item.photos" style="cursor: pointer;" src="{{configVars.apiServerAdress}}/uploads/{{item.photos[0]}}" alt="ceva"/>
+                            </div>
+
+                            <div class="product-info">
+                                <div>
+                                    <p>{{item.title}}</p>
+                                    <p class="offer-size">{{item.size}}</p>
+                                </div>
+                                <div>
+                                    <p>{{item.category}}</p>
+                                    <div class="product-info__likes">
+                                      <i *ngIf="item.likes && auth.userData && item.likes[auth.userData.uid] && item.likes[auth.userData.uid].liked"  (click)="common.unLikeItem(item.$key)" class="iconmoon icon-icon_detail_like sunmool-color"></i>
+                                      <i *ngIf="item.likes && auth.userData && ( (item.likes[auth.userData.uid] && !item.likes[auth.userData.uid].liked) || !item.likes[auth.userData.uid] )" (click)="common.likeItem(item.$key);" class="iconmoon icon-icon_detail_like"></i>
+                                      <span *ngIf="item.likes">{{common.getLikesNum(item.likes)}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="offer-sunmool-section col-md-12">
+                                <textarea [(ngModel)]="sunmoolStory" class="text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia dictum ligula, et imperdiet arcu egestas in. Etiam a volutpat purus. Nam nec ullamcorper mi. Morbi sed sapien a risus aliquam sollicitudin id vitae erat. Pellentesque sit amet eros eu purus molestie luctus euismod eget massa. Phasellus vel posuere nisi. Cras arcu mi, eleifend id imperdiet sed, porttitor ut sem. Cras et gravida tortor.
+                                </textarea>
+
+                            </div>
+                            <div class="offer-sunmool-bottom col-md-8">
+                                <p class="pull-left">Can we use your story in our blog?</p>
+                                <div class="btn-group pull-right">
+                                    <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                    <span class="caret"></span>
+                                    {{storyOnBlogAccept}}</button>
+                                    <ul class="dropdown-menu">
+                                        <li ><a href="#" (click)="storyOnBlog('yes')">yes</a></li>
+                                        <li ><a href="#" (click)="storyOnBlog('no')">no</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <button type="button" style="margin: 0px; width: 280px;" [disabled]="storyOnBlogAccept == '' || sunmoolStory == ''" (click)="postSunmoolOffer()" class="col-md-3 button button-google pull-right"><img width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>Ask for Sunmool :)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+   <div class="col-md-12">
+       <div class="top-product row">
+           <div class="col-md-6" *ngIf="offers[0] && offers[0].mainItemDetails">
+               <img *ngIf="!offers[0].mainItemDetails.photos" src="common/assets/images/main-before-login-image.png" width="90" height="90" alt="product" />
+               <img *ngIf="offers[0].mainItemDetails.photos" src="{{configVars.apiServerAdress}}/uploads/{{offers[0].mainItemDetails.photos[0]}}" width="90" height="90" alt="product" />
+               <div class="top-product-info">
+                   <h4 class="top-product-title">{{offers[0].mainItemDetails.title}}</h4>
+                   <p class="top-product-desc">{{offers[0].mainItemDetails.category}}</p>
+                   <div class="top-product-icons">
+                       <div class="icon-group">
+                           <img src="../../../../common/assets/images/item-vote-up.svg"/>
+                           <span>{{offers.length}}</span>
+                       </div>
+                       <div class="icon-group" *ngIf="offers[0].comments" style="cursor: pointer;">
+                           <img (click)="common.viewItem(offers[0].mainItemDetails.$key)" src="../../../../common/assets/images/icon-item-msg.svg"/>
+                           <span>{{offers[0].comments.length}}</span>
+                       </div>
+                       <div class="icon-group">
+                           <i class="iconmoon icon-icon_detail_like"></i>
+                           <span>{{common.getLikesNum(offers[0].likes)}}</span>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="col-md-6">
+               <div class="row">
+                   <div class="col-md-6">
+                       <div class="btn-group">
+                           <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           Show 16 Per Page<span class="caret"></span>
+                           </button>
+                           <ul class="dropdown-menu">
+                               <li><a href="#">8</a></li>
+                               <li><a href="#">16</a></li>
+                               <li><a href="#">32</a></li>
+                               <li><a href="#">64</a></li>
+                           </ul>
+                       </div>
+                   </div>
+                   <div class="col-md-6">
+                       <div class="input-group">
+                           <input placeholder="Search" type="text" class="form-control" id="brand" aria-label="Amount (to the nearest dollar)">
+                           <span class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey"></i></span>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="offer-extend" *ngFor="let offer of offers; let i = index;">
+           <div class="offer-button clearfix" data-toggle="collapse" [attr.data-target]="'#demo'+i">
+               <img class="img-responsive img-circle" *ngIf="offer.offerToDetails" src="{{offer.offerToDetails.photoURL}}" width="40" height="40" alt="product" />
+               <p *ngIf="offer.offerToDetails">This is <b> Your </b> story to <b>{{offer.offerToDetails.displayName}}</b></p>
+               <span>{{common.time_ago(offer.timestamp*1000)}}</span>
+               <span class="caret"></span>
+           </div>
+           <div id="demo{{i}}" class="collapse offer-extend-sunmool">
+               <div class="text">{{offer.story}} </div>
+               <div class="offer-exchange clearfix">
+                   <div class="items-visual" >
+                     <label class="btn btn-default-bg" *ngIf="offer.status != 'declined'">
+                         EDIT<input (click)="openEdit(offer)" style="display: none;" type="button">
+                     </label>
+                     <label  class="btn btn-default-bg">
+                         DELETE<input (click)="common.deleteOfferSunmool(offer.$key, offer.offerTo, offer.item, offer.status)" style="display: none;" type="button">
+                     </label>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+   </div>
+</div>

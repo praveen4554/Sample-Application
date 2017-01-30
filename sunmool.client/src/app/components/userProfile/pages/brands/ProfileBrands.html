@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="profile-items">
+            <div class="form-group row">
+            <p class="col-md-3"> Brands</p>
+                <div class="col-md-3 pull-right">
+                    <div class="input-group">
+                        <input placeholder="Search" type="text" class="form-control" id="brand" [(ngModel)]="brandTerm" aria-label="Amount (to the nearest dollar)" (keypress)="searchBrand(brandTerm, $event);">
+                        <span class="input-group-addon"><i style="cursor: pointer;" (click)="searchBrand(brandTerm)" class="iconmoon icon-main_nav_icon_search_grey"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3 pull-right">
+                    <div class="btn-group col-md-3">
+                        <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Show 16 Per Page<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" (click)="changeStyle('All')" >All</a></li>
+                            <li><a href="#" (click)="changeStyle('Boots & Booties')">Boots & Booties</a></li>
+                            <li><a href="#" (click)="changeStyle('Flats')">Flats</a></li>
+                            <li><a href="#" (click)="changeStyle('Pumps')">Pumps</a></li>
+                            <li><a href="#" (click)="changeStyle('Platforms')">Platforms</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="follow-section row">
+        <div  *ngFor="let follower of followers; let i = index;">
+            <div class="follow-people col-md-3 col-sm-6 col-xs-6" *ngIf="follower.following">
+                <a class="follow-img" *ngIf="follower.user" href="#/userProfile/{{follower.user.$key}}/items"><img width="50" height="50" class="img-circle" *ngIf="follower.user && follower.user.photoURL" src="{{follower.user.photoURL}}" /></a>
+                <a class="follow-name" *ngIf="follower.user" href="#/userProfile/{{follower.user.$key}}/items"><span *ngIf="follower.user">{{follower.user.displayName}}</span></a>
+                <span class="follow-location">Las Vegas, NV</span>
+                <a class="follow-unfollow" *ngIf="auth.userData.uid == userId" href="#" (click)="common.unFollowUser(follower.$key)">X Unfollow</a>
+                <div class="yandy">20</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="follow-section row">
+        <div  *ngFor="let brand of brandsList; let i = index;">
+            <div class="follow-people col-md-3 col-sm-6 col-xs-6">
+                <a class="follow-img" href="#" *ngIf="brand.brandData"><img width="50" height="50" src="{{brand.brandData.logo}}" /></a>
+                <a class="follow-name" href="#" *ngIf="brand.brandData"><span>{{brand.brandData.name}}</span></a>
+                 <a class="follow-unfollow" *ngIf="brand.brandData && userId == auth.userData.uid" href="#" (click)="common.unFollowBrand(brand.brandData.$key)">X Unfollow</a>
+            </div>
+        </div>
+    </div>
+
+</div>

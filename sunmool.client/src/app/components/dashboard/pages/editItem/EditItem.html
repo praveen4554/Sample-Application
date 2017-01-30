@@ -1,0 +1,176 @@
+<div>
+    <p class="subtitle">Category</p>
+    <div class="items-category">
+        <div (click)="changeCategory('dresses')" [ngClass]="{'item-active' : item.category == 'dresses'}" class="items-category__single">
+            <i class="iconmoon icon-add_item_icons_dress"></i>
+            <span>Dresses</span>
+        </div>
+        <div (click)="changeCategory('tops')" [ngClass]="{'item-active' : item.category == 'tops'}" class="items-category__single">
+            <i class="iconmoon icon-add_item_icons_top"></i>
+            <span>Tops</span>
+        </div>
+        <div (click)="changeCategory('skirts')" [ngClass]="{'item-active' : item.category == 'skirts'}" class="items-category__single">
+            <i class="iconmoon icon-add_item_icons_skirts"></i>
+            <span>Skirts</span>
+        </div>
+        <div (click)="changeCategory('jackets')" [ngClass]="{'item-active' : item.category == 'jackets'}" class="items-category__single">
+            <i class="iconmoon icon-add_item_icons_jackets"></i>
+            <span>Jackets</span>
+        </div>
+        <div (click)="changeCategory('pants')" [ngClass]="{'item-active' : item.category == 'pants'}" class="items-category__single">
+            <i class="iconmoon icon-add_item_icons_pants"></i>
+            <span>Pants</span>
+        </div>
+        <div (click)="changeCategory('activewear')" [ngClass]="{'item-active' : item.category == 'activewear'}" class="items-category__single">
+            <i class="iconmoon icon-add_item_icons_active-wear"></i>
+            <span>Active wear</span>
+        </div>
+        <div (click)="changeCategory('costume')" [ngClass]="{'item-active' : item.category == 'costume'}" class="items-category__single">
+            <i class="iconmoon icon-add_item_icons_costume"></i>
+            <span>Costume</span>
+        </div>
+        <div (click)="changeCategory('shoes')" [ngClass]="{'item-active' : item.category == 'shoes'}" class="items-category__single">
+            <i class="iconmoon icon-add_item_icons_shoes"></i>
+            <span>Shoes</span>
+        </div>
+        <div (click)="changeCategory('accessories')" [ngClass]="{'item-active' : item.category == 'accessories'}" class="items-category__single">
+            <i class="iconmoon icon-add_item_icons_-accessories"></i>
+            <span>Accessories</span>
+        </div>
+        <div (click)="changeCategory('men')" [ngClass]="{'item-active' : item.category == 'men'}" class="items-category__single">
+            <i class="iconmoon icon-add_item_icons_men"></i>
+            <span>Men</span>
+        </div>
+        <div (click)="changeCategory('kids')" [ngClass]="{'item-active' : item.category == 'kids'}" class="items-category__single">
+            <i class="iconmoon icon-add_item_icons_kids"></i>
+            <span>Kids</span>
+        </div>
+    </div>
+    <p class="subtitle">Upload Visuals</p>
+
+    <div class="items-visual">
+      <div *ngIf="uploader.progress != 100 && uploader.progress != 0">
+        Uploading... {{uploader.progress}}%
+      </div>
+
+        <div *ngIf="photoCarousel.length != 0" id="carousel-example-vertical" data-interval="false" class="carousel slide">
+            <a class="up carousel-control" href="#carousel-example-vertical" role="button" data-slide="prev">
+                <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                <span class="sr-only">Previous</span>
+            </a>
+            <div class="carousel-inner" role="listbox">
+                <div class="item " *ngFor="let photoSet of photoCarousel; let i = index;" [ngClass]="{active : i == 0}">
+
+                    <div class="item-upload" *ngFor="let photoSet of photoCarousel[i]; let j = index;">
+                        <a href="{{configVars.apiServerAdress}}/uploads/{{photoCarousel[i][j]}}" target="_blank">
+                            <img width="36px" height="36px" src="{{configVars.apiServerAdress}}/uploads/{{photoCarousel[i][j]}}" alt="ceva"/>
+                        </a>
+                        <div class="item-upload__icons">
+                            <!--<i class="iconmoon icon-add_item_icons_flip-right"></i>-->
+                            <i (click)="removeItemPhoto(photoCarousel[i][j])" class="iconmoon icon-add_item_icons_delete"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="down carousel-control" href="#carousel-example-vertical" role="button" data-slide="next">
+                <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <label class="btn btn-default-bg">
+            Upload Photos<input ng2FileSelect accept='image/*' [uploader]="uploader" multiple type="file" name="photo" class="hidden">
+        </label>
+        <label class="btn btn-default-bg">
+            Upload Videos<input type="file" class="hidden">
+        </label>
+    </div>
+    <p class="subtitle">Description</p>
+    <div class="items-description">
+        <div class="row">
+            <div class="form-group col-md-4 col-sm-6">
+                <label for="title" class="col-form-label">Title</label>
+                <input [(ngModel)]="item.title" class="form-control" type="text" value="Artisanal kale" id="title">
+            </div>
+            <div class="form-group col-md-4 col-sm-6">
+                <label for="style" class="col-form-label">Style</label>
+                <div class="btn-group">
+                    <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{item.style}}<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let styleOption of stylesOptions; let i = index;" ><a href="#" (click)="changeStyle(styleOption)" >{{styleOption}}</a></li>
+                    </ul>
+                </div>
+                <!-- <input [(ngModel)]="item.style" class="form-control" type="text" value="Artisanal kale" id="style"> -->
+            </div>
+            <div class="form-group col-md-4 col-sm-6">
+                <label for="brand" class="col-form-label">Brand name</label>
+                <!-- <input class="form-control" type="text" value="Artisanal kale" id="brand"> -->
+                <div class="input-group">
+                  <input [(ngModel)]="item.brandName"  placeholder="Brand" type="text" class="form-control" id="brand" aria-label="Amount (to the nearest dollar)">
+                  <span class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey"></i></span>
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6">
+                <label for="colors" class="col-form-label">Colors</label>
+                <div class="btn-group">
+                    <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{item.colors}}<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu drop-colors">
+                      <li *ngFor="let color of colorsList; let i = index;">
+                          <label for="various" (click)="changeColor(color.name)" style="cursor: pointer;"><span class="color gradient" [style.background]="color.hex"></span>{{color.name}}</label>
+                      </li>
+                    </ul>
+                </div>
+                <!-- <input [(ngModel)]="item.colors" class="form-control" type="text" value="Artisanal kale" id="colors"> -->
+            </div>
+            <div class="form-group col-md-4 col-sm-6">
+                <label for="price" class="col-form-label">Original price</label>
+                <input [(ngModel)]="item.originalPrice" class="form-control" type="text" value="Artisanal kale" id="price">
+            </div>
+            <div class="form-group col-md-4 col-sm-6">
+                <label for="colors" class="col-form-label">Condition</label>
+                <div class="btn-group">
+                    <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{item.condition}}<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu drop-colors">
+                      <li *ngFor="let condition of conditionList; let i = index;">
+                          <label style="cursor: pointer;" (click)="changeCondition(condition.$value)">{{condition.$value}}</label>
+                      </li>
+                    </ul>
+                </div>
+                <!-- <input [(ngModel)]="item.colors" class="form-control" type="text" value="Artisanal kale" id="colors"> -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="description" class="col-form-label">Description</label>
+                <textarea [(ngModel)]="item.description" class="form-control" id="description" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+    <p class="subtitle">Size</p>
+    <div class="items-size">
+      <div *ngFor="let size of common.categoriesSizes[item.category]; let i = index;" (click)="changeSize(size.num+' / '+size.val)" [ngClass]="{'item-active' : item.size == size.num+' / '+size.val}" class="items-size__single">
+          <p *ngIf="size.num != ''">{{size.num}}</p>
+          <p *ngIf="size.num == ''">{{size.val}}</p>
+          <span *ngIf="size.num != ''">{{size.val}}</span>
+      </div>
+    </div>
+    <p class="subtitle">Sunmool</p>
+    <div class="items-sunmool">
+        <img width="30" height="30" src="common/assets/images/logo.svg" alt="logo"/>
+        <p>Are you giving this away as a Sunmool(Gift)?</p>
+        <div class="onoffswitch">
+            <input [(ngModel)]="item.sunmool" type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
+            <label class="onoffswitch-label" for="myonoffswitch">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+    </div>
+    <button (click)="saveItem();" class="button button-sign-in pull-right" [disabled]="!item.category || !item.title || !item.style || !item.brandName || !item.colors || !item.originalPrice || !item.condition || !item.description || !item.size || 1 == 2">EDIT</button>
+    <button (click)="common.viewItem(item.$key, item.uid);" class="button button-google pull-right">CANCEL</button>
+</div>

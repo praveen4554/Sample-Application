@@ -1,0 +1,73 @@
+<div class="row">
+   <div class="col-md-12">
+     <div class="top-product row">
+         <div class="col-md-6" *ngIf="offers[0] && offers[0].mainItemDetails">
+             <img *ngIf="!offers[0].mainItemDetails.photos" src="common/assets/images/main-before-login-image.png" width="90" height="90" alt="product" />
+             <img *ngIf="offers[0].mainItemDetails.photos" src="{{configVars.apiServerAdress}}/uploads/{{offers[0].mainItemDetails.photos[0]}}" width="90" height="90" alt="product" />
+             <div class="top-product-info">
+                 <h4 class="top-product-title">{{offers[0].mainItemDetails.title}}</h4>
+                 <p class="top-product-desc">{{offers[0].mainItemDetails.category}}</p>
+                 <div class="top-product-icons">
+                     <div class="icon-group">
+                         <img src="../../../../common/assets/images/item-vote-down.svg"/>
+                         <span>{{offers.length}}</span>
+                     </div>
+                     <div *ngIf="offers[0].comments" class="icon-group" style="cursor: pointer;">
+                         <img (click)="common.viewItem(offers[0].mainItemDetails.$key)" src="../../../../common/assets/images/icon-item-msg.svg"/>
+                         <span >{{offers[0].comments.length}}</span>
+                     </div>
+                     <div *ngIf="offers[0].likes" class="icon-group">
+                         <i class="iconmoon icon-icon_detail_like"></i>
+                         <span >{{common.getLikesNum(offers[0].likes)}}</span>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-md-6">
+             <div class="row">
+                 <div class="col-md-6">
+                     <div class="btn-group">
+                         <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         Show 16 Per Page<span class="caret"></span>
+                         </button>
+                         <ul class="dropdown-menu">
+                             <li><a href="#">8</a></li>
+                             <li><a href="#">16</a></li>
+                             <li><a href="#">32</a></li>
+                             <li><a href="#">64</a></li>
+                         </ul>
+                     </div>
+                 </div>
+                 <div class="col-md-6">
+                     <div class="input-group">
+                         <input placeholder="Search" type="text" class="form-control" id="brand" aria-label="Amount (to the nearest dollar)">
+                         <span class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey"></i></span>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+       <div *ngFor="let offer of offers; let i = index;" class="offer-extend">
+           <div *ngIf="offer.offerToDetails && offer.offerFromDetails && offer.status != 'declined'" class="offer-button clearfix" data-toggle="collapse" [attr.data-target]="'#demo'+i">
+               <img class="img-responsive img-circle" src="{{offer.offerFromDetails.photoURL}}" width="40" height="40" alt="product" />
+               <p>This is <b> {{offer.offerFromDetails.displayName}} </b>'s story</p>
+               <span>{{common.time_ago(offer.timestamp*1000)}}</span>
+               <span class="caret"></span>
+           </div>
+           <div id="demo{{i}}" class="collapse offer-extend-sunmool">
+               <div class="text">{{offer.story}}</div>
+               <div class="offer-exchange clearfix">
+                   <div class="items-visual" >
+                       <label class="btn btn-default-bg">
+                           ACCEPT<input (click)="common.acceptOfferSunmool(offer.$key, offer)" style="display: none;" type="button">
+                       </label>
+                       <label  class="btn btn-default-bg">
+                           DECLINE<input (click)="common.declineOfferSunmool(offer.$key, offer.offerFrom, offer.item)" style="display: none;" type="button">
+                       </label>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+   </div>
+</div>

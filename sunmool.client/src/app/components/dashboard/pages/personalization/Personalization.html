@@ -1,0 +1,160 @@
+<div class="row brand-follow">
+    <div class="col-md-12">
+        <p class="user-info-extend">Connect here with your Facebook friends</p>
+    </div>
+    <div class="col-md-12 border">
+        <div class="search-content__input form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="">
+                <div class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey"  style="cursor: pointer;"></i></div>
+            </div>
+        </div>
+        <div class="follow-section clearfix">
+            <div class="follow-people col-md-3 col-sm-6 col-xs-6">
+                <a class="follow-img"  href="#/userProfile/"><img width="50" height="50" class="img-circle" src="../common/assets/images/main-before-login-image.png" /></a>
+                <a class="follow-name" href="#/userProfile/"><span>Alex Birsan</span></a>
+                <a class="follow-unfollow">+ Follow</a>
+            </div>
+            <div class="follow-people col-md-3 col-sm-6 col-xs-6">
+                <a class="follow-img"  href="#/userProfile/"><img width="50" height="50" class="img-circle" src="../common/assets/images/sign-in-image.png" /></a>
+                <a class="follow-name" href="#/userProfile/"><span>Alex Birsan</span></a>
+                <a class="follow-unfollow">+ Follow</a>
+            </div>
+            <div class="follow-people col-md-3 col-sm-6 col-xs-6">
+                <a class="follow-img"  href="#/userProfile/"><img width="50" height="50" class="img-circle" src="../common/assets/images/default_user.png" /></a>
+                <a class="follow-name" href="#/userProfile/"><span>Alex Birsan</span></a>
+                <a class="follow-unfollow">+ Follow</a>
+            </div>
+            <div class="follow-people col-md-3 col-sm-6 col-xs-6">
+                <a class="follow-img"  href="#/userProfile/"><img width="50" height="50" class="img-circle" src="../common/assets/images/default_user.png" /></a>
+                <a class="follow-name" href="#/userProfile/"><span>Alex Birsan</span></a>
+                <a class="follow-unfollow">+ Follow</a>
+            </div>
+        </div>
+    </div>
+    <div class="personalization-size">
+    <p class="subtitle">Cloathing size</p>
+    <div class="items-size">
+        <div class="items-size__single" (click)="changeSize('0 / XXS')" [ngClass]="{'item-active' : itemSize == '0 / XXS'}">
+            <p>0</p>
+            <span>XXS</span>
+        </div>
+        <div class="items-size__single" (click)="changeSize('2 / XS')" [ngClass]="{'item-active' : itemSize == '2 / XS'}">
+            <p>2</p>
+            <span>XS</span>
+        </div>
+        <div class="items-size__single" (click)="changeSize('4 / S')" [ngClass]="{'item-active' : itemSize == '4 / S'}">
+            <p>4</p>
+            <span>S</span>
+        </div>
+        <div class="items-size__single" (click)="changeSize('6 / S')" [ngClass]="{'item-active' : itemSize == '6 / S'}">
+            <p>6</p>
+            <span>S</span>
+        </div>
+        <div class="items-size__single" (click)="changeSize('8 / M')" [ngClass]="{'item-active' : itemSize == '8 / M'}">
+            <p>8</p>
+            <span>M</span>
+        </div>
+        <div class="items-size__single" (click)="changeSize('10 / M')" [ngClass]="{'item-active' : itemSize == '10 / M'}">
+            <p>10</p>
+            <span>M</span>
+        </div>
+        <div class="items-size__single" (click)="changeSize('12 / L')" [ngClass]="{'item-active' : itemSize == '12 / L'}">
+            <p>12</p>
+            <span>L</span>
+        </div>
+        <div class="items-size__single" (click)="changeSize('14 / L')" [ngClass]="{'item-active' : itemSize == '14 / L'}">
+            <p>14</p>
+            <span>L</span>
+        </div>
+        <div class="items-size__single" (click)="changeSize('16 / XL')" [ngClass]="{'item-active' : itemSize == '16 / XL'}">
+            <p>16</p>
+            <span>XL</span>
+        </div>
+        <div  class="items-size__single" (click)="changeSize('18 / 1X')" [ngClass]="{'item-active' : itemSize == '18 / 1X'}">
+            <p>18</p>
+            <span>1X</span>
+        </div>
+        <div class="items-size__single" (click)="changeSize('20 / 3X')" [ngClass]="{'item-active' : itemSize == '20 / 3X'}">
+            <p>20</p>
+            <span>2X</span>
+        </div>
+        <div class="items-size__single" (click)="changeSize('22 / 3X')" [ngClass]="{'item-active' : itemSize == '22 / 3X'}">
+            <p>22</p>
+            <span>3X</span>
+        </div>
+        <div class="items-size__single cell" (click)="changeSize('One size')" [ngClass]="{'item-active' : itemSize == 'One size'}">
+            <p>One size</p>
+        </div>
+        <div class="items-size__single cell" (click)="changeSize('Ohers')" [ngClass]="{'item-active' : itemSize == 'Ohers'}">
+            <p>Others</p>
+        </div>
+        </div>
+        </div>
+        <div class="personalization-size">
+        <p class="subtitle">Shoe size</p>
+        <div class="items-size">
+            <div class="items-size__single" (click)="changeShoeSize('4 / 35')" [ngClass]="{'item-active' : shoeSize == '4 / 35'}">
+                <p>4</p>
+                <span>35</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('4.5 / 35')" [ngClass]="{'item-active' : shoeSize == '4.5 / 35'}">
+                <p>4.5</p>
+                <span>35</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('5 / 35-36')" [ngClass]="{'item-active' : shoeSize == '5 / 35-36'}">
+                <p>5</p>
+                <span>35-36</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('6 / 36-37')" [ngClass]="{'item-active' : shoeSize == '6 / 36-37'}">
+                <p>6</p>
+                <span>36-37</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('6.5 / 37')" [ngClass]="{'item-active' : shoeSize == '6.5 / 37'}">
+                <p>6.5</p>
+                <span>37</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('7 / 37-38')" [ngClass]="{'item-active' : shoeSize == '7 / 37-38'}">
+                <p>7</p>
+                <span>37-38</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('7.5 / 38')" [ngClass]="{'item-active' : shoeSize == '7.5 / 38'}">
+                <p>7.5</p>
+                <span>38</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('8 / 38-39')" [ngClass]="{'item-active' : shoeSize == '8 / 38-39'}">
+                <p>8</p>
+                <span>38-39</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('8.5 / 39')" [ngClass]="{'item-active' : shoeSize == '8.5 / 39'}">
+                <p>8.5</p>
+                <span>39</span>
+            </div>
+            <div  class="items-size__single" (click)="changeShoeSize('9 / 39-40')" [ngClass]="{'item-active' : shoeSize == '9 / 39-40'}">
+                <p>9</p>
+                <span>39-40</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('9.5 / 40')" [ngClass]="{'item-active' : shoeSize == '9.5 / 40'}">
+                <p>9.5</p>
+                <span>40</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('10 / 40-41')" [ngClass]="{'item-active' : shoeSize == '10 / 40-41'}">
+                <p>10</p>
+                <span>40-41</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('10.5 / 41')" [ngClass]="{'item-active' : shoeSize == '10.5 / 41'}">
+                <p>10.5</p>
+                <span>41</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('11 / 41-42')" [ngClass]="{'item-active' : shoeSize == '11 / 41-42'}">
+                <p>11</p>
+                <span>41-42</span>
+            </div>
+            <div class="items-size__single" (click)="changeShoeSize('12 / 42-43')" [ngClass]="{'item-active' : shoeSize == '12 / 42-43'}">
+                <p>12</p>
+                <span>42-43</span>
+            </div>
+        </div>
+        </div>
+        <button (click)="savePreferences();" class="button button-sign-in pull-right" [disabled]="!itemSize || !shoeSize">UPDATE</button>
+</div>

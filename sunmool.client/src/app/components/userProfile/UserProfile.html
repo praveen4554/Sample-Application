@@ -1,0 +1,91 @@
+<div class="profile">
+<div class="container">
+    <div class="row">
+        <div class="profile-cover col-md-12">
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 profile-cover-image profile-cover-image_1" *ngIf="userInfo.cover1 != ' '" [ngStyle]="{'background':'url(' + configVars.apiServerAdress + '/uploads/' + userInfo.cover1 + ') no-repeat scroll center top \/cover'}">
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 profile-cover-image profile-cover-image_1" *ngIf="userInfo.cover1 == ' '" [ngStyle]="{'background':'url(common/assets/images/main-before-login-image.png) no-repeat scroll center top \/cover'}" (click)="common.viewItem(item.$key)">
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 profile-cover-image profile-cover-image_1" *ngIf="userInfo.cover2 != ' '" [ngStyle]="{'background':'url(' + configVars.apiServerAdress + '/uploads/' + userInfo.cover2 + ') no-repeat scroll center top \/cover'}">
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 profile-cover-image profile-cover-image_1" *ngIf="userInfo.cover2 == ' '" [ngStyle]="{'background':'url(common/assets/images/main-before-login-image.png) no-repeat scroll center top \/cover'}" (click)="common.viewItem(item.$key)">
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 profile-cover-image profile-cover-image_1" *ngIf="userInfo.cover3 != ' '" [ngStyle]="{'background':'url(' + configVars.apiServerAdress + '/uploads/' + userInfo.cover3 + ') no-repeat scroll center top \/cover'}">
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 profile-cover-image profile-cover-image_1" *ngIf="userInfo.cover3 == ' '" [ngStyle]="{'background':'url(common/assets/images/main-before-login-image.png) no-repeat scroll center top \/cover'}" (click)="common.viewItem(item.$key)">
+            </div>
+
+            <!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 profile-cover-image profile-cover-image_1">-->
+            <!--<img *ngIf="userInfo.cover1 != ' '" src="{{configVars.apiServerAdress}}/uploads/{{userInfo.cover1}}"/>-->
+            <!--<img *ngIf="userInfo.cover1 == ' '" src="common/assets/images/main-before-login-image.png"/>-->
+            <!--</div>-->
+            <!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 profile-cover-image profile-cover-image_1">-->
+            <!--<img *ngIf="userInfo.cover2 != ' '" src="{{configVars.apiServerAdress}}/uploads/{{userInfo.cover2}}"/>-->
+            <!--<img *ngIf="userInfo.cover2 == ' '" src="common/assets/images/sign-in-image.png"/>-->
+            <!--</div>-->
+            <!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 profile-cover-image profile-cover-image_1">-->
+            <!--<img *ngIf="userInfo.cover3 != ' '" src="{{configVars.apiServerAdress}}/uploads/{{userInfo.cover3}}"/>-->
+            <!--<img *ngIf="userInfo.cover3 == ' '" src="common/assets/images/sign-up-image.png"/>-->
+            <!--</div>-->
+
+        </div>
+        <div class="profile-info">
+            <img class="img-circle" src="{{userInfo.photoURL}}" />
+            <div *ngIf="auth.userData" class="profile-info-area col-lg-12 col-md-12 col-sm-12">
+                <h3>{{userInfo.displayName}}</h3>
+                <h4>{{userInfo.city}}</h4>
+                <p class="last-seen"><span *ngIf="userInfo && userInfo.timestamp">Last seen {{common.time_ago(userInfo.timestamp*1000)}} |</span>   <span *ngIf="userInfo && userInfo.registeredAt" >Member since {{userInfo.registeredAt}}</span></p>
+                <span class="yandy">536</span>
+                <a class="follow-follow" (click)="common.followUser(userId)" *ngIf="auth.userData.uid != userId && !isFollowed">+ Follow</a>
+                <a class="follow-unfollow" (click)="common.unFollowUser(userId)" *ngIf="auth.userData.uid != userId && isFollowed">X Unfollow</a>
+                <a class="profile-message" (click)="common.sendMessage(userId)" *ngIf="auth.userData.uid != userId"><i class="iconmoon icon-icon_detail_message"></i>Message</a>
+            </div>
+        </div>
+        <div class="profile-info-desc col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <p>{{userInfo.description}}</p>
+        </div>
+        <div class="profile-info-items col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <a href="#/userProfile/{{userId}}/items/" class="profile-info-items__single">
+                <span>{{myItemsCount}}</span>
+                <p>Items</p>
+            </a>
+            <a href="#/userProfile/{{userId}}/favorites/" class="profile-info-items__single">
+                <span>{{favoritesCount}}</span>
+                <p>Favorites</p>
+            </a>
+            <a href="#/userProfile/{{userId}}/followers/" class="profile-info-items__single">
+                <span>{{myFollowersCount}}</span>
+                <p>Followers</p>
+            </a>
+            <a href="#/userProfile/{{userId}}/following/" class="profile-info-items__single">
+                <span>{{followingCount}}</span>
+                <p>Following</p>
+            </a>
+            <a href="#/userProfile/{{userId}}/brands/" class="profile-info-items__single">
+                <span>{{myBrandsCount}}</span>
+                <p>Brands</p>
+            </a>
+        </div>
+    </div>
+    <!-- <div style="margin-top: -50px; margin-left: 50px;"></div>
+    <div>
+      <button  (click)="followUser()" *ngIf="auth.userData.uid != userId && !isFollowed">+ Fallow</button>
+      <button  (click)="unFollowUser()" *ngIf="auth.userData.uid != userId && isFollowed">- Unfallow</button>
+
+    </div>
+    <div></div>
+    <div style="text-align: center;">User description here</div>
+    <div style="text-align: center;">
+      <a href="#/userProfile/{{userId}}/items/"> ()</a> &nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="#/userProfile/{{userId}}/favorites/"> ()</a>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="#/userProfile/{{userId}}/followers/">Followers ()</a>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="#/userProfile/{{userId}}/following/">Following ()</a>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="#/userProfile/{{userId}}/brands/">Brands</a>
+    </div> -->
+</div>
+</div>
+<!-- Profile pages will display in this element-->
+<router-outlet></router-outlet>

@@ -1,0 +1,40 @@
+
+    <div id="main" class="container main-modal">
+
+        <div class="row">
+            <div class="bg-white clearfix">
+                <div class="col-md-6 col-sm-6 col-xs-6 main-picture signup-bg">
+                    <!-- <img src="common/assets/images/sign-up-image.png" alt="Main befor login" /> -->
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-6 main-login">
+                    <a (click)="changeView(1)" href="#"><i class="icon icon-outside icon-arrow-left"></i></a>
+                    <p>Exchange outifts on Sunmool</p>
+                    <p class="title">Sign up</p>
+                    <div *ngIf="errorMessage && errorMessage != ''" class="form-group has-error"><label class="control-label">{{errorMessage}}</label></div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="icon-small icon-small-email" aria-describedby="basic-addon1"></i></div>
+                            <input class="form-control" type="text" [(ngModel)]="username" name="username" placeholder="E-mail Address" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="icon-small icon-small-lock"></i></div>
+                            <input class="form-control" type="password" [(ngModel)]="password" name="password" placeholder="Password" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="icon-small icon-small-lock"></i></div>
+                            <input class="form-control" type="password" [(ngModel)]="confirmPassword" name="password" placeholder="Confirm password" />
+                        </div>
+                    </div>
+                    <span>By creating an account, I accept Sunmool's <a href="#">Terms of Service</a> and <a href="#">Private Policy.</a></span>
+                    <input class="button button-sign-up button-full" type="submit" (click)="signup()" value="signup"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<div class="bg-mask"></div>

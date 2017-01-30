@@ -1,0 +1,13 @@
+
+.font-face(@family: arial, @url: '../fonts', @weight: normal, @style: normal){
+    @font-face{
+        font-family: @family;
+        src:url('@{url}.eot');
+        src:url('@{url}.eot?#iefix') format('embedded-opentype'),
+            url('@{url}.woff') format('woff'),
+            url('@{url}.ttf') format('truetype'),
+            url('@{url}.svg#@{family}') format('svg');
+        font-weight: @weight;
+        font-style: @style;
+    }
+}

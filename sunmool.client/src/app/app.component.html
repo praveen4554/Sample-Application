@@ -1,0 +1,6 @@
+<div [ngClass]="{'body' : ! opened, 'overflow': !isLoggedIn || opened}">
+    <nav-cmpnt *ngIf="isLoggedIn" (notify)='changeOpened($event)'></nav-cmpnt>
+    <div [ngClass]="{'is-opend overflow' : opened}">
+        <router-outlet> </router-outlet>
+    </div>
+</div>

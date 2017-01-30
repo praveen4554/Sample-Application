@@ -1,0 +1,24 @@
+<div id="main" class="container main-modal">
+        <div class="row">
+            <div class="bg-white clearfix">
+                <div class="col-md-6 col-sm-6 col-xs-6 main-picture main-bg">
+                    <!-- <img src="common/assets/images/main-before-login-image.png" alt="Main befor login" /> -->
+                    <p class="text-picture">
+                        Jane loves to exchange the outfits she no longer wears with friends by using <br />“Sunmool.”
+                    </p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 main-login">
+                    <p>Join Sunmool, share gifts, and make friends</p>
+                    <p class="title">Create an Account</p>
+                    <button (click)="loginWithFacebook()"  class="button button-facebook button-full"><i class="icon-small icon-small-facebook"></i>Sign up with Facebook</button>
+                    <button (click)="loginWithGoogle()" class="button button-google button-full"><i class="icon-small icon-small-google"></i>Sign up with Google</button>
+                    <button class="button button-email button-full" (click)="changeView(3)"><i class="icon-small icon-small-email"></i>Sign up with email</button>
+                    <span>By creating an account, I accept Sunmool's <a href="#">Terms of Service</a> and <a href="#">Private Policy.</a></span>
+                    <span class="main-separator">Or</span>
+                    <p class="title">Already have an account?</p>
+                    <button class="button button-sign-in button-full" (click)="changeView(2)">Sign in</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="bg-mask"></div>

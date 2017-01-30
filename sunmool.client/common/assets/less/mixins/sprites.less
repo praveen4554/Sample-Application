@@ -1,0 +1,98 @@
+.stitches-sprite(@x: 0, @y: 0, @width: 0, @height: 0) {
+    background-position: @x @y;
+    width: @width;
+    height: @height;
+}
+
+.sprite {
+    background-image: url(../images/sprite/spritesheet.png);    background-repeat: no-repeat;
+    display: block;
+
+    &.sprite-accesory-black {
+        .stitches-sprite(-5px, -5px, 32px, 60px);
+    }
+
+    &.sprite-accesory-white {
+        .stitches-sprite(-5px, -75px, 32px, 60px);
+    }
+
+    &.sprite-active-black {
+        .stitches-sprite(-5px, -145px, 57px, 60px);
+    }
+
+    &.sprite-active-white {
+        .stitches-sprite(-5px, -215px, 57px, 60px);
+    }
+
+    &.sprite-costume-black {
+        .stitches-sprite(-5px, -285px, 60px, 60px);
+    }
+
+    &.sprite-costume-white {
+        .stitches-sprite(-5px, -355px, 60px, 60px);
+    }
+
+    &.sprite-dresses-black {
+        .stitches-sprite(-5px, -425px, 46px, 60px);
+    }
+
+    &.sprite-dresses-white {
+        .stitches-sprite(-5px, -495px, 46px, 60px);
+    }
+
+    &.sprite-jackets-black {
+        .stitches-sprite(-5px, -565px, 54px, 60px);
+    }
+
+    &.sprite-jackets-white {
+        .stitches-sprite(-5px, -635px, 54px, 60px);
+    }
+
+    &.sprite-kids-black {
+        .stitches-sprite(-5px, -705px, 36px, 60px);
+    }
+
+    &.sprite-kids-white {
+        .stitches-sprite(-5px, -775px, 36px, 60px);
+    }
+
+    &.sprite-men-black {
+        .stitches-sprite(-5px, -845px, 30px, 60px);
+    }
+
+    &.sprite-men-white {
+        .stitches-sprite(-5px, -915px, 30px, 60px);
+    }
+
+    &.sprite-pants-black {
+        .stitches-sprite(-5px, -985px, 50px, 60px);
+    }
+
+    &.sprite-pants-white {
+        .stitches-sprite(-5px, -1055px, 50px, 60px);
+    }
+
+    &.sprite-shoes-black {
+        .stitches-sprite(-5px, -1125px, 60px, 54px);
+    }
+
+    &.sprite-shoes-white {
+        .stitches-sprite(-5px, -1189px, 60px, 54px);
+    }
+
+    &.sprite-skirts-black {
+        .stitches-sprite(-5px, -1253px, 60px, 48px);
+    }
+
+    &.sprite-skirts-white {
+        .stitches-sprite(-5px, -1311px, 60px, 48px);
+    }
+
+    &.sprite-top-black {
+        .stitches-sprite(-5px, -1369px, 60px, 60px);
+    }
+
+    &.sprite-top-white {
+        .stitches-sprite(-5px, -1439px, 60px, 60px);
+    }
+}

@@ -1,0 +1,590 @@
+.profile {
+    margin-top: 36px;
+    &-cover {
+        height: 260px;
+        &-image {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 0;
+            height: 100%;
+            &_1 {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              overflow: hidden;
+              img {
+                  flex-shrink: 0;
+                  min-width: 100%;
+                  min-height: 100%
+              }
+            }
+            &_2 {
+                background-image: url('../../../../common/assets/images/sign-in-image.png');
+            }
+            &_3 {
+                background-image: url('../../../../common/assets/images/sign-up-image.png');
+            }
+        }
+    }
+    &-info {
+        position: relative;
+        float: left;
+        width: 100%;
+        img {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: -79%;
+            margin-left: 30px;
+        }
+        &-area {
+            padding-left: 260px;
+            h3 {
+                font-family: 'Fira Sans Book';
+                font-weight: 500;
+                text-rendering: optimizeLegibility;
+                color: @hovercolor;
+                margin-bottom: 2px;
+            }
+            h4 {
+                font-family: 'Fira Sans Book';
+                font-weight: 500;
+                font-size: 20px;
+                text-rendering: optimizeLegibility;
+                color: #888;
+                margin-bottom: 12px;
+                margin-top: 0px;
+            }
+            .last-seen {
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 500;
+                text-rendering: optimizeLegibility;
+                color: #888;
+            }
+            .yandy {
+                font-size: 24px;
+                height: 60px;
+                width: 60px;
+                padding: 14px 10px;
+                background-size: 100% 100%;
+                position: absolute;
+                right: 15px;
+                top: 30px;
+            }
+        }
+        &-desc {
+            margin-top: 18px;
+            p {
+                font-family: 'Fira Sans Book';
+                font-weight: 600;
+
+                display: block; /* Fallback for non-webkit */
+                display: -webkit-box;
+                max-width: 100%;
+                height: 60px; /* Fallback for non-webkit */
+                margin: 0 auto;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        &-items {
+            text-align: center;
+            margin-top: 40px;
+            border-bottom: 2px solid #ddd;
+            &:after {
+                content: '';
+                display: inline-block;
+                width: 100%;
+            }
+            &__single {
+                display: inline-block;
+                margin: 0px 3%;
+                span {
+                    display: inline-block;
+                    padding: 10px;
+                    border: 1px solid @black;
+                    color: @black;
+                    width: 46px;
+                    height: 46px;
+                    .border-radius(50%);
+                    font-family: 'Open Sans', sans-serif;
+                    font-weight: 600;
+                    font-size: 18px;
+                    text-rendering: optimizeLegibility;
+                }
+                p {
+                    font-family: 'Open Sans', sans-serif;
+                    text-rendering: optimizeLegibility;
+                    font-weight: 500;
+                    font-size: 16px;
+                    color: @black;
+                }
+            }
+        }
+    }
+    &-message {
+        margin-left: 10px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        text-rendering: optimizeLegibility;
+        color: @hovercolor;
+        display: block;
+        line-height: 12px;
+        float: left;
+        cursor: pointer;
+        &:hover {
+            text-decoration: none;
+        }
+        i {
+            margin-right: 4px;
+        }
+    }
+    .follow-unfollow,
+    .follow-follow {
+        font-size: 16px;
+        line-height: 16px;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    &-items {
+        margin-top: 30px;
+        margin-bottom: 26px;
+        padding: 0px 15px;
+        p {
+            font-family: 'Open Sans', sans-serif;
+            text-rendering: optimizeLegibility;
+            font-weight: 600;
+            color: #808080;
+            font-size: 18px;
+        }
+        .form-group {
+            input {
+                border: 1px solid @bordercolor;
+            }
+        }
+        .input-group {
+            .form-control {
+                border-right: none;
+            }
+            .input-group-addon {
+                background-color: transparent;
+                i {
+                    margin: 0px;
+                }
+            }
+        }
+        .btn-group {
+            width: 100%;
+            .form-control {
+                .border-radius(5px);
+            }
+            .caret {
+                color: @bordercolor;
+                position: absolute;
+                right: 25px;
+                bottom: 8px;
+            }
+            &.open  .dropdown-toggle {
+                border-bottom: 1px solid @bordercolor;
+            }
+            &.open > .dropdown-menu {
+                width: 100%;
+                margin-top: 7px;
+                border-top: 1px solid @bordercolor;
+                z-index: 11;
+                li {
+                    padding: 0px 10px;
+                    a {
+                        font-size: 14px;
+                        margin: 0px;
+                        &:hover {
+                            color: @black;
+                        }
+                    }
+                }
+            }
+        }
+        .search-content {
+            margin-top: 24px;
+        }
+    }
+
+}
+
+.edit-profile {
+    .cover-photo {
+        left: 0!important;
+        right: 0;
+        bottom: 0!important;
+        top: 0!important;
+        width: 100%;
+    }
+    .inputupload {
+        position: relative;
+        .img-upload {
+            position: absolute;
+            z-index: 1;
+            width: 40px;
+            height: 40px;
+            opacity: 0;
+            left: 0px;
+            top: 15px;
+        }
+        img {
+            cursor: pointer;
+        }
+    }
+    border: 1px solid @bordercolor;
+    padding: 20px;
+    .form-inline {
+        label {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+    }
+    .form-group {
+        .form-control {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .btn-group {
+            width: 100%;
+            button {
+                .border-radius(4px);
+                margin-bottom: 0px;
+            }
+            & > open {
+                button {
+                    .border-radius(4px 4px 0px 0px);
+                }
+            }
+        }
+        .dropdown-menu {
+            min-width: 100%;
+            width: 100%;
+            z-index: 10;
+            & > li {
+                & > a {
+                    margin: 0px;
+                }
+            }
+        }
+    }
+    .edit-profile__pic {
+        text-align: center;
+        .img-circle {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top: -66px;
+        }
+        .img-upload {
+            position: relative;
+            left: 125px;
+            top: 40px;
+        }
+    }
+    .edit-photo__profile {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        display: inline-block;
+        min-height: 200px;
+        border: 1px solid @bordercolor;
+        overflow: hidden;
+        img {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+        }
+        span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            vertical-align: middle;
+            padding: 27% 10%;
+            text-align: center;
+        }
+    }
+}
+.invite {
+    .search-content__input {
+        margin-top: 20px;
+        .input-group-addon {
+            font-size: 18px;
+        }
+    }
+    .invite-form {
+        padding: 20px;
+        label {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: @black;
+        }
+    }
+}
+.invite-social {
+    .border {
+        min-height: 288px;
+        max-height: 289px;
+        span {
+            display: block;
+            width: 100%;
+            font-size: 20px;
+            text-align: center;
+            position: relative;
+            top: 20px;
+            &.google {
+                color: @googlecolor;
+            }
+            &.facebook{
+                color: @faceboocolor;
+            }
+            &.twitter {
+                color: @twitter;
+            }
+        }
+        img {
+            padding: 78px;
+        }
+    }
+}
+.brand-follow {
+    .follow-section .follow-img {
+        margin: 0px 25px 0px 0px;
+        width: 60px;
+        height: 60px;
+    }
+    .follow-section .follow-name {
+        margin: 0px;
+        padding: 10px 0px 6px 0px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .follow-unfollow {
+        margin: 0px;
+        color: @googlecolor;
+        font-size: 12px;
+    }
+    .search-content__input {
+        margin-top: 20px;
+        .input-group-addon {
+            font-size: 18px;
+        }
+    }
+    .subtitle {
+        float: left;
+    }
+    .personalization-size {
+        &:last-child {
+            margin-bottom: 40px;
+        }
+    }
+}
+.item-select {
+    display: inline-block;
+    width: 100%;
+}
+.payment {
+    label {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+    }
+    .border {
+        padding: 20px 20px 0px 20px;
+    }
+}
+.mb {
+    margin-bottom: 20px;
+}
+.follow-section {
+    margin-bottom: 30px;
+    .follow-img {
+        display: inline-block;
+        float: left;
+        margin-right: 8px;
+        img {
+            float: left;
+        }
+    }
+    .follow-name {
+        display: block;
+        font-family: 'Fira Sans';
+        font-weight: 700;
+        color: @black;
+        font-size: 18px;
+        line-height: 20px;
+    }
+    .follow-location {
+        font-family: 'Fira Sans Book';
+        font-weight: 500;
+        color: #888;
+        font-size: 14px;
+        display: block;
+        line-height: 20px;
+    }
+
+    .yandy {
+        font-size: 20px;
+        height: 50px;
+        width: 50px;
+        padding: 12px 14px;
+        background-size: 100% 100%;
+        position: absolute;
+        right: 15px;
+        top: 0px;
+    }
+    .follow-people {
+        margin-bottom: 26px;
+    }
+}
+.follow-unfollow {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    text-rendering: optimizeLegibility;
+    color: @googlecolor;
+    display: block;
+    line-height: 12px;
+    float: left;
+    cursor: pointer;
+}
+.follow-follow {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    text-rendering: optimizeLegibility;
+    color: @hovercolor;
+    display: block;
+    line-height: 12px;
+    float: left;
+    cursor: pointer;
+}
+
+@media (max-width: @screen-sm) {
+    .profile {
+        &-cover {
+            height: 210px;
+        }
+        &-info-area {
+            .yandy {
+                top: 0px;
+            }
+        }
+    }
+    .edit-profile {
+        .double-height {
+            height: 400px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .profile {
+        &-info {
+            img {
+                width: 50px;
+                height: 50px;
+                top: 14px;
+            }
+            &-desc {
+                p {
+                    border: solid 1px #ddd;
+                    padding: 16px;
+                    height: 80px;
+                }
+            }
+            &-area {
+                .last-seen {
+                    font-size: 12px;
+                }
+                .yandy {
+                    width: 50px;
+                    height: 50px;
+                    font-size: 18px;
+                    top: -6px;
+                }
+                padding-left: 100px;
+                h3 {
+                    font-size: 18px;
+                }
+                h4 {
+                    font-size: 14px;
+                }
+                .last-seen {
+                    margin-left: -85px;
+                }
+            }
+            &-items {
+                text-align: justify;
+                &__single {
+                    text-align: center;
+                    margin: 0 auto;
+                    p {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+    .follow-people {
+        width: 96%;
+        margin: 0px 2%;
+        padding: 15px 0px;
+        border-bottom: 1px solid #ddd;
+        .yandy {
+            top: 15px;
+        }
+    }
+    .profile-cover-image_1 {
+        float: left;
+        width: 50%;
+        display: inline-block;
+        height: 150px;
+    }
+    .profile-cover-image_2 {
+        float: right;
+        width: 49%;
+        display: block;
+        height: 300px;
+    }
+    .profile-cover-image_3 {
+        float: left;
+        width: 50%;
+        display: inline-block;
+        height: 150px;
+    }
+    .edit-profile {
+        .edit-photo__profile {
+            min-height: 130px;
+        }
+        .double-height {
+            height: 260px;
+        }
+    }
+}
+
+
+@media (max-width: @screen-xs) {
+    .profile-cover-image_1 {
+        height: 120px;
+    }
+    .profile-cover-image_2 {
+        height: 240px;
+    }
+    .profile-cover-image_3 {
+        height: 120px;
+    }
+}

@@ -1,0 +1,124 @@
+
+// !Buttons
+// ==|=========================================================================
+
+.button {
+	display: inline-block;
+	vertical-align: middle;
+	min-width: 110px;
+	.border-radius(3px);
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	text-rendering: optimizeLegibility;
+	text-align: center;
+	line-height: 20px;
+	color: @white;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background 0.2s ease-in-out;
+	&[disabled] {
+		background-color: @bordercolor;
+		border-color: @bordercolor;
+	}
+	&-small {
+		padding: 6px 12px;
+		font-size: 16px;
+	}
+	&-black {
+		border: 1px solid @white;
+		&:hover {
+			text-decoration: none;
+			color: @hovercolor;
+			border-color: @hovercolor;
+		}
+	}
+	&-full {
+		width: 100%;
+		padding: 5px;
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+	&-facebook {
+		.border-radius(3px);
+  		background-color: @faceboocolor;
+		border: 1px solid @faceboocolor;
+	}
+	&-google {
+        &.button-empty {
+            background-color: @white;
+            color: @googlecolor;
+        }
+		.border-radius(3px);
+		background-color: @googlecolor;
+		border: 1px solid @googlecolor;
+	}
+	&-email {
+		.border-radius(3px);
+		background-color: @white;
+		border: 1px solid #888888;
+		color: #888888;
+	}
+	&-sign-in {
+		.border-radius(3px);
+		background-color: @signincolor;
+		border: 1px solid @signincolor;
+		margin-bottom: 0px;
+        &.button-empty {
+            background-color: @white;
+            color: @signincolor;
+        }
+	}
+	&-sign-up {
+		.border-radius(3px);
+		background-color: @googlecolor;
+		border: 1px solid @googlecolor;
+		margin-bottom: 0px;
+	}
+	&-default {
+		border: 1px solid @bordercolor;
+		padding: 6px;
+		background-color: @white;
+		color: @black;
+		.border-radius(0px);
+		.caret {
+			color: @black;
+		}
+	}
+}
+.btn-group.open .dropdown-toggle {
+	.box-shadow(none);
+	border-bottom: none;
+	z-index: 1000;
+	position: relative;
+	margin-top: -1px;
+}
+
+//Overwrite dropdown bootstrap
+.open > .dropdown-menu {
+	border-left: 1px solid @bordercolor;
+	border-right: 1px solid @bordercolor;
+	border-bottom: 1px solid @bordercolor;
+	margin-top: -1px;
+	z-index: 30;
+	.box-shadow(none);
+	li {
+		padding: 0px 20px;
+		a {
+			font-family: 'Open Sans', sans-serif;
+			font-weight: 400;
+			text-rendering: optimizeLegibility;
+			padding: 10px 0px;
+			border-bottom: 1px solid @bordercolor;
+			color: #666;
+			&:hover,
+			&:focus {
+				background-color: @white;
+			}
+		}
+		&:last-child {
+			a {
+				border-bottom: none;
+			}
+		}
+	}
+}

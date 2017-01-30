@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row">
+        <div class="profile-items">
+            <div class="form-group row">
+            <p class="col-md-3"> Favorite items ({{items.length}})</p>
+                <div class="col-md-3 pull-right">
+                    <div class="input-group">
+                        <input placeholder="Search" type="text" class="form-control" id="brand" aria-label="Amount (to the nearest dollar)">
+                        <span class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3 pull-right">
+                    <div class="btn-group col-md-3">
+                        <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Show 16 Per Page<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" (click)="changeStyle('All')" >All</a></li>
+                            <li><a href="#" (click)="changeStyle('Boots & Booties')">Boots & Booties</a></li>
+                            <li><a href="#" (click)="changeStyle('Flats')">Flats</a></li>
+                            <li><a href="#" (click)="changeStyle('Pumps')">Pumps</a></li>
+                            <li><a href="#" (click)="changeStyle('Platforms')">Platforms</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+           <div class="row product-area" style="margin-top: 0px;">
+             <div *ngFor="let otherItem of items; let i = index;">
+               <div class="col-md-3 col-sm-4 col-xs-4 product">
+                    <div class="product-content">
+                      <div class="product-sunmool">
+                          <img *ngIf="otherItem.sunmool" width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                      </div>
+                    <div class="product-image" (click)="common.viewItem(otherItem.$key)">
+                        <img style="cursor: pointer;" *ngIf="otherItem.photos" src="{{configVars.apiServerAdress}}/uploads/{{otherItem.photos[0]}}" alt="ceva"/>
+                        <img style="cursor: pointer;" *ngIf="!otherItem.photos" src="common/assets/images/main-before-login-image.png" alt="ceva"/>
+                    </div>
+
+                   <div class="product-info">
+                       <div>
+                           <p>{{otherItem.title}}</p>
+                           <span>{{otherItem.category}}</span>
+                           <p>{{otherItem.size}}</p>
+                       </div>
+                       <a *ngIf="otherItem.user" href="#/userProfile/{{otherItem.user.$key}}/items"><img width="36px" height="36px" *ngIf="otherItem.user && otherItem.user.photoURL" src="{{otherItem.user.photoURL}}" alt="ceva"/></a>
+                       <a *ngIf="otherItem.user" href="#/userProfile/{{otherItem.user.$key}}/items"><img width="36px" height="36px" *ngIf="!otherItem.user || !otherItem.user.photoURL" src="common/assets/images/main-before-login-image.png" alt="ceva"/></a>
+                       <div class="product-info__likes">
+                         <i *ngIf="otherItem.likes && auth.userData && otherItem.likes[auth.userData.uid] && otherItem.likes[auth.userData.uid].liked"  (click)="common.unLikeItem(otherItem.$key)" class="iconmoon icon-icon_detail_like sunmool-color"></i>
+                         <i *ngIf="otherItem.likes && auth.userData && ( (otherItem.likes[auth.userData.uid] && !otherItem.likes[auth.userData.uid].liked) || !otherItem.likes[auth.userData.uid] )" (click)="common.likeItem(otherItem.$key);" class="iconmoon icon-icon_detail_like"></i>
+                         <span *ngIf="otherItem.likes">{{common.getLikesNum(otherItem.likes)}}</span>
+                       </div>
+                   </div>
+                   </div>
+               </div>
+             </div>
+           </div>
+
+        </div>
+    </div>
+</div>

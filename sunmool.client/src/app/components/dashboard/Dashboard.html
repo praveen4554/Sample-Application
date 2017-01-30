@@ -1,0 +1,32 @@
+<div class="container common-pages" style="margin-top: 20px;">
+    <div class="row">
+        <div class="items-menu col-md-2 hidden-sm hidden-xs" style="width:150px;">
+
+          <a href="#/dashboard/myItems" (click)="currentRoute = 'items'" [ngClass]="{'selected-menu-item' : currentRoute == 'items'}">Items</a>
+          <a href="" (click)="offersMenu();" [ngClass]="{'selected-menu-item' : currentRoute == 'offersIncomming' || currentRoute == 'offersOutgoing'}" >Offers</a>
+          <div class="offers-showing" [ngClass]="{'visible': open, 'hidden': !open}">
+              <span><a (click)="currentRoute = 'offersIncomming'; sunmoolOpen = false; settingsOpen=false; common.goPage('/dashboard/offers/me')" href="#/dashboard/offers/me" [ngClass]="{'selected-menu-item' : currentRoute == 'offersIncomming'}">Incoming</a></span>
+              <span><a href="#/dashboard/offers/others" (click)="currentRoute = 'offersOutgoing'; sunmoolOpen = false; settingsOpen=false; common.goPage('/dashboard/offers/others')" [ngClass]="{'selected-menu-item' : currentRoute == 'offersOutgoing'}">Outgoing</a></span>
+          </div>
+          <a href="#" (click)="sunmoolMenu()" [ngClass]="{'selected-menu-item' : currentRoute == 'sunmoolOutgoing' || currentRoute == 'sunmoolIncomming'}">Sunmool</a>
+          <div class="offers-showing" [ngClass]="{'visible': sunmoolOpen, 'hidden': !sunmoolOpen}">
+              <span><a href="#/dashboard/sunmool/me" (click)="currentRoute = 'sunmoolIncomming'; open = false; settingsOpen=false; common.goPage('/dashboard/sunmool/me')" [ngClass]="{'selected-menu-item' : currentRoute == 'sunmoolIncomming'}">My gifts</a></span>
+              <span><a href="#/dashboard/sunmool/others" (click)="currentRoute = 'sunmoolOutgoing'; open = false; settingsOpen=false; common.goPage('/dashboard/sunmool/others')" [ngClass]="{'selected-menu-item' : currentRoute == 'sunmoolOutgoing'}">My requests</a></span>
+          </div>
+          <a href="#/dashboard/inprocess" (click)="currentRoute = 'inProcess'" [ngClass]="{'selected-menu-item' : currentRoute == 'inProcess'}">In Process</a>
+          <a href="#/dashboard/history" (click)="currentRoute = 'history'" [ngClass]="{'selected-menu-item' : currentRoute == 'history'}">History</a>
+          <a href="#" (click)="settingsMenu()" [ngClass]="{'selected-menu-item' : currentRoute == 'profileDetails' || currentRoute == 'payment' || currentRoute == 'personalization' || currentRoute == 'notification' || currentRoute == 'privacy'}">Settings</a>
+          <div class="offers-showing" [ngClass]="{'visible': settingsOpen, 'hidden': !settingsOpen}">
+              <span><a href="#/dashboard/editProfile" (click)="currentRoute = 'profileDetails'; open = false; sunmoolOpen=false; common.goPage('/dashboard/editProfile')" [ngClass]="{'selected-menu-item' : currentRoute == 'profileDetails'}">Profile details</a></span>
+              <span><a href="#/dashboard/payment" (click)="currentRoute = 'payment'; open = false; sunmoolOpen=false; common.goPage('/dashboard/payment')" [ngClass]="{'selected-menu-item' : currentRoute == 'payment'}">Payment</a></span>
+              <span><a href="#/dashboard/personalization" (click)="currentRoute = 'personalization'; open = false; sunmoolOpen=false; common.goPage('/dashboard/personalization')" [ngClass]="{'selected-menu-item' : currentRoute == 'personalization'}">Personalization</a></span>
+              <span><a href="#/dashboard/notification" (click)="currentRoute = 'notification'; open = false; sunmoolOpen=false; common.goPage('/dashboard/notification')" [ngClass]="{'selected-menu-item' : currentRoute == 'notification'}">Notification</a></span>
+            <!--  <span><a href="#/dashboard/privacy" (click)="currentRoute = 'privacy'; open = false; sunmoolOpen=false; common.goPage('/dashboard/privacy')" [ngClass]="{'selected-menu-item' : currentRoute == 'privacy'}">Privacy</a></span> -->
+          </div>
+      </div>
+
+        <div class="items-menu col-md-10" style="width:1050px;">
+        <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

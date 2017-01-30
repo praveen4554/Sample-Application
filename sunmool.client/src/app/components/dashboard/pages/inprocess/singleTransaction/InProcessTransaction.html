@@ -1,0 +1,473 @@
+<div class="offers-page">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-7">
+                <h4 class="user-info-extend">In Process</h4>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="btn-group">
+                            <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Show 16 Per Page<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">8</a></li>
+                                <li><a href="#">16</a></li>
+                                <li><a href="#">32</a></li>
+                                <li><a href="#">64</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input placeholder="Search" type="text" class="form-control" id="brand" aria-label="Amount (to the nearest dollar)">
+                            <span class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offer-extend inprocess">
+
+          <div *ngIf="transactionDetails.offerToDetails && transactionDetails.offerFromDetails && transactionDetails.type == 'sunmool'" class="offer-button clearfix" data-toggle="" [attr.data-target]="'#demo'+i">
+              <img class="img-responsive img-circle" src="{{transactionDetails.offerFromDetails.photoURL}}" width="40" height="40" alt="product" />
+              <p>This is <b> {{transactionDetails.offerFromDetails.displayName}} </b>'s story</p>
+              <span>{{common.time_ago(transactionDetails.timestamp*1000)}}</span>
+
+          </div>
+        <div class="offer-exchange border clearfix" *ngIf="transactionDetails.type == 'sunmool'">
+          <div  *ngIf="transactionDetails.offerToDetails && transactionDetails.offerFromDetails && transactionDetails.type == 'sunmool'" class="offer-extend-sunmool">
+              <div class="text">{{transactionDetails.story}}</div>
+              <div class="offer-exchange clearfix">
+              </div>
+          </div>
+        </div>
+
+
+                <div class="offer-exchange border clearfix" *ngIf="transactionDetails.type != 'sunmool'">
+
+
+                  <div id="carousel-right{{i}}" *ngIf="transactionDetails.offerFromDetails && transactionDetails.offerToDetails" data-interval="false" class="carousel pull-left slide">
+                       <p class="pick-font">
+                         <span *ngIf="auth.userData.uid == transactionDetails.offerToDetails.$key">
+                         You
+                         </span>
+
+                         <span *ngIf="auth.userData.uid != transactionDetails.offerToDetails.$key">
+                         {{transactionDetails.offerToDetails.displayName}}
+                         </span>
+
+
+                         picked
+                         <i class="sunmool-color number-items">{{transactionDetails.itemsToPick}}</i> of
+                         <img  src="{{transactionDetails.offerFromDetails.photoURL}}" class="img-circle" width="30" height="30" />
+
+                         <i class="username bold">
+
+                           <span *ngIf="auth.userData.uid == transactionDetails.offerFromDetails.$key">
+                           Your
+                           </span>
+
+                           <span *ngIf="auth.userData.uid != transactionDetails.offerFromDetails.$key">
+                           {{transactionDetails.offerFromDetails.displayName}}
+                           </span>
+
+
+
+
+                         </i><span *ngIf="auth.userData.uid != transactionDetails.offerFromDetails.$key">'s</span> items
+                       </p>
+                       <a class="up carousel-control" href="#carousel-right{{i}}" role="button" data-slide="prev">
+                         <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                         <span class="sr-only">Previous</span>
+                       </a>
+                       <a class="down carousel-control" href="#carousel-right{{i}}" role="button" data-slide="next">
+                         <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                         <span class="sr-only">Next</span>
+                       </a>
+                       <div *ngIf="transactionDetails.offerPhotos" class="carousel-inner product-area" role="listbox">
+
+                         <!--  Aici vin itemurile active -->
+                         <div *ngFor="let oferPhotos of transactionDetails.offerPhotos; let i = index;" class="item activerow" [ngClass]="{active : i ==0}">
+                             <div *ngFor="let oferPhoto of oferPhotos; let j = index;" class="col-md-6 col-sm-6 col-xs-4 product">
+                                  <div class="product-content" style="margin-bottom: 0px;">
+
+                                     <div *ngIf="transactionDetails.acceptedItems && transactionDetails.acceptedItems[oferPhoto.$key]" class="active-select">
+                                         <p  class="is-clicked">SELECTED</p>
+                                     </div>
+                                     <!--<div  class="product-image">-->
+                                         <!--<img style="cursor: pointer;" src="{{configVars.apiServerAdress}}/uploads/{{oferPhoto.photos[0]}}" alt="ceva"/>-->
+                                     <!--</div>-->
+                                    <div class="product-image" *ngIf="oferPhoto.photos" [ngStyle]="{'background':'url(' + configVars.apiServerAdress + '/uploads/' + oferPhoto.photos[0] + ') no-repeat scroll center center \/cover', 'height':'150px'}">
+                                    </div>
+                                     <div class="product-info">
+                                         <div>
+                                             <p>{{oferPhoto.title}}</p>
+                                             <span>{{oferPhoto.category}}</span>
+                                         </div>
+                                         <p class="offer-size">{{oferPhoto.size}}</p>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+                     </div>
+
+                 </div>
+                  <img src="../../../../common/assets/images/icon-exchange.svg" class="icon-exchange" />
+                  <div id="carousel-left" class="carousel pull-right slide" data-interval="false" *ngIf="transactionDetails.offerFromDetails && transactionDetails.offerToDetails">
+                       <p class="pick-font">
+                         <img src="{{transactionDetails.offerFromDetails.photoURL}}" class="img-circle" width="30" height="30" />
+                         <i class="username bold">
+
+                           <span *ngIf="transactionDetails.offerFromDetails.$key == auth.userData.uid">
+                           You
+                          </span>
+
+                          <span *ngIf="transactionDetails.offerFromDetails.$key != auth.userData.uid">
+                          {{transactionDetails.offerFromDetails.displayName}}
+                         </span>
+
+                         </i>
+                         picked
+                         <i class="sunmool-color number-items">{{transactionDetails.itemsToGet.length}}</i>
+                         of
+
+                         <span *ngIf="transactionDetails.offerToDetails.$key != auth.userData.uid">
+                         {{transactionDetails.offerToDetails.displayName}}'s
+                         </span>
+
+                         <span *ngIf="transactionDetails.offerToDetails.$key == auth.userData.uid">
+                           Your
+                         </span>
+
+
+                          items
+                       </p>
+                      <a class="up carousel-control" href="#carousel-left" role="button" data-slide="prev">
+                          <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                          <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="down carousel-control" href="#carousel-left" role="button" data-slide="next">
+                          <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                          <span class="sr-only">Next</span>
+                      </a>
+                      <div *ngIf="transactionDetails.getPhotos" class="carousel-inner product-area" role="listbox">
+
+                        <!--  Aici vin itemurile active -->
+                        <div *ngFor="let getPhotos of transactionDetails.getPhotos; let i = index;" class="item row" [ngClass]="{active : i ==0}">
+                            <div *ngFor="let getPhoto of getPhotos; let i = index;" class="col-md-6 col-sm-6 col-xs-4 product">
+                                <div class="product-content">
+
+                                    <!--<div class="product-sunmool">
+                                        <img  width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                                    </div>-->
+                                    <!--<div class="product-image">-->
+                                        <!--<img style="cursor: pointer;" src="{{configVars.apiServerAdress}}/uploads/{{getPhoto.photos[0]}}" alt="ceva"/>-->
+                                    <!--</div>-->
+
+                                    <div class="product-image" *ngIf="getPhoto.photos" [ngStyle]="{'background':'url(' + configVars.apiServerAdress + '/uploads/' + getPhoto.photos[0] + ') no-repeat scroll center center \/cover', 'height':'150px'}">
+                                    </div>
+
+                                    <div class="product-info">
+                                        <div>
+                                            <p>{{getPhoto.title}}</p>
+                                            <span>{{getPhoto.category}}</span>
+                                        </div>
+                                        <p class="offer-size">{{getPhoto.size}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                  </div>
+
+
+
+
+            </div>
+            <div class="items-visual" >
+                <!--  Aici la id tre sa fie o incrementare ca la celelalte gen {{i}} -->
+                <label class="btn btn-default-bg" data-toggle="collapse" data-target="#demo">IN PROCESS</label>
+                <label  class="btn btn-default-bg" [ngClass]="{disabledAcceptBtn: printStep || trackStep}">
+                    DELETE
+                </label>
+            </div>
+            <div id="demo" class="payment-section collapse">
+                <div class="payment-section--padding">
+                    <div class="clearfix hr icon-process">
+                        <div class="col-xs-3 text-center">
+                            <img [ngClass]="{'inactive-icon' : !boxStep}" src="common/assets/images/single/icon-boxsize.svg" />
+                            <p class="payment-steps">SHIPPING</p>
+                        </div>
+
+
+                        <div class="col-xs-3 text-center" *ngIf="transactionDetails.type != 'sunmool'">
+                            <img [ngClass]="{'inactive-icon' : !paymentStep}" src="common/assets/images/single/icon-payment.svg" />
+                            <p class="payment-steps">PAYMENT</p>
+                        </div>
+                        <div class="col-xs-3 text-center" *ngIf="transactionDetails.type == 'sunmool' && isTaker">
+                            <img [ngClass]="{'inactive-icon' : !paymentStep}" src="common/assets/images/single/icon-payment.svg" />
+                            <p class="payment-steps">PAYMENT</p>
+                        </div>
+
+
+                        <div *ngIf="transactionDetails.type != 'sunmool'" (click)="changePageToPrint()" class="col-xs-3 text-center" style="cursor: pointer;">
+                            <img [ngClass]="{'inactive-icon' : !printStep}"  src="common/assets/images/single/icon-print-gray.svg" />
+                            <p class="payment-steps">PRINT</p>
+                        </div>
+                        <div *ngIf="transactionDetails.type == 'sunmool' && !isTaker" (click)="changePageToPrint()" class="col-xs-3 text-center" style="cursor: pointer;">
+                            <img [ngClass]="{'inactive-icon' : !printStep}"  src="common/assets/images/single/icon-print-gray.svg" />
+                            <p class="payment-steps">PRINT</p>
+                        </div>
+
+
+                        <div (click)="changePageToTracking()" class="col-xs-3 text-center" style="cursor: pointer;">
+                            <img [ngClass]="{'inactive-icon' : !trackStep}"  src="common/assets/images/single/icon-shipping-gray.svg" />
+                            <p class="payment-steps">TRACK</p>
+                        </div>
+                    </div>
+                        <span class="icon icon-clock"></span>
+<!-- TODO: Aici e primul step in care alegi box size-ul -->
+                    <div class="payment row" *ngIf="boxStep && myBoxComplete == false">
+                      <div class="col-md-12" *ngIf="transactionDetails.type == 'sunmool' && !isTaker">
+                        <p class="subtitle">Choose the box</p>
+                        <p class="subtitle">You will be redirected to the next step as soon as the other user selects a box.</p>
+                        <div class="clearfix">
+                            <div (click)="selectBox(0)" class="box-size col-xs-4">
+                                <p class="payment-steps">Small (0 to 0.5 lb)</p>
+                                <small class="payment-info">Light and Tiny : Accesories like ring, earring, shirts, Pants and so on.</small>
+                            </div>
+                            <div (click)="selectBox(1)" class="box-size col-xs-4">
+                                <p class="payment-steps">Medium (0.5 to 5 lb)</p>
+                                <small class="payment-info">Dresses, handbags and ballet flats are BFFs with medium packages.</small>
+                            </div>
+                            <div (click)="selectBox(2)" class="box-size col-xs-4">
+                                <p class="payment-steps">Large (5 to 10 lb)</p>
+                                <small class="payment-info">Coats, sneakers or heavy knitwear? Hook them up with a large box!</small>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12" *ngIf="transactionDetails.type != 'sunmool'">
+                        <p class="subtitle">Choose the box</p>
+                        <p class="subtitle">You will be redirected to the next step as soon as the other user selects a box.</p>
+                        <div class="clearfix">
+                            <div (click)="selectBox(0)" class="box-size col-xs-4">
+                                <p class="payment-steps">Small (0 to 0.5 lb)</p>
+                                <small class="payment-info">Light and Tiny : Accesories like ring, earring, shirts, Pants and so on.</small>
+                            </div>
+                            <div (click)="selectBox(1)" class="box-size col-xs-4">
+                                <p class="payment-steps">Medium (0.5 to 5 lb)</p>
+                                <small class="payment-info">Dresses, handbags and ballet flats are BFFs with medium packages.</small>
+                            </div>
+                            <div (click)="selectBox(2)" class="box-size col-xs-4">
+                                <p class="payment-steps">Large (5 to 10 lb)</p>
+                                <small class="payment-info">Coats, sneakers or heavy knitwear? Hook them up with a large box!</small>
+                            </div>
+                        </div>
+                      </div>
+
+                        <div class="col-md-12">
+                            <p class="subtitle">Shipping info</p>
+                            <div class="border">
+                                <div class="form-group row">
+                                    <label for="name" class="col-xs-2 col-form-label">Address</label>
+                                    <div class="col-xs-10">
+                                        <input class="form-control" type="text" id="name" [(ngModel)] = "shippingAdress.shippingAdress">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="name" class="col-xs-2 col-form-label">Address (line 2)</label>
+                                    <div class="col-xs-10">
+                                        <input class="form-control" type="text" id="name" [(ngModel)] = "shippingAdress.shippingAdress2">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="name" class="col-xs-2 col-form-label">City</label>
+                                        <div class="form-group col-xs-2">
+                                            <input class="form-control" type="text" id="name" [(ngModel)] = "shippingAdress.shippingCity">
+                                        </div>
+                                        <div class="form-group col-xs-4">
+                                            <label for="name" class="col-xs-5 col-form-label">State</label>
+                                            <div class="col-xs-7">
+                                                <input class="form-control" type="text" id="name" [(ngModel)] = "shippingAdress.shippingState">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-xs-4">
+                                            <label for="name" class="col-xs-5 col-form-label">Zip code</label>
+                                            <div class="col-xs-7">
+                                                <input class="form-control" type="text" id="name" [(ngModel)] = "shippingAdress.shippingZipcode">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button (click)="saveBox();" class="button button-sign-in pull-right">SAVE</button>
+                    </div>
+                    <div *ngIf="boxStep && myBoxComplete">Your information has been saved. Please wait until the other user completes this step!</div>
+
+                    <!-- TODO: Aici e pasul cu paymentul-->
+                     <div class="payment row" *ngIf="paymentStep && myPaymentComplete == false">
+                        <div class="col-md-12" *ngIf="shippingInfo.rates_list">
+                            <p class="subtitle">Sumary of payment</p>
+                          <!--<div *ngFor="let rate of shippingInfo.rates_list; let i = index;">
+                            <input  type="radio" name="ddd" value="asdsa"> {{rate.amount}} {{rate.currency}} - <img src="{{rate.provider_image_75}}" /> <span style="font-size: 11px;">({{rate.duration_terms}})</span>
+                          </div>-->
+                          <div class="border">
+                            <div class="pull-left">Shipping</div>
+                            <div class="pull-right">${{shippingInfo.rates_list[0].amount}}</div>
+                            <div class="clearfix"></div>
+                            <div class="pull-left">Transaction fee</div>
+                            <div class="pull-right">$2</div>
+                            <div class="clearfix"></div>
+                            <div class="pull-left">Total</div>
+                            <div class="pull-right">${{addValues(shippingInfo.rates_list[0].amount, 2)}}</div>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="subtitle">Billing info</p>
+                            <div class="border">
+                                <div class="form-group row">
+                                    <label for="name" class="col-xs-2 col-form-label">Address</label>
+                                    <div class="col-xs-10">
+                                        <input class="form-control" type="text" id="name" [(ngModel)] = "billingAdress.billingAdress">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="name" class="col-xs-2 col-form-label">Address (line 2)</label>
+                                    <div class="col-xs-10">
+                                        <input class="form-control" type="text" id="name" [(ngModel)] = "billingAdress.billingAdress2">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="name" class="col-xs-2 col-form-label">City</label>
+                                        <div class="form-group col-xs-4">
+                                            <input class="form-control" type="text" id="name" [(ngModel)] = "billingAdress.billingCity">
+                                        </div>
+                                        <div class="form-group col-xs-3">
+                                            <label for="name" class="col-xs-5 col-form-label">State</label>
+                                            <div class="col-xs-7">
+                                                <input class="form-control" type="text" id="name" [(ngModel)] = "billingAdress.billingState">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-xs-3">
+                                            <label for="name" class="col-xs-5 col-form-label">Zip code</label>
+                                            <div class="col-xs-7">
+                                                <input class="form-control" type="text" id="name" [(ngModel)] = "billingAdress.billingZipcode">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button (click)="makePayment();" class="button button-sign-in pull-right">Make payment</button>
+                    </div>
+
+                      <div *ngIf="paymentStep && myPaymentComplete"><span *ngIf="transactionDetails.type != 'sunmool'">Your payment has been processed.</span> Please wait for the other user to make the payment.</div>
+
+                        <!-- TODO: Aici e pasul printing step -->
+                     <div class="printig-step" *ngIf="printStep && transactionDetails.type != 'sunmool' && shippingTransaction && shippingTransaction.label_url">
+                        <h4 class="col-xs-12">Printing label</h4>
+                        <p class="col-xs-12">Click download label button to download and print label.</p>
+                        <div class="clearfix">
+                            <div class="col-xs-12">
+                                <a style="float: left;" href="{{shippingTransaction.label_url}}" target="_blank" class="button button-empty button-small button-sign-in">Download label</a>
+                                <a style="float: left;" class="button button-empty button-small button-google">Send notifications</a>
+                                <div style="clear: both;"></div>
+                                <button class="button button-small button-sign-in pull-right">Done</button>
+                            </div>
+                            <small class="col-xs-12 text-center">After you drop off the box at post office</small>
+                        </div>
+                    </div>
+
+                    <div class="printig-step" *ngIf="printStep && transactionDetails.type == 'sunmool' && otherShippingTransaction && otherShippingTransaction.label_url">
+                       <h4 class="col-xs-12">Printing label</h4>
+                       <p class="col-xs-12">Click download label button to download and print label.</p>
+                       <div class="clearfix">
+                           <div class="col-xs-12">
+                               <a style="float: left;" *ngIf="isTaker && shippingTransaction" href="{{shippingTransaction.label_url}}" target="_blank" class="button button-empty button-small button-sign-in">Download label</a>
+                               <a style="float: left;" *ngIf="!isTaker"  href="{{otherShippingTransaction.label_url}}" target="_blank" class="button button-empty button-small button-sign-in">Download label</a>
+                               <a style="float: left;" class="button button-empty button-small button-google">Send notifications</a>
+                               <div style="clear: both;"></div>
+                               <button class="button button-small button-sign-in pull-right">Done</button>
+                           </div>
+                           <small class="col-xs-12 text-center">After you drop off the box at post office</small>
+                       </div>
+                   </div>
+
+
+                    <!-- TODO: ultimul pas cu track -->
+
+                    <div class="track-step clearfix" *ngIf="trackStep">
+
+
+
+                        <div class="clearfix hr icon-process" *ngIf="transactionDetails.type != 'sunmool'">
+                            <div class="col-xs-12">
+                                <p class="payment-steps">Track the package that you sent</p>
+                                <!-- <small class="payment-info">You can track your package to user.</small>-->
+                            </div>
+                            <div class="col-xs-6">
+                                <p class="payment-steps">Tracking number is : {{shippingTransaction.tracking_number}}</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="{{shippingTransaction.tracking_url_provider}}" target="_blank" class="button button-empty button-sign-in button-small pull-right">Track package from you</a>
+                            </div>
+                        </div>
+                        <div class="clearfix hr icon-process" *ngIf="transactionDetails.type != 'sunmool'">
+                            <div class="col-xs-12">
+                                <p class="payment-steps">Track the package that you will receive</p>
+                                <!-- <small class="payment-info">You can track your package to user.</small>-->
+                            </div>
+                            <div class="col-xs-6">
+                                <p class="payment-steps">Tracking number is : {{otherShippingTransaction.tracking_number}}</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="{{otherShippingTransaction.tracking_url_provider}}" target="_blank" class="button button-empty button-sign-in button-small pull-right">Track package from you</a>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="clearfix hr icon-process" *ngIf="transactionDetails.type == 'sunmool'">
+                            <div class="col-xs-12">
+                                <p *ngIf="shippingTransaction" class="payment-steps">Track the package that you will receive</p>
+                                <p *ngIf="!shippingTransaction && otherShippingTransaction" class="payment-steps">Track the package that you sent</p>
+                                <!-- <small class="payment-info">You can track your package to user.</small>-->
+                            </div>
+                            <div class="col-xs-6">
+                                <p *ngIf="shippingTransaction" class="payment-steps">Tracking number is : {{shippingTransaction.tracking_number}}</p>
+                                <p *ngIf="!shippingTransaction && otherShippingTransaction" class="payment-steps">Tracking number is : {{otherShippingTransaction.tracking_number}}</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <a *ngIf="shippingTransaction" href="{{shippingTransaction.tracking_url_provider}}" target="_blank" class="button button-empty button-sign-in button-small pull-right">Track package to you</a>
+                                <a *ngIf="!shippingTransaction && otherShippingTransaction" href="{{otherShippingTransaction.tracking_url_provider}}" target="_blank" class="button button-empty button-sign-in button-small pull-right">Track package from you</a>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

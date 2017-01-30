@@ -1,0 +1,207 @@
+<div class="offers-page">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-7">
+                <h4 class="user-info-extend">In Process</h4>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="btn-group">
+                            <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Show 16 Per Page<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">8</a></li>
+                                <li><a href="#">16</a></li>
+                                <li><a href="#">32</a></li>
+                                <li><a href="#">64</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input placeholder="Search" type="text" class="form-control" id="brand" aria-label="Amount (to the nearest dollar)">
+                            <span class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offer-extend inprocess" *ngFor="let transactionDetails of allTransactions; let i = index;">
+
+
+          <div *ngIf="transactionDetails.offerToDetails && transactionDetails.offerFromDetails && transactionDetails.type == 'sunmool'" class="offer-button clearfix" data-toggle="" [attr.data-target]="'#demo'+i">
+              <img class="img-responsive img-circle" src="{{transactionDetails.offerFromDetails.photoURL}}" width="40" height="40" alt="product" />
+              <p>This is <b> {{transactionDetails.offerFromDetails.displayName}} </b>'s story</p>
+              <span>{{common.time_ago(transactionDetails.timestamp*1000)}}</span>
+
+          </div>
+        <div class="offer-exchange border clearfix" *ngIf="transactionDetails.type == 'sunmool'">
+          <div id="demo{{i}}" *ngIf="transactionDetails.offerToDetails && transactionDetails.offerFromDetails && transactionDetails.type == 'sunmool'" class="offer-extend-sunmool">
+              <div class="text">{{transactionDetails.story}}</div>
+              <div class="offer-exchange clearfix">
+              </div>
+          </div>
+        </div>
+
+          <div class="offer-exchange border clearfix" *ngIf="transactionDetails.type != 'sunmool'">
+
+
+            <div id="carousel-right{{i}}" *ngIf="transactionDetails.offerFromDetails && transactionDetails.offerToDetails" data-interval="false" class="carousel pull-left slide">
+                 <p class="pick-font">
+                   <span *ngIf="auth.userData.uid == transactionDetails.offerToDetails.$key">
+                   You
+                   </span>
+
+                   <span *ngIf="auth.userData.uid != transactionDetails.offerToDetails.$key">
+                   {{transactionDetails.offerToDetails.displayName}}
+                   </span>
+
+
+                   picked
+                   <i class="sunmool-color number-items">{{transactionDetails.itemsToPick}}</i> of
+                   <img  src="{{transactionDetails.offerFromDetails.photoURL}}" class="img-circle" width="30" height="30" />
+
+                   <i class="username bold">
+
+                     <span *ngIf="auth.userData.uid == transactionDetails.offerFromDetails.$key">
+                     Your
+                     </span>
+
+                     <span *ngIf="auth.userData.uid != transactionDetails.offerFromDetails.$key">
+                     {{transactionDetails.offerFromDetails.displayName}}
+                     </span>
+
+
+
+
+                   </i><span *ngIf="auth.userData.uid != transactionDetails.offerFromDetails.$key">'s</span> items
+                 </p>
+                 <a class="up carousel-control" href="#carousel-right{{i}}" role="button" data-slide="prev">
+                   <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                   <span class="sr-only">Previous</span>
+                 </a>
+                 <a class="down carousel-control" href="#carousel-right{{i}}" role="button" data-slide="next">
+                   <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                   <span class="sr-only">Next</span>
+                 </a>
+                 <div *ngIf="transactionDetails.offerPhotos" class="carousel-inner product-area" role="listbox">
+
+                   <!--  Aici vin itemurile active -->
+                   <div *ngFor="let oferPhotos of transactionDetails.offerPhotos; let i = index;" class="item activerow" [ngClass]="{active : i ==0}">
+                       <div *ngFor="let oferPhoto of oferPhotos; let j = index;" class="col-md-6 col-sm-6 col-xs-4 product">
+                            <div class="product-content" style="margin-bottom: 0px;">
+
+                               <div *ngIf="transactionDetails.acceptedItems && transactionDetails.acceptedItems[oferPhoto.$key]" class="active-select">
+                                   <p  class="is-clicked">SELECTED</p>
+                               </div>
+                               <!--<div  class="product-image">-->
+                                   <!--<img style="cursor: pointer;" src="{{configVars.apiServerAdress}}/uploads/{{oferPhoto.photos[0]}}" alt="ceva"/>-->
+                               <!--</div>-->
+
+                                <div class="product-image" *ngIf="oferPhoto.photos" [ngStyle]="{'background':'url(' + configVars.apiServerAdress + '/uploads/' + oferPhoto.photos[0] + ') no-repeat scroll center center \/cover', 'height':'150px'}">
+                                </div>
+
+                               <div class="product-info">
+                                   <div>
+                                       <p>{{oferPhoto.title}}</p>
+                                       <span>{{oferPhoto.category}}</span>
+                                   </div>
+                                   <p class="offer-size">{{oferPhoto.size}}</p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+
+               </div>
+
+           </div>
+            <img src="../../../../common/assets/images/icon-exchange.svg" class="icon-exchange" />
+            <div id="carousel-left" class="carousel pull-right slide" data-interval="false" *ngIf="transactionDetails.offerFromDetails && transactionDetails.offerToDetails">
+                 <p class="pick-font">
+                   <img src="{{transactionDetails.offerFromDetails.photoURL}}" class="img-circle" width="30" height="30" />
+                   <i class="username bold">
+
+                     <span *ngIf="transactionDetails.offerFromDetails.$key == auth.userData.uid">
+                     You
+                    </span>
+
+                    <span *ngIf="transactionDetails.offerFromDetails.$key != auth.userData.uid">
+                    {{transactionDetails.offerFromDetails.displayName}}
+                   </span>
+
+                   </i>
+                   picked
+                   <i class="sunmool-color number-items">{{transactionDetails.itemsToGet.length}}</i>
+                   of
+
+                   <span *ngIf="transactionDetails.offerToDetails.$key != auth.userData.uid">
+                   {{transactionDetails.offerToDetails.displayName}}'s
+                   </span>
+
+                   <span *ngIf="transactionDetails.offerToDetails.$key == auth.userData.uid">
+                     Your
+                   </span>
+
+
+                    items
+                 </p>
+                <a class="up carousel-control" href="#carousel-left" role="button" data-slide="prev">
+                    <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="down carousel-control" href="#carousel-left" role="button" data-slide="next">
+                    <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                    <span class="sr-only">Next</span>
+                </a>
+                <div *ngIf="transactionDetails.getPhotos" class="carousel-inner product-area" role="listbox">
+
+                  <!--  Aici vin itemurile active -->
+                  <div *ngFor="let getPhotos of transactionDetails.getPhotos; let i = index;" class="item row" [ngClass]="{active : i ==0}">
+                      <div *ngFor="let getPhoto of getPhotos; let i = index;" class="col-md-6 col-sm-6 col-xs-4 product">
+                          <div class="product-content">
+
+                              <!--<div class="product-sunmool">
+                                  <img  width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                              </div>-->
+                              <!--<div class="product-image">-->
+
+                                  <!--<img style="cursor: pointer;" src="{{configVars.apiServerAdress}}/uploads/{{getPhoto.photos[0]}}" alt="ceva"/>-->
+                              <!--</div>-->
+
+                              <div class="product-image" *ngIf="getPhoto.photos" [ngStyle]="{'background':'url(' + configVars.apiServerAdress + '/uploads/' + getPhoto.photos[0] + ') no-repeat scroll center center \/cover', 'height':'150px'}">
+                              </div>
+
+                              <div class="product-info">
+                                  <div>
+                                      <p>{{getPhoto.title}}</p>
+                                      <span>{{getPhoto.category}}</span>
+                                  </div>
+                                  <p class="offer-size">{{getPhoto.size}}</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+
+            </div>
+
+
+
+
+      </div>
+            <div class="items-visual" >
+                <!--  Aici la id tre sa fie o incrementare ca la celelalte gen {{i}} -->
+                <label (click)="goToProcess(transactionDetails.$key)" class="btn btn-default-bg" >IN PROCESS</label>
+                <label  class="btn btn-default-bg">
+                    DELETE
+                </label>
+            </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="profile-items">
+            <div class="form-group row">
+                <p class="col-md-3 col-sm-6"> Followers ({{followers.length}})</p>
+                <div class="hidden-xs col-md-3 pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Show 16 Per Page<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">8</a></li>
+                            <li><a href="#">16</a></li>
+                            <li><a href="#">32</a></li>
+                            <li><a href="#">64</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hidden-xs search-content col-md-12 col-sm-12">
+                    <div class="search-content__input form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="searchStr">
+                            <div class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey" (click)="searchItem('firebase', 'item', searchStr ); searchStr = ''" style="cursor: pointer;"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="follow-section row">
+        <div  *ngFor="let follower of followers; let i = index;">
+            <div class="follow-people col-md-3 col-sm-6 col-xs-6" *ngIf="follower.following">
+                <a class="follow-img"  *ngIf="follower.user" href="#/userProfile/{{follower.user.$key}}/items"><img width="50" height="50" class="img-circle" *ngIf="follower.user && follower.user.photoURL" src="{{follower.user.photoURL}}" /></a>
+                <a class="follow-name" *ngIf="follower.user" href="#/userProfile/{{follower.user.$key}}/items"><span *ngIf="follower.user">{{follower.user.displayName}}</span></a>
+                <span class="follow-location">Las Vegas, NV</span>
+                <div *ngIf="auth.userData.uid == userId">
+                    <a class="follow-follow" *ngIf="follower.user && !follower.user.isFollowing" href="#" (click)="common.followUser(follower.user.$key)">+ Follow</a>
+                    <a class="follow-unfollow" *ngIf="follower.user && follower.user.isFollowing" href="#" (click)="common.unFollowUser(follower.user.$key)">X Unfollow</a>
+                </div>
+                <div class="yandy">20</div>
+            </div>
+        </div>
+    </div>
+</div>

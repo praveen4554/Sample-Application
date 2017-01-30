@@ -1,0 +1,42 @@
+.form-group {
+    input,
+    .dropdown-toggle,
+    textarea {
+        color: @black;
+        .inner-shadow(0, 0, 0, 0, 0);
+        &:focus {
+            border: 1px solid @hovercolor;
+            .box-shadow(none);
+            & + .input-group-addon {
+                border-top: 1px solid @hovercolor;
+                border-bottom: 1px solid @hovercolor;
+                border-right: 1px solid @hovercolor;
+                i {
+                    color: @hovercolor;
+                }
+            }
+        }
+    }
+}
+.items-description {
+    .btn-group.open {
+        .dropdown-toggle:focus {
+            border: 1px solid @hovercolor;
+            margin-top: 0px;
+            > .caret {
+                color: @hovercolor;
+            }
+        }
+    }
+}
+.input-group {
+    .form-control {
+        border-right: none;
+    }
+    .input-group-addon {
+        background-color: transparent;
+        i {
+            margin: 0px;
+        }
+    }
+}

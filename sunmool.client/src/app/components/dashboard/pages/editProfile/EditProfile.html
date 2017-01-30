@@ -1,0 +1,134 @@
+<p class="user-info-extend"> Profile details</p>
+<div class="edit-profile">
+    <form class="form-inline">
+        <div class="row">
+            <label class="col-md-3" for="username">Display name</label>
+            <div class="col-md-9 form-group">
+                <input type="text" id="username" name="username" [(ngModel)]="userInfo.displayName" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-md-3" for="email">E-mail</label>
+            <div class="col-md-9 form-group">
+                <input type="text" id="email" name="email" [(ngModel)]="userInfo.email" class="form-control">
+            </div>
+        </div>
+        <div *ngIf="userInfo.providerId == 'password'" class="row">
+            <label class="col-md-3" for="password">Password</label>
+            <div class="col-md-9 form-group">
+                <input type="text" id="password" name="password" [(ngModel)]="userInfo.password" value="" class="form-control">
+            </div>
+        </div>
+        <div *ngIf="userInfo.providerId == 'password'" class="row">
+            <label class="col-md-3" for="cpassword">Confirm password</label>
+            <div class="col-md-9 form-group">
+                <input type="text" id="cpassword" name="cpassword" value="" [(ngModel)]="userInfo.confirmPassword" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-md-3" for="city">City</label>
+            <div class="col-md-9 form-group">
+                <input type="text" id="city" [(ngModel)]="userInfo.city" name="city" value="" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-md-3" for="city">Birthday</label>
+            <div class="col-md-9">
+                <input type="date" id="birthDate" [(ngModel)]="userInfo.birthDate" name="birthDate" value="{{userInfo.birthDate}}" class="form-control" />
+            </div>
+        </div>
+
+        <!--<div class="row">-->
+            <!--<label class="col-md-3" for="city">Birthday</label>-->
+            <!--<div class="col-md-3 form-group">-->
+                <!--<div class="btn-group">-->
+                    <!--<button type="button" class="button button-default dropdown-toggle form-control" placeholder="Day" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{userInfo.birthDay}} <span class="caret"></span>-->
+                    <!--</button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li *ngFor="let day of monthDay; let i = index;" (click)="changeBirthday(day)"><a href="#">{{day}}</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-3 form-group">-->
+                <!--<div class="btn-group">-->
+                    <!--<button type="button" class="button button-default dropdown-toggle form-control" placeholder="Month" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{userInfo.birthMonth}} <span class="caret"></span>-->
+                    <!--</button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li *ngFor="let month of months; let i = index;"><a href="#" (click)="changeBirthmonth(month)">{{month}}</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-3 form-group">-->
+                <!--<div class="btn-group">-->
+                    <!--<button type="button" class="button button-default dropdown-toggle form-control" placeholder="Year" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{userInfo.birthYear}} <span class="caret"></span>-->
+                    <!--</button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li *ngFor="let year of years; let i = index;"><a href="#" (click)="changeBirthyear(year)">{{year}}</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div class="row mb">
+            <label class="col-md-3" for="city">Upload photos</label>
+            <div class="col-md-12 clearfix">
+                <div class="col-xs-6 no_padding--right">
+                    <div class="edit-photo__profile col-lg-6 col-xs-12">
+                        <img class="cover-photo" src="{{configVars.apiServerAdress +'/uploads/'+userInfo.cover1}}" />
+                        <div class="inputupload">
+                            <input ng2FileSelect accept='image/*' [uploader]="uploader1" class="img-upload" type="file" name="photo">
+                            <img style="left:0px;" src="common/assets/images/icon-item-upload.svg" />
+                        </div>
+                        <span>Favorite Outfit Photo</span>
+
+                    </div>
+                    <div class="edit-photo__profile col-lg-6 col-xs-12">
+                        <img class="cover-photo" src="{{configVars.apiServerAdress +'/uploads/'+userInfo.cover2}}" />
+                        <div class="inputupload">
+                            <input ng2FileSelect accept='image/*' [uploader]="uploader2" class="img-upload" type="file" name="photo">
+                            <img style="left:0px;" src="common/assets/images/icon-item-upload.svg" />
+                        </div>
+                        <span>Costume Outfit Photo</span>
+
+                    </div>
+                </div>
+
+                <div class="edit-photo__profile col-xs-6 double-height">
+                    <img class="cover-photo"src="{{configVars.apiServerAdress +'/uploads/'+userInfo.cover3}}"  />
+                    <div class="inputupload">
+                        <input ng2FileSelect accept='image/*' [uploader]="uploader3" class="img-upload" type="file" name="photo">
+                        <img style="left:0px;" src="common/assets/images/icon-item-upload.svg" />
+                    </div>
+                    <span>Fashionable Outfit Photo</span>
+                </div>
+            </div>
+            <div class="col-md-4 edit-profile__pic">
+                <img width="127" height="127" class="img-circle" src="{{userInfo.photoURL}}" />
+                <div class="inputupload">
+                  <input ng2FileSelect accept='image/*' [uploader]="uploaderProfile" class="img-upload" type="file" name="photo" onerror="this.style.display='none'">
+                  <img style="left:0px;" src="common/assets/images/icon-item-upload.svg" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-md-3" for="cpassword">Describe yourself</label>
+            <div class="col-md-9 form-group">
+                <textarea [(ngModel)]="userInfo.description" type="text" name="description" value="" class="form-control"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--<p class="user-info-extend"> Profile details</p>
+<div class="items-sunmool">
+    <p>Are you giving this away as a Sunmool(Gift)?</p>
+    <div class="onoffswitch">
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
+        <label class="onoffswitch-label" for="myonoffswitch">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+        </label>
+    </div>
+</div>-->
+<button  class="button button-sign-in pull-right" (click)="saveInfo()">SAVE</button>

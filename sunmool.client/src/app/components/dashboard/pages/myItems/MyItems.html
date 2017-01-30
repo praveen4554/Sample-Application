@@ -1,0 +1,77 @@
+<div class="home">
+  <div class="offers-page">
+    <div class="row my-item-sec">
+        <h4 class="col-sm-6 col-xs-12 user-info-extend">My items ({{items.length}}) <a style="width: 130px; padding: 6px; color: #fff; margin:0px 10px 0px 20px; display: inline-block; border-radius: 4px;" class="button button-sign-in" href="#/dashboard/items">Add item</a></h4>
+        <div class="col-sm-6 col-xs-6 pull-right hidden-xs" style="margin-top: 20px;">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="btn-group">
+                        <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Show 16 Per Page<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">8</a></li>
+                            <li><a href="#">16</a></li>
+                            <li><a href="#">32</a></li>
+                            <li><a href="#">64</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="input-group">
+                        <input placeholder="Search" type="text" class="form-control" id="brand" aria-label="Amount (to the nearest dollar)">
+                        <span class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+           <div class="row product-area">
+             <div *ngFor="let item of items; let i = index;" class="col-md-4 col-sm-4 col-xs-4 product" >
+                  <div class="product-content" *ngIf="item">
+                  <div class="product-sunmool">
+                      <img *ngIf="item.sunmool" width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                  </div>
+                  <!--<div class="product-image" (click)="common.viewItem(item.$key)">-->
+                      <!--<img class="img-responsive" *ngIf="item.photos" src="{{configVars.apiServerAdress}}/uploads/{{item.photos[0]}}" alt="ceva"/>-->
+                      <!--<img class="img-responsive" *ngIf="!item.photos" src="common/assets/images/main-before-login-image.png" alt="ceva"/>-->
+                  <!--</div>-->
+
+                <div class="product-image" *ngIf="item.photos" [ngStyle]="{'background':'url(' + configVars.apiServerAdress + '/uploads/' + item.photos[0] + ') no-repeat scroll center center \/cover'}" (click)="common.viewItem(item.$key)">
+                </div>
+                <div class="product-image" *ngIf="!item.photos" [ngStyle]="{'background':'url(common/assets/images/main-before-login-image.png) no-repeat scroll center center \/cover'}" (click)="common.viewItem(item.$key)">
+                </div>
+
+                 <div class="product-info">
+                     <div class="row">
+                         <span class="col-md-7 col-sm-7 col-xs-7"><b>{{item.title}}</b></span>
+                         <span class="col-md-5 col-sm-5 col-xs-5 text-right"><b>{{item.category}}</b></span>
+                         <span class="col-md-6 col-sm-6 col-xs-6"><b>{{item.size}}</b></span>
+                     </div>
+                     <div class="product-info__likes">
+                       <i *ngIf="item.likes && auth.userData && item.likes[auth.userData.uid] && item.likes[auth.userData.uid].liked"  (click)="common.unLikeItem(item.$key)" class="iconmoon icon-icon_detail_like sunmool-color"></i>
+                       <i *ngIf="item.likes && auth.userData && ( (item.likes[auth.userData.uid] && !item.likes[auth.userData.uid].liked) || !item.likes[auth.userData.uid] )" (click)="common.likeItem(item.$key);" class="iconmoon icon-icon_detail_like"></i>
+                       <span *ngIf="item.likes">{{common.getLikesNum(item.likes)}}</span>
+                     </div>
+                 </div>
+
+
+                 <div class="product-icons clearfix">
+                     <div class="icon-group col-md-6 col-sm-6 col-xs-6">
+                         <img src="../../../../common/assets/images/item-vote-down.svg"/>
+                         <span>{{item.offersNum}}</span>
+                     </div>
+                     <div class="icon-group col-md-6 col-sm-6 col-xs-6">
+                         <img src="../../../../common/assets/images/icon-item-msg.svg"/>
+                         <span *ngIf="item.comments">{{item.comments.length}}</span>
+                     </div>
+                 </div>
+                 </div>
+             </div>
+           </div>
+        </div>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<p class="subtitle">Email notification</p>
+<div class="items-sunmool">
+    <div class="item-select">
+        <p>Promotions and new site features</p>
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" [(ngModel)] = "saveData.promotions">
+            <label class="onoffswitch-label" for="myonoffswitch">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+    </div>
+    <div class="item-select">
+        <p>Offers received</p>
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch1" [(ngModel)] = "saveData.offerReceive">
+            <label class="onoffswitch-label" for="myonoffswitch1">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+    </div>
+    <div class="item-select">
+        <p>Comments posted in item pages</p>
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch2" [(ngModel)] = "saveData.itemComments">
+            <label class="onoffswitch-label" for="myonoffswitch2">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+    </div>
+    <div class="item-select">
+        <p>Messages received</p>
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch3" [(ngModel)] = "saveData.messageReceived">
+            <label class="onoffswitch-label" for="myonoffswitch3">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+    </div>
+    <div class="item-select">
+        <p>Friends joining the site</p>
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch4" [(ngModel)] = "saveData.friendJoin">
+            <label class="onoffswitch-label" for="myonoffswitch4">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+    </div>
+    <div class="item-select">
+        <p>Canceled or rejected offers</p>
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch5" [(ngModel)] = "saveData.cancelRejectOffer">
+            <label class="onoffswitch-label" for="myonoffswitch5">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+    </div>
+    <div class="item-select">
+        <p>Changes in items that are a part of outstanding offers or counter-offers</p>
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch6" [(ngModel)] = "saveData.offerChanges">
+            <label class="onoffswitch-label" for="myonoffswitch6">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+    </div>
+    <div class="item-select">
+        <p>Karma points received</p>
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch7" [(ngModel)] = "saveData.karmaReceived">
+            <label class="onoffswitch-label" for="myonoffswitch7">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+    </div>
+    <div class="item-select">
+        <p>Item is liked by another</p>
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch8" [(ngModel)] = "saveData.itemLikes">
+            <label class="onoffswitch-label" for="myonoffswitch8">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+    </div>
+</div>
+<button class="button button-small button-sign-in pull-right" (click)="saveOptions()">UPDATE</button>

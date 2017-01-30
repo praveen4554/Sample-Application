@@ -1,0 +1,73 @@
+
+<div class="offers-page">
+    <div class="row">
+        <div class="col-md-7">
+            <h4 class="user-info-extend">Incomming offers ({{itemsRaw.length}})</h4>
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Show 16 Per Page<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">8</a></li>
+                            <li><a href="#">16</a></li>
+                            <li><a href="#">32</a></li>
+                            <li><a href="#">64</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input placeholder="Search" type="text" class="form-control" id="brand" aria-label="Amount (to the nearest dollar)">
+                        <span class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+           <div class="row product-area">
+              <div *ngIf="items.length == 0">No results...</div>
+               <div *ngFor="let item of items; let i = index;" class="col-md-3 col-sm-4 col-xs-4 product" >
+                    <div class="product-content" *ngIf="item[0].mainItemDetails">
+                    <div class="product-sunmool">
+                        <img *ngIf="item[0].mainItemDetails.sunmool" width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                    </div>
+                    <div class="product-image" (click)="common.viewOfferMeDetails(item[0].mainItemDetails.$key)">
+                        <img class="img-responsive" *ngIf="item[0].mainItemDetails.photos" src="{{configVars.apiServerAdress}}/uploads/{{item[0].mainItemDetails.photos[0]}}" alt="ceva"/>
+                        <img class="img-responsive" *ngIf="!item[0].mainItemDetails.photos" src="common/assets/images/main-before-login-image.png" alt="ceva"/>
+                    </div>
+
+                   <div class="product-info">
+                       <!--<div class="row">-->
+                           <!--<span class="col-md-7"><b>{{item[0].mainItemDetails.title}}</b></span>-->
+                           <!--<span class="col-md-5 text-right"><b>{{item[0].mainItemDetails.category}}</b></span>-->
+                           <!--<span class="col-md-6"><b>{{item[0].mainItemDetails.size}}</b></span>-->
+                       <!--</div>-->
+                       <!--<a *ngIf="item[0].mainItemDetails.user" href="#/userProfile/{{item[0].mainItemDetails.user.$key}}/items"><img width="36px" height="36px" *ngIf="item[0].mainItemDetails.user && item[0].mainItemDetails.user.photoURL" src="{{item[0].mainItemDetails.user.photoURL}}" alt="ceva"/></a>-->
+                       <!--<a *ngIf="item[0].mainItemDetails.user" href="#/userProfile/{{item[0].mainItemDetails.user.$key}}/items"><img width="36px" height="36px" *ngIf="!item[0].mainItemDetails.user || !item[0].mainItemDetails.user.photoURL" src="common/assets/images/main-before-login-image.png" alt="ceva"/></a>-->
+                       <!--<div class="product-info__likes">-->
+                         <!--<i *ngIf="item[0].likes && auth.userData && item[0].likes[auth.userData.uid] && item[0].likes[auth.userData.uid].liked"  (click)="common.unLikeItem(item[0].mainItemDetails.$key)" class="iconmoon icon-icon_detail_like sunmool-color"></i>-->
+                         <!--<i *ngIf="item[0].likes && auth.userData && ( (item[0].likes[auth.userData.uid] && !item[0].likes[auth.userData.uid].liked) || !item[0].likes[auth.userData.uid] )" (click)="common.likeItem(item[0].mainItemDetails.$key);" class="iconmoon icon-icon_detail_like"></i>-->
+                         <!--<span *ngIf="item[0].likes">{{common.getLikesNum(item[0].likes)}}</span>-->
+                       <!--</div>-->
+                   </div>
+
+                   <!--<div class="product-icons clearfix">-->
+                       <!--<div class="icon-group col-md-6">-->
+                           <!--<img src="../../../../common/assets/images/item-vote-down.svg"/>-->
+                           <!--<span>{{item.length}}</span>-->
+                       <!--</div>-->
+                       <!--<div class="icon-group col-md-6">-->
+                           <!--<img src="../../../../common/assets/images/icon-item-msg.svg"/>-->
+                           <!--<span *ngIf="item[0].comments">{{item[0].comments.length}}</span>-->
+                       <!--</div>-->
+                   <!--</div>-->
+                   </div>
+               </div>
+           </div>
+        </div>
+    </div>
+</div>

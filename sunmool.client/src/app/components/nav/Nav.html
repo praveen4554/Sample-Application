@@ -1,0 +1,635 @@
+<!--<a href="#" class="back_to_top"><img src="data:image/png;base64,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" alt="^" /></a>-->
+<ul class="absolute-menu" [ngClass]="{'visible': opened, 'hidden': !opened}">
+    <li class="clearfix"><a href="#" ><i *ngIf="userData && !userInfo.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="userData && userInfo.photoURL != null"style="border: solid 2px #fff; border-radius: 50%;" width="26" height="26" [src]="userInfo.photoURL" /> </a>
+     Hello, <span *ngIf="auth.userData != null && userInfo.displayName != null" class="user-name">{{userInfo.displayName}}</span></li>
+    <li class="li-padding clearfix">
+        <ul>
+            <li><a *ngIf="auth.userData" href="#/invites"><i class="icon icon-friend" (click)="closeMenu()"></i></a></li>
+            <li>
+              <div style="position: absolute; font-size: 10px; right: -10px; top : -3px;" class="label " *ngIf="unreadNotifications > 0" [ngClass]="{'label-success' : unreadNotifications > 0}">{{unreadNotifications}}</div>
+              <a href="#"><i class="icon icon-bell"></i></a></li>
+            <li>
+              <div style="position: absolute; font-size: 10px; right: -10px; top : -3px;" class="label " *ngIf="unreadMessages > 0" [ngClass]="{'label-success' : unreadMessages > 0}">{{unreadMessages}}</div>
+              <a href="#/messages/all"><i class="icon icon-msg" (click)="closeMenu()"></i></a></li>
+            <li><a *ngIf="this.auth.userData" href="#/userProfile/{{this.auth.userData.uid}}/favorites" (click)="closeMenu()"><i class="icon icon-star"></i></a></li>
+        </ul>
+    </li>
+    <li><a href="" routerLink="/dashboard/items" (click)="closeMenu();" routerLinkActive="active"><i class="glyphicon glyphicon-plus"></i>Add item</a></li>
+    <li><a href="" (click)="closeMenu();"><i class="glyphicon glyphicon-chevron-left"></i>Categories</a></li>
+    <li><a href="" (click)="closeMenu();">Blog</a></li>
+    <li><a *ngIf="auth.userData" routerLink="/userProfile/{{auth.userData.uid}}/items" (click)="closeMenu();">Profile</a></li>
+    <li><a href="" routerLink="/dashboard/myItems" (click)="closeMenu();"><i class="glyphicon glyphicon-chevron-left"></i>My items</a></li>
+    <li><a href="" routerLink="/dashboard/offers/me"(click)="closeMenu();"><i class="glyphicon glyphicon-chevron-left"></i>Offers</a></li>
+    <li><a href="" routerLink="/dashboard/sunmool/me" (click)="closeMenu();"><i class="glyphicon glyphicon-chevron-left"></i>SunMool</a></li>
+    <li><a href="" routerLink="/dashboard/inprocess" (click)="closeMenu();">In Process</a></li>
+    <li><a href="" routerLink="/" (click)="closeMenu();"><i class="glyphicon glyphicon-chevron-left"></i>Settings</a></li>
+    <li><a href=""  routerLink="/dashboard/history" (click)="closeMenu();">History</a></li>
+    <li><a href="" routerLink="/" (click)="openMenu(); logout(); ">Log out</a></li>
+</ul>
+<header class="header container-fluid"  [ngClass]="{'is-opend': opened}">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-md-3 col-sm-4 col-xs-3 hidden-md hidden-lg">
+
+                        <a href="#" (click)="openMenu()" class="hamburger">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </a>
+                    </div>
+
+                    <div class="logo col-lg-5 col-md-4 col-sm-4 col-xs-6">
+                        <a href="" routerLink="/home/all">
+                            <img src="common/assets/images/logo.svg" alt="logo"/>
+                            <span class="logo-text">Sunmool</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-7 col-md-8 col-sm-4 col-xs-3">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-14 top-search">
+                                <a href="" routerLink="/" (click)="searchOpen()"><span>Search </span><i class="iconmoon icon-main_nav_icon_search_white"></i></a>
+                                <!--<a href="#/home/search"><span>Search </span><i class="iconmoon icon-main_nav_icon_search_white"></i></a>-->
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 hidden-xs hidden-sm top-button">
+                                <a href="" routerLink="/dashboard/items" class="button button-small button-black">ADD ITEM</a>
+                            </div>
+                            <ul class="col-lg-7 col-md-7 col-sm-7 col-xs-7 text-right top-menu">
+                                <li><a *ngIf="auth.userData" href="" routerLink="/invites"><i class="iconmoon icon-main_nav_icon_add_friend"></i></a></li>
+                                <li class="top-menu-notification">
+                                  <div style="position: absolute; right: -10px; top : -3px;" class="label " *ngIf="unreadNotifications > 0" [ngClass]="{'label-success' : unreadNotifications > 0}">{{unreadNotifications}}</div>
+                                  <a href="" routerLink="/"><i class="iconmoon icon-main_nav_icon_notifications"></i></a>
+
+                                    <ul class="top-menu-dropdown">
+                                        <li><p>Notifications</p> <a href="" routerLink="/dashboard/allNotifications">Show all</a></li>
+                                        <div *ngIf="notifications.length > 0">
+                                            <li *ngFor="let notification of notifications; let i = index;">
+
+                                                <div *ngIf="notification.user && notification.type == 'message' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="" routerLink="/itemDetails/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} commented on {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+                                                <div *ngIf="notification.user && notification.type == 'offer' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="" routerLink="/dashboard/offers/me/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} offered you  <b class="sunmool-color">{{notification.numOffers}}</b> items for {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+                                                <div *ngIf="notification.user && notification.type == 'declineOffer' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="" routerLink="/dashboard/offers/others/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} declined your offer for {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+                                                <div *ngIf="notification.user && notification.type == 'deteleOffer' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="" routerLink="/itemDetails/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} removed his offer for {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+                                                <div *ngIf="notification.user && notification.type == 'sunmoolRequest' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="" routerLink="/dashboard/sunmool/me/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} wrote a story for {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+                                                <div *ngIf="notification.user && notification.type == 'deteleOfferSunmool' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="" routerLink="/itemDetails/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} removed the story for {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+                                                <div *ngIf="notification.user && notification.type == 'declineOfferSunmool' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="" routerLink="/dashboard/sunmool/others/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} declined your story on {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+                                                <div *ngIf="notification.user && notification.type == 'updateOffer' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="" routerLink="/dashboard/sunmool/me/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} updated the offer on {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+                                                <div *ngIf="notification.user && notification.type == 'sunmoolOfferUpdate' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="" routerLink="/dashboard/offers/me/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} updated the story on {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+
+
+
+
+                                        <div *ngIf="notification.user && notification.type == 'counterOfferAccepted' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                          
+                                          <a href="" routerLink="/dashboard/offers/others/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+                                            <div class="from-pic col-md-2">
+                                                <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                            </div>
+                                            <div class="from-info col-md-10" style="font-weight: normal;">
+                                                <p>{{notification.user.displayName}} accepted your counter offer on {{notification.itemDetails.title}}</p>
+                                                <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                            </div>
+                                          </a>
+                                        </div>
+                                                <div *ngIf="notification.user && notification.type == 'counterOffer' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="#" routerLink="/dashboard/offers/others/details/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} made a counter offer on {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+                                                <div *ngIf="notification.user && notification.type == 'acceptedOther' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="" routerLink="/itemDetails/{{notification.itemDetails.$key}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} accepted other offer on {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+
+
+                                                <div *ngIf="notification.user && notification.type == 'acceptedSunmool' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="" routerLink="/dashboard/inprocess/{{notification.inProcessId}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} accepted your story on {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+
+                                                <div *ngIf="notification.user && notification.type == 'acceptedOffer' && notification.itemDetails" [ngClass]="{'is-notification-new' : !notification.read} ">
+                                                    <a href="" routerLink="/dashboard/inprocess/{{notification.inProcessId}}" (click)="markAsRead(notification.$key)">
+                                                      <div class="from-pic col-md-2">
+                                                          <i *ngIf="!notification.user.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="notification.user.photoURL != null" style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="notification.user.photoURL" />
+                                                      </div>
+                                                      <div class="from-info col-md-10" style="font-weight: normal;">
+                                                          <p>{{notification.user.displayName}} accepted your offer on {{notification.itemDetails.title}}</p>
+                                                          <span>{{time_ago(notification.timestamp*1000)}}</span>
+                                                      </div>
+                                                    </a>
+                                                </div>
+
+
+                                            </li>
+                                      </div>
+                                    </ul>
+                                </li>
+                                <li>
+                                  <div style="position: absolute; right: -10px; top : -3px;" class="label " *ngIf="unreadMessages > 0" [ngClass]="{'label-success' : unreadMessages > 0}">{{unreadMessages}}</div>
+                                  <a href="" routerLink="/messages/all"><i class="iconmoon icon-main_nav_icon_messages "></i></a>
+                                </li>
+                                <li><a *ngIf="this.auth.userData" href="" routerLink="/userProfile/{{this.auth.userData.uid}}/favorites"><i class="iconmoon icon-main_nav_icon_saved_item"></i></a></li>
+                                <li class="top-menu-profile">
+                                    <a href="#" routerLink="/"><i *ngIf="userData && !userInfo.photoURL" class="glyphicon glyphicon-user round" aria-hidden="true"></i> <img  *ngIf="userData && userInfo.photoURL != null"style="border: solid 2px #fff; border-radius: 50%;" width="40" height="40" [src]="userInfo.photoURL" /> </a>
+
+                                    <ul class="top-menu-dropdown">
+                                        <li><a *ngIf="auth.userData" href="" routerLink="/userProfile/{{auth.userData.uid}}/items">Profile</a></li>
+                                        <li><a href="#" routerLink="/" (click)="toggleOffersSub()">Offers</a>
+                                          <ul *ngIf="offerSubVisible" class="top-menu-dropdown__submenu">
+                                              <li><a href="" routerLink="/dashboard/offers/me">Incoming</a></li>
+                                              <li><a href="" routerLink="/dashboard/offers/others">Outgoing</a></li>
+                                          </ul>
+                                        </li>
+                                        <li><a href="" routerLink="/dashboard/myItems">My items</a>
+
+                                        </li>
+                                        <li><a href="#" routerLink="/" (click)="toggleSunmoolSub()">Sunmool</a>
+                                          <ul *ngIf="sunmoolSubVisible" class="top-menu-dropdown__submenu">
+                                              <li><a href="" routerLink="/dashboard/sunmool/me">My gifts</a></li>
+                                              <li><a href="" routerLink="/dashboard/sunmool/others">My requests</a></li>
+                                          </ul>
+                                        </li>
+                                        <li><a href="" routerLink="/dashboard/inprocess">In Process</a></li>
+                                        <li>
+                                          <a href="#" routerLink="/" (click)="toggleSettingsSub()">Settings</a>
+                                          <ul *ngIf="settingsSubVisible" class="top-menu-dropdown__submenu">
+                                              <li><a href="" routerLink="/dashboard/editProfile">Profile details</a></li>
+                                              <li><a href="" routerLink="/dashboard/payment">Payment</a></li>
+                                              <li><a href="" routerLink="/dashboard/personalization">Personalization</a></li>
+                                              <li><a href="" routerLink="/dashboard/notification">Notification</a></li>
+                                          </ul>
+                                        </li>
+                                        <li><a routerLink="/dashboard/history">History</a></li>
+                                        <li><a href="" routerLink="/" (click)="logout();">Log out</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="header-sub container-fluid hidden-sm hidden-xs">
+    <div class="container">
+        <div class="row">
+            <ul class="col-lg-8 col-md-8 col-sm-8 header-sub__ul">
+                <li><a href="" routerLink="/home/dresses">Dresses</a>
+                    <ul class="header-sub__ul--cat">
+                        <li><a href="" routerLink="/home/dresses/Daytime">Daytime</a></li>
+                        <li><a href="" routerLink="/home/dresses/Cocktail">Cocktail</a></li>
+                        <li><a href="" routerLink="/home/dresses/Gown">Gown</a></li>
+                        <li><a href="" routerLink="/home/dresses/Party">Party</a></li>
+                        <li><a href="" routerLink="/home/dresses/Work">Work</a></li>
+                    </ul>
+                </li>
+                <li><a href="" routerLink="/home/tops">Tops</a>
+                    <ul class="header-sub__ul--cat">
+                        <li><a href="" routerLink="/home/tops/Blouses">Blouses</a></li>
+                        <li><a href="" routerLink="/home/tops/Knits %26 Tees">Knits & Tees</a></li>
+                        <li><a href="" routerLink="/home/tops/Fancy">Fancy</a></li>
+                    </ul>
+                </li>
+                <li><a href="" routerLink="/home/skirts">Skirts</a>
+                    <ul class="header-sub__ul--cat">
+                        <li><a href="" routerLink="/home/skirts/Maxi">Maxi</a></li>
+                        <li><a href="" routerLink="/home/skirts/Mid length">Mid length</a></li>
+                        <li><a href="" routerLink="/home/skirts/Mini">Mini</a></li>
+                        <li><a href="" routerLink="/home/skirts/Pencil">Pencil</a></li>
+                    </ul>
+                </li>
+                <li><a href="" routerLink="/home/jackets">Jackets</a>
+                    <ul class="header-sub__ul--cat">
+                        <li><a href="" routerLink="/home/jackets/Leather %26 faux leather">Leather & faux leather</a></li>
+                        <li><a href="" routerLink="/home/jackets/Jackets">Jackets</a></li>
+                        <li><a href="" routerLink="/home/jackets/Blazers">Blazers</a></li>
+                        <li><a href="" routerLink="/home/jackets/Vests">Vests</a></li>
+                    </ul>
+                </li>
+                <li><a href="" routerLink="/home/pants">Pants</a>
+                    <ul class="header-sub__ul--cat">
+                        <li><a href="" routerLink="/home/pants/Long">Long</a></li>
+                        <li><a href="" routerLink="/home/pants/Shorts">Shorts</a></li>
+                        <li><a href="" routerLink="/home/pants/Leggings">Leggings</a></li>
+                        <li><a href="" routerLink="/home/pants/Leather %26 faux leather">Leather & faux leather</a></li>
+                    </ul>
+                </li>
+                <li><a href="" routerLink="/home/activewear">Activity Wear</a>
+                    <ul class="header-sub__ul--cat">
+                        <li><a href="" routerLink="/home/activewear/Swimwear">Swimwear</a></li>
+                        <li><a href="" routerLink="/home/activewear/Workout">Workout</a></li>
+                        <li><a href="" routerLink="/home/activewear/Jackets %26 hoodies">Jackets & hoodies</a></li>
+                        <li><a href="" routerLink="/home/activewear/Sports bras">Sports bras</a></li>
+                    </ul>
+                </li>
+                <li><a href="" routerLink="/home/costume">Costumes</a>
+                    <ul class="header-sub__ul--cat">
+                        <li><a href="" routerLink="/home/costume/Men">Men</a></li>
+                        <li><a href="" routerLink="/home/costume/Women">Women</a></li>
+                        <li><a href="" routerLink="/home/costume/Children">Children</a></li>
+                        <li><a href="" routerLink="/home/costume/Accessories">Accessories</a></li>
+                    </ul>
+                </li>
+                <li><a href="" routerLink="/home/accessories">Accessories</a>
+                    <ul class="header-sub__ul--cat">
+                        <li><a href="" routerLink="/home/accessories/Jewelry">Jewelry</a></li>
+                        <li><a href="" routerLink="/home/accessories/Watches">Watches</a></li>
+                        <li><a href="" routerLink="/home/accessories/Belts">Belts</a></li>
+                        <li><a href="" routerLink="/home/accessories/Hand bag">Hand bag</a></li>
+                        <li><a href="" routerLink="/home/accessories/Sunglasses">Sunglasses</a></li>
+                        <li><a href="" routerLink="/home/accessories/Hats">Hats</a></li>
+                        <li><a href="" routerLink="/home/accessories/Scarves">Scarves</a></li>
+                        <li><a href="" routerLink="/home/accessories/Miscellaneous">Miscellaneous</a></li>
+                    </ul>
+                </li>
+                <li><a href="" routerLink="/home/shoes">Shoes</a>
+                    <ul class="header-sub__ul--cat">
+                        <li><a href="" routerLink="/home/shoes/Boots %26 booties">Boots & booties</a></li>
+                        <li><a href="" routerLink="/home/shoes/Flats">Flats</a></li>
+                        <li><a href="" routerLink="/home/shoes/Pumps">Pumps</a></li>
+                        <li><a href="" routerLink="/home/shoes/Platforms">Platforms</a></li>
+                        <li><a href="" routerLink="/home/shoes/Sandals">Sandals</a></li>
+                        <li><a href="" routerLink="/home/shoes/Wedges">Wedges</a></li>
+                        <li><a href="" routerLink="/home/shoes/Sneakers">Sneakers</a></li>
+                    </ul>
+                </li>
+                <li><a href="" routerLink="/home/men">Men</a>
+                    <ul class="header-sub__ul--cat">
+                        <li><a href="" routerLink="/home/men/Shirts">Shirts</a></li>
+                        <li><a href="" routerLink="/home/men/Suits">Suits</a></li>
+                        <li><a href="" routerLink="/home/men/Pants">Pants</a></li>
+                        <li><a href="" routerLink="/home/men/Bags">Bags</a></li>
+                        <li><a href="" routerLink="/home/men/Shoes">Shoes</a></li>
+                        <li><a href="" routerLink="/home/men/Jackets">Jackets</a></li>
+                        <li><a href="" routerLink="/home/men/Sports">Sports</a></li>
+                    </ul>
+                </li>
+                <li><a href="" routerLink="/home/kids">Kids</a>
+                    <ul class="header-sub__ul--cat">
+                        <li><a class="bold" href="" routerLink="/home/">Girls</a>
+                            <ul>
+                                <li><a href="" routerLink="/home/kids/Tops">Tops</a>
+                                <li><a href="" routerLink="/home/kids/Pants">Pants</a>
+                                <li><a href="" routerLink="/home/kids/Skirts">Skirts</a>
+                                <li><a href="" routerLink="/home/kids/Sports">Sports</a>
+                                <li><a href="" routerLink="/home/kids/Jackets">Jackets</a>
+                                <li><a href="" routerLink="/home/kids/Bags">Bags</a>
+                                <li><a href="" routerLink="/home/kids/Shoes">Shoes</a>
+                            </ul>
+                        </li>
+                        <li><a class="bold" href="" routerLink="/home/">Boys</a>
+                            <ul>
+                                <li><a href="" routerLink="/home/kids/Tops">Tops</a>
+                                <li><a href="" routerLink="/home/kids/Pants">Pants</a>
+                                <li><a href="" routerLink="/home/kids/Sports">Sports</a>
+                                <li><a href="" routerLink="/home/kids/Jackets">Jackets</a>
+                                <li><a href="" routerLink="/home/kids/Bags">Bags</a>
+                                <li><a href="" routerLink="/home/kids/Shoes">Shoes</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="col-lg-4 col-md-4 col-sm-4 header-sub__ul header-sub__last text-right">
+                <li>Blog</li>
+                <li>Sunmool?</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="home container" *ngIf="search">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="search-content">
+                <div class="search-content__input form-group">
+                    <div class="input-group">
+                        <input  type="text" class="form-control" placeholder="Amount" [(ngModel)]="searchStr" name="searchStr" (keypress)="searchItem('firebase', 'item', searchStr, $event);">
+                        <div class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey" (click)="searchItem('firebase', 'item', searchStr ); searchStr = ''" style="cursor: pointer;"></i></div>
+                    </div>
+                </div>
+                <!-- Single button -->
+                <div class="search-content__dropdown">
+                    <div class="btn-group">
+                        <button type="button" class="button button-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{categoryFilter}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+
+                          <li><a href="" routerLink="/" (click)="changeCategory('Category')" style="color: red">Reset category</a></li>
+                            <li><a href="" routerLink="/" (click)="changeCategory('dresses')" >Dresses</a></li>
+                            <li><a href="" routerLink="/"(click)="changeCategory('tops')">Tops</a></li>
+                            <li><a href="" routerLink="/" (click)="changeCategory('skirts')">Skirts</a></li>
+                            <li><a href="" routerLink="/" (click)="changeCategory('jackets')">Jackets</a></li>
+                            <li><a href="" routerLink="/" (click)="changeCategory('pants')">Pants</a></li>
+                            <li><a href="" routerLink="/" (click)="changeCategory('activewear')">Activity wear</a></li>
+                            <li><a href="" routerLink="/" (click)="changeCategory('costume')">Costume</a></li>
+                            <li><a href="" routerLink="/" (click)="changeCategory('shoes')">Shoes</a></li>
+                            <li><a href="" routerLink="/" (click)="changeCategory('men')">Men</a></li>
+                            <li><a href="" routerLink="/" (click)="changeCategory('kids')">Kids</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="button button-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{sizeFilter}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+
+                          <li><a href="" routerLink="/" (click)="changeSize('Size')"  style="color: red">Reset size</a></li>
+                            <li>
+                                <a href="" routerLink="/" (click)="changeSize('0 / XXS')">
+                                    <div >
+                                        <input type="checkbox" />
+                                        <label>0 / XXS</label>
+                                    </div>
+                                </a>
+                            </li>
+                            <li><a href="" routerLink="/" (click)="changeSize('2 / XS')" >
+                                <div >
+                                    <input type="checkbox" />
+                                    <label>2 / XS</label>
+                                </div>
+                            </a></li>
+                            <li><a href="" routerLink="/" (click)="changeSize('4 / S')" >
+                                <div >
+                                    <input type="checkbox" />
+                                    <label>4 / S</label>
+                                </div>
+                            </a></li>
+                            <li><a href="" routerLink="/" (click)="changeSize('6 / S')" >
+                                <div >
+                                    <input type="checkbox" />
+                                    <label>6 / S</label>
+                                </div>
+                            </a></li>
+                            <li><a href="" routerLink="/" (click)="changeSize('8 / M')" >
+                                <div >
+                                    <input type="checkbox" />
+                                    <label>8 / M</label>
+                                </div>
+                            </a></li>
+                            <li><a href="" routerLink="/" (click)="changeSize('10 / M')" >
+                                <div >
+                                    <input type="checkbox" />
+                                    <label>10 / M</label>
+                                </div>
+                            </a></li>
+                            <li><a href="" routerLink="/" (click)="changeSize('12 / L')" >
+                                <div >
+                                    <input type="checkbox" />
+                                    <label>12 / L</label>
+                                </div>
+                            </a></li>
+                            <li><a href="" routerLink="/" (click)="changeSize('14 / L')" >
+                                <div >
+                                    <input type="checkbox" />
+                                    <label>14 / L</label>
+                                </div>
+                            </a></li>
+                            <li><a href="" routerLink="/" (click)="changeSize('16 / XL')" >
+                                <div >
+                                    <input type="checkbox" />
+                                    <label>16 / XL</label>
+                                </div>
+                            </a></li>
+                            <li><a href="" routerLink="/" (click)="changeSize('18 / 1X')" >
+                                <div >
+                                    <input type="checkbox" />
+                                    <label>18 / 1X</label>
+                                </div>
+                            </a></li>
+                            <li><a href="" routerLink="/" (click)="changeSize('20 / 2X')" >
+                                <div >
+                                    <input type="checkbox" />
+                                    <label>20 / 2X</label>
+                                </div>
+                            </a></li>
+                            <li><a href="" routerLink="/" (click)="changeSize('22 / 3X')" >
+                                <div >
+                                    <input type="checkbox" />
+                                    <label>22 / 3X</label>
+                                </div>
+                            </a></li>
+                            <li><a href="" routerLink="/" (click)="changeSize('One size')" >One size</a></li>
+                            <li><a href="" routerLink="/" (click)="changeSize('Others')" >Others</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="button button-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{brandFilter}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+
+                          <li><a href="" routerLink="/" (click)="changeBrand('Brand')" style="color: red">Reset brand</a></li>
+                            <li><a href="" routerLink="/" (click)="changeBrand('Brand1')" ><div >
+                                <input type="checkbox" />
+                                <label>Brand1</label>
+                            </div></a></li>
+                            <li><a href="" routerLink="/" (click)="changeBrand('Brand2')"><div >
+                                <input type="checkbox" />
+                                <label>Brand2</label>
+                            </div></a></li>
+                            <li><a href="" routerLink="/" (click)="changeBrand('Brand3')"><div >
+                                <input type="checkbox" />
+                                <label>Brand3</label>
+                            </div></a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="button button-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{colorFilter}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+
+                          <li><a href="" routerLink="/" (click)="changeColor('Color')" style="color: red">Reset color</a></li>
+                            <li><a href="" routerLink="/" (click)="changeColor('various')">Various</a></li>
+                            <li><a href="" routerLink="/" (click)="changeColor('red')">Red</a></li>
+                            <li><a href="" routerLink="/" (click)="changeColor('blue')">Blue</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="button button-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{conditionFilter}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+
+                          <li><a href="" routerLink="/" (click)="changeCondition('Condition')" style="color: red">Reset condition</a></li>
+                            <li><a href="" routerLink="/" *ngFor="let condition of conditionList; let i = index;" (click)="changeCondition(condition.$value)"><div >
+                                <input type="checkbox" />
+                                <label>{{condition.$value}}</label>
+                            </div></a></li>
+                        </ul>
+                    </div>
+                    <!--<div class="btn-group">
+                        <button type="button" class="button button-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Near me <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Dresses</a></li>
+                            <li><a href="#">Tops</a></li>
+                            <li><a href="#">Skirts</a></li>
+                            <li><a href="#">Jackets</a></li>
+                            <li><a href="#">Pants</a></li>
+                        </ul>
+                    </div>-->
+                    <div class="btn-group">
+                        <button type="button" class="button button-default dropdown-toggle sunmool-color" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span *ngIf="sunmoolFilter != true">Sunmool</span> <span *ngIf="sunmoolFilter == true">Is sunmool</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="" routerLink="/" (click)="changeSunmool(false)" style="color: red">Reset sunmool</a></li>
+                            <li><a href="" routerLink="/" (click)="changeSunmool(true)">Is sunmool</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div (click)="openMenu()" class="bg-mask" [ngClass]="{'visible': opened, 'hidden': !opened}"></div>
+
+
+
+
+<!-- <div><b>Aici e un ul ce trebuie pus in dropdown-ul de notificari</b></div>
+<div>You have {{unreadNotifications}} unread notifications!</div> -->
+<!-- <ul class="top-menu-dropdown">
+
+    <span *ngIf="notifications.length > 0">
+
+    <li *ngFor="let notification of notifications; let i = index;">
+      <div *ngIf="notification.user && notification.itemDetails">
+        <img width="30" height="30" src="{{configVars.apiServerAdress}}/uploads/{{notification.itemDetails.photos[0]}}" /><a (click)="markAsRead(notification.$key)" href="#/itemDetails/{{notification.itemDetails.$key}}">{{notification.user.displayName}} a comentat la postul tau </a> <span *ngIf="notification.read" style="color: green">Citit</span> <span style="color: red" *ngIf="!notification.read">Nou</span>
+        <br> {{time_ago(notification.timestamp*1000)}}
+      </div>
+    </li>
+
+    </span>
+
+</ul> -->

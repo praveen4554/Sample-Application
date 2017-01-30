@@ -1,0 +1,260 @@
+//Author Sunmool
+//Modal less
+@import "../mixins/variables.less";
+
+.container {
+    &.main-modal {
+        .form-group {
+            &.has-error {
+                margin: 0px;
+            }
+        }
+        width: 930px;
+        margin:0 auto;
+        padding: 0px;
+        .main-picture {
+            padding: 0px;
+            overflow:hidden;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 410px;
+            width:430px;
+            &.main-bg {
+                
+                background-image: url('../../assets/images/main-before-login-image.png');
+            }
+            &.signin-bg {
+                background-image: url('../../assets/images/sign-in-image.png');
+            }
+            &.signup-bg {
+                background-image: url('../../assets/images/sign-up-image.png');
+            }
+        }
+        .icon-outside {
+            position: absolute;
+            left: 10px;
+        }
+        .main-login {
+            float: right;
+            padding: 14px 80px 9px 75px;
+            .input-group-addon {
+                background-color: transparent;
+                padding: 4px;
+            }
+            .form-control {
+                border-left: none;
+                padding-left: 4px;
+                padding-bottom: 0px;
+                font-family: 'Open Sans', sans-serif;
+                font-weight:300;
+                text-rendering: optimizeLegibility;
+            }
+            
+            p {
+                font-family: 'aleoregular';
+                font-size: 20px;
+                line-height: 24px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.4px;
+                color: @black;
+            }
+            .title {
+                font-family: 'Open Sans', sans-serif;
+                font-weight:300;
+                text-rendering: optimizeLegibility;
+                font-size: 24px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.5px;
+                color: @black;
+                margin-bottom: 18px;
+            }
+            span {
+                display: inline-block;
+                font-family: 'Open Sans', sans-serif;
+                text-rendering: optimizeLegibility;
+                font-size: 10px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                letter-spacing: 0.4px;
+                color: @black;
+                margin-bottom: 22px;
+                a {
+                    color: @black;
+                    text-decoration: underline;
+                }
+                
+            }
+            i {
+                 margin: 2px;
+            }
+            .main-separator {
+                display: inline-block;
+                color: #444444;
+                width: 100%;
+                text-align: center;
+                margin: 0px 0px 22px 0px;
+                &::before,
+                &::after {
+                    content: '';
+                    display: inline-block;
+                    width: 40%;
+                    background-color: #dddddd;
+                    height: 2px;
+                    margin-top: 5px;
+                }
+                &::before {
+                    float: left;
+                }
+                &::after {
+                    float: right;
+                }
+            }
+            
+        }
+    }
+}
+.text-picture {
+    margin: auto;
+    position: absolute;
+    top: 25%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    font-family: 'aleoitalic';
+    font-size: 26px;
+    font-weight: bold;
+    font-style: italic;
+    font-stretch: normal;
+    letter-spacing: 0.5px;
+    padding: 30px 50px;
+    color: @white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.bg-mask {
+    position: fixed;
+    z-index: 90;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+    overflow: overlay;
+    background-color: rgba(0,0,0,0.88);
+}
+#main {
+    position: absolute;
+    top: 20%;
+    right: 0px;
+    left: 0px;
+    z-index: 100;
+}
+// @media (max-width: 1310px) {
+//     .container {
+//         &.main-modal {
+//             width: 100%;
+//             .main-picture {
+//                 background-size: cover;
+//             }
+//             .main-login {
+//                 padding: 14px 60px 9px 60px;
+//             }
+//             .icon-outside {
+//                 left: 12px;
+//             }
+//         }
+//     }
+// }
+
+@media (max-width: @screen-lg) {
+    // .container {
+    //     &.main-modal {
+    //         .main-login {
+    //             padding: 14px 0px 9px 48px;
+    //         }
+    //     }
+    // }
+}
+
+@media (max-width: @screen-md) {
+    .container {
+        &.main-modal {
+            width: 100%;
+            padding: 0px 15px;
+            .bg-white {
+                margin: 0px 15px;
+                // padding: 20px;
+            }
+            .icon-outside {
+                left: 1%;
+            }
+            .main-login {
+                padding: 14px 30px 9px 25px;
+                
+            }
+            .main-picture {
+                width: 50%;
+
+                background-position: -50px 0px;
+                &.signin-bg {
+                    background-position: -130px 0px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: @screen-sm) {
+    .container {
+        &.main-modal {
+            .main-login {
+                padding: 0px 0px 0px 48px;
+            }
+            .icon-outside {
+                left: 3%;
+            }
+            .bg-white {
+                padding: 20px;
+            }
+        }
+    }
+    .text-picture {
+        top: 10%;
+        padding: 50px 38px;
+    }
+}
+@media (max-width: 600px) {
+    .container {
+        &.main-modal {
+            p {
+                margin-bottom: 18px;
+            }
+            .main-picture {
+                display: none;
+            }
+            .main-login {
+                padding: inherit;
+                width: 100%;
+            }
+            .icon-outside {
+                display: none;
+            }
+        }
+    }
+    
+}
+@media (max-width: @screen-xs) {
+    .container {
+        &.main-modal {
+            .main-login {
+                padding: 0px;
+            }
+
+        }
+    }
+}

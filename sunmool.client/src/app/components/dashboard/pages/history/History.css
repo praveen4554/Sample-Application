@@ -1,0 +1,104 @@
+/*div {
+  margin-top: 10px;
+  border: solid 1px #000000;
+}*/
+.items-menu.col-md-2{
+    width:150px!important;
+}
+
+.items-menu.col-md-10{
+    width:1050px!important;
+}
+
+.disabledAcceptBtn {
+  color: #d8d8d8;
+}
+
+.user-info-extend{
+    margin:0;
+    padding: 8px 0;
+}
+
+.top-product{
+    margin-top: 20px;
+}
+
+.spp{
+    width: 240px;
+    height: 33px;
+    float: right;
+    margin: 0 0 0 30px;
+}
+
+.spp .button-default{
+    color:#888;
+}
+
+.input-group-addon{
+    border-radius: 0px;
+}
+
+.yandy {
+    display: inline-block;
+    padding: 10px 14px 20px 15px;
+    float: left;
+    margin-right: 16px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.offer-extend .offer-button p {
+    float: none;
+    width: auto;
+    font-size: 16px;
+    margin: 4px 0 0 0;
+}
+
+.offer-extend .offer-button .caret {
+    position: absolute;
+    right: 15px;
+    bottom: 0px;
+    color: #888;
+    width: auto;
+}
+
+.product-area .product-content {
+    width: 182px;
+    float:left;
+    margin: 0 7px;
+}
+
+.offer-extend .carousel .product-area .product-image{
+    width: 180px;
+    height: 180px;
+    max-height: 180px;
+}
+
+textarea.feedback{
+    width: 979px;
+    height: 115px;
+}
+
+a.yandy{
+    float: right;
+    margin: 0 0 14px 0;
+    padding: 25px 25px;
+}
+
+.karma_p{
+    margin: 15px 0;
+    float: left;
+}
+
+.karma_d{
+    padding-top: 30px;
+}
+
+.clearfix{
+    clear:both;
+}
+
+.offer-extend .offer-exchange .icon-exchange {
+    position: absolute;
+    top: 128px;
+}

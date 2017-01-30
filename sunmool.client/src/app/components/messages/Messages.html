@@ -1,0 +1,103 @@
+<div class="container messages">
+    <div class="row">
+        <div class="col-sm-4 col-xs-5 full-xs">
+            <div class="chat-section chat-user">
+                <div class="search-content__input form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="" [(ngModel)]="searchStr">
+                        <div class="input-group-addon"><i class="iconmoon icon-main_nav_icon_search_grey" (click)="searchItem('firebase', 'item', searchStr ); searchStr = ''" style="cursor: pointer;"></i></div>
+                    </div>
+                </div>
+                <div *ngFor="let user of users; let i = index;" (click)="removeListeners(user.user.$key)" [ngClass]="{'user-active-bgr' : 2==2}" style="cursor: pointer;">
+                    <div class="user-single clearfix" *ngIf="user.user && user.noMessages == false" >
+                        <img class="img-circle" width="50" height="50" src="{{user.user.photoURL}}" />
+                        <div class="chat-section-user__text">
+                            <span class="user-name"  >{{user.user.displayName}}</span>
+
+                            <div class="user-single-info">
+                                <!--<span *ngIf="messages.length != 0" class="last-seen">{{common.time_ago(user.activityTimestamp*1000)}}</span> -->
+                                <!--<a href="#" ><span class="remove">x Delete</span></a>-->
+                                <span class="new-message" *ngIf="user.newMessages">New messages</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8 col-xs-7 full-xs full-xs-hidden"  [ngClass]="{'visible': opened, 'full-xs-hidden': !opened}">
+        <div class="chat-section" #scrollMe>
+            <!-- Carousel in chat -->
+
+
+
+
+
+            <i class="iconmoon icon-icon_detail_arrow_left hide-icon" aria-hidden="true"></i>
+            <div class="chat-section-user clearfix" *ngFor="let message of messages; let i = index;">
+                <div *ngIf="message.user && message.type == 'simpleMessage'" [ngClass]="{'self-user': message.user.$key == auth.userData.uid}">
+                    <img width="30" height="30" class="img-circle" src="{{message.user.photoURL}}" />
+                    <div class="chat-section-user__text">
+                        <span class="user-name">{{message.user.displayName}}</span>
+
+                        <span class="user-message">
+                          {{message.message}}
+                          <img *ngIf="message.photo"src="{{message.photo}}" width="300" style="border-radius: 5px;"/>
+                        </span>
+
+                        <span class="last-seen">{{common.time_ago(message.timestamp*1000)}}</span>
+                    </div>
+                </div>
+
+
+
+
+                <div id="carousel-chat{{i}}" data-interval="false" class="carousel slide" *ngIf="message.itemDetails && message.type == 'itemDetail'">
+                    <a class="up carousel-control" href="#carousel-chat{{i}}" role="button" data-slide="prev">
+                        <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item" *ngFor="let photoSet of message.itemDetails.photoCarousel; let i = index;" [ngClass]="{active : i == 0}">
+                            <div class="item-upload col-xs-4" *ngFor="let photo of photoSet; let j = index;">
+                                <a href="{{configVars.apiServerAdress}}/#/itemDetails/{{message.itemDetails.$key}}" target="_blank">
+                                    <img width="36px" height="36px" src="{{configVars.apiServerAdress}}/uploads/{{photo}}" alt="ceva"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item-info">
+                        <div class="carousel-item-sect">
+                            <span class="title truncate"><a href="{{configVars.apiServerAdress}}/#/itemDetails/message.itemDetails.$key" target="_blank">{{message.itemDetails.title}}</a></span>
+                            <span class="title pull-right">{{message.itemDetails.size}}</span>
+                        </div>
+                        <div class="carousel-item-sect">
+                            <span class="fira truncate">{{message.itemDetails.category}}</span>
+                        </div>
+                    </div>
+                    <a class="down carousel-control" href="#carousel-chat{{i}}" role="button" data-slide="next">
+                        <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+
+
+
+            </div>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" >
+              <label class=" " style="height: 10px; cursor: pointer;">
+                  <img src="common/assets/images/sendimage.svg" alt="logo" /><input ng2FileSelect accept='image/*' [uploader]="uploader" multiple type="file" name="photo" class="hidden">
+                  <img *ngIf="uploadedPhoto != ''"src="{{uploadedPhoto}}" width="10" height="10" />
+              </label>
+
+            </span>
+            <input class="form-control" placeholder="Write here..." type="text" [(ngModel)]="messageToSend" (keypress)="sendMessage($event)" />
+            <span class="input-group-addon" (click)="sendMessage()"><img src="common/assets/images/sendmessage.svg" alt="logo" /></span>
+        </div>
+        </div>
+    </div>
+</div>

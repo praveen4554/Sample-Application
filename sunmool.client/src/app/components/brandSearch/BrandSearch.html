@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="profile-items">
+            <div class="form-group row">
+            <p class="col-md-3"> Brands</p>
+                <div class="col-md-3 pull-right">
+                    <div class="btn-group col-md-3">
+                        <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Show 16 Per Page<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" (click)="changeStyle('All')" >All</a></li>
+                            <li><a href="#" (click)="changeStyle('Boots & Booties')">Boots & Booties</a></li>
+                            <li><a href="#" (click)="changeStyle('Flats')">Flats</a></li>
+                            <li><a href="#" (click)="changeStyle('Pumps')">Pumps</a></li>
+                            <li><a href="#" (click)="changeStyle('Platforms')">Platforms</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <input placeholder="Search" type="text" class="form-control" id="brand" [(ngModel)]="searchTerm" aria-label="Amount (to the nearest dollar)" (keypress)="searchBrand(searchTerm, $event);">
+            <span class="input-group-addon"><i style="cursor: pointer;" (click)="searchBrand(searchTerm)" class="iconmoon icon-main_nav_icon_search_grey"></i></span>
+        </div>
+    </div>
+    <div *ngIf="!searchStarted && brandsList.length == 0 && !addState && searchTerm != ''">There is no result for <b>{{searchTerm}}</b>. Do you want to add it? <button (click)="addState = true">ADD</button></div>
+    <div *ngIf="addState">
+      Name <input type="text" name="brandName" [(ngModel)]="searchTerm"/> <br>
+
+      <div class="col-md-4 edit-profile__pic">
+          <img height="50" src="{{brandPhoto}}" />
+            <input ng2FileSelect [uploader]="brandUploader" class="img-upload" type="file" name="photo" onerror="this.style.display='none'">
+      </div>
+
+      <br>
+       <button (click)="addState = false; searchStarted = true; searchTerm = ''">Cancel</button> <button (click)="addBrand()">Add</button>
+    </div>
+
+    <div class="follow-section row">
+        <div  *ngFor="let brand of brandsList; let i = index;">
+            <div class="follow-people col-md-3 col-sm-6 col-xs-6">
+                <a class="follow-img" href="#"><img width="50" height="50" src="{{brand.logo}}" /></a>
+                <a class="follow-name" href="#"><span>{{brand.name}}</span></a>
+                 <a class="follow-unfollow" *ngIf="brand.followData && brand.followData.following" href="#" (click)="common.unFollowBrand(brand.$key)">X Unfollow</a>
+                <a class="follow-follow" *ngIf="brand.followData && !brand.followData.following" href="#" (click)="common.followBrand(brand.$key)">+ Follow</a>
+            </div>
+        </div>
+    </div>
+
+
+</div>

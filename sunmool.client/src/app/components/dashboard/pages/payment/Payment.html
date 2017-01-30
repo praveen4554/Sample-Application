@@ -1,0 +1,78 @@
+<div class="payment row">
+
+    <div class="col-md-12">
+        <p class="subtitle">Billing info</p>
+        <div class="border">
+            <div class="form-group row">
+                <label for="name" class="col-xs-2 col-form-label">Address</label>
+                <div class="col-xs-10">
+                    <input class="form-control" type="text" id="name" [(ngModel)] = "billingAdress">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-xs-2 col-form-label">Address (line 2)</label>
+                <div class="col-xs-10">
+                    <input class="form-control" type="text" id="name" [(ngModel)] = "billingAdress2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="name" class="col-xs-2 col-form-label">City</label>
+                    <div class="form-group col-xs-3">
+                        <input class="form-control" type="text" id="name" [(ngModel)] = "billingCity">
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label for="name" class="col-xs-5 col-form-label">State</label>
+                        <div class="col-xs-7">
+                            <input class="form-control" type="text" id="name" [(ngModel)] = "billingState">
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label for="name" class="col-xs-5 col-form-label">Zip code</label>
+                        <div class="col-xs-7">
+                            <input class="form-control" type="text" id="name" [(ngModel)] = "billingZipcode">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <p class="subtitle">Shipping info <a href="#" (click)="sameAsBilling()" style="font-size: 12px;">Same as billing</a></p>
+        <div class="border">
+            <div class="form-group row">
+                <label for="name" class="col-xs-2 col-form-label">Address</label>
+                <div class="col-xs-10">
+                    <input class="form-control" type="text" id="name" [(ngModel)] = "shippingAdress">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-xs-2 col-form-label">Address (line 2)</label>
+                <div class="col-xs-10">
+                    <input class="form-control" type="text" id="name" [(ngModel)] = "shippingAdress2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="name" class="col-xs-2 col-form-label">City</label>
+                    <div class="form-group col-xs-3">
+                        <input class="form-control" type="text" id="name" [(ngModel)] = "shippingCity">
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label for="name" class="col-xs-5 col-form-label">State</label>
+                        <div class="col-xs-7">
+                            <input class="form-control" type="text" id="name" [(ngModel)] = "shippingState">
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label for="name" class="col-xs-5 col-form-label">Zip code</label>
+                        <div class="col-xs-7">
+                            <input class="form-control" type="text" id="name" [(ngModel)] = "shippingZipcode">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button (click)="saveBilling();" class="button button-sign-in pull-right">UPDATE</button>
+</div>

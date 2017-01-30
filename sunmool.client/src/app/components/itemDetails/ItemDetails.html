@@ -1,0 +1,595 @@
+<div (click)="imageOpen()" class="bg-mask" [ngClass]="{'visible': lgimg, 'hidden': !lgimg}"></div>
+<div class="offer-section offer-section-sunmool" [ngClass]="{'visible': lgimg, 'hidden': !lgimg}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 offer-user-section">
+                <i style="color: #fff; float: right; font-size: 30px; cursor: pointer;" class="glyphicon glyphicon-remove" (click)="imageOpen()"></i>
+                <br />
+            </div>
+        </div>
+        <div class="carousel-active">
+            <img class="img-responsive" *ngIf="currentSelectedPhoto != ''" src="{{configVars.apiServerAdress}}/uploads/{{currentSelectedPhoto}}" alt="ceva" style="height:75vh;margin:auto;"/>
+            <img class="img-responsive" *ngIf="currentSelectedPhoto == ''" src="common/assets/images/main-before-login-image.png" alt="ceva"/>
+        </div>
+        <br />
+        <!--<div id="carousel-example-vertical" class="carousel slide">-->
+            <!--<div class="carousel-inner" role="listbox">-->
+                <!--<div class="item row " *ngFor="let photoSet of photoCarousel; let i = index;" [ngClass]="{active : i == 0}">-->
+                    <!--<div class="item-upload col-md-4 col-sm-4 col-xs-4" *ngFor="let photoSet of photoCarousel[i]; let j = index;">-->
+                        <!--<a href="#" (click)="changePicture(photoCarousel[i][j])" target="_blank">-->
+                            <!--<img src="{{configVars.apiServerAdress}}/uploads/{{photoCarousel[i][j]}}"  alt="photo" style="height:90px;width:auto;"/>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<a *ngIf="photoCarousel.length != 0 && photoCarousel[0].length > 0" class="up carousel-control" href="#carousel-example-vertical" role="button" data-slide="prev">-->
+                <!--<i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true" style="color:#fff;padding:10px 40px"></i>-->
+                <!--<span class="sr-only">Previous</span>-->
+            <!--</a>-->
+            <!--<a *ngIf="photoCarousel.length != 0 && photoCarousel[0].length > 0" class="down carousel-control" href="#carousel-example-vertical" role="button" data-slide="next">-->
+                <!--<i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true" style="color:#fff;padding:10px 40px"></i>-->
+                <!--<span class="sr-only">Next</span>-->
+            <!--</a>-->
+        <!--</div>-->
+    </div>
+</div>
+
+<div (click)="sunmoolOpen()" class="bg-mask" [ngClass]="{'visible': popsun, 'hidden': !popsun}"></div>
+<div class="offer-section offer-section-sunmool" [ngClass]="{'visible': popsun, 'hidden': !popsun}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 offer-user-section">
+                <div class="itemDetail-user__image">
+                    <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items">
+                    <img width="36" height="36" src="{{userInfo.photoURL}}" class="img-circle"/></a>
+                    <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items"> Tell <span>{{userInfo.displayName}}</span> what this gift means to you.</a>
+                </div>
+                <i style="color: #fff; float: right; font-size: 30px; cursor: pointer;" class="glyphicon glyphicon-remove" (click)='sunmoolOpen()'></i>
+            </div>
+            <div class="col-md-12 offer-sunmool">
+                <div class="row">
+                    <div class="col-md-3 product-area">
+                        <div  class="product-content" >
+                            <div *ngIf="item.sunmool" class="product-sunmool">
+                                <img  width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                            </div>
+                            <div class="product-image">
+                                <img *ngIf="!item.photos" style="cursor: pointer;" src="common/assets/images/main-before-login-image.png" alt="ceva" />
+                                <img *ngIf="item.photos" style="cursor: pointer;" src="{{configVars.apiServerAdress}}/uploads/{{item.photos[0]}}" alt="ceva"/>
+                            </div>
+                            <div class="product-info">
+                                <div>
+                                    <p>{{item.title}}</p>
+                                    <p class="offer-size">{{item.size}}</p>
+                                </div>
+                                <div>
+                                    <p>{{item.category}}</p>
+                                    <div class="product-info__likes">
+                                      <i *ngIf="item.likes && auth.userData && item.likes[auth.userData.uid] && item.likes[auth.userData.uid].liked"  (click)="common.unLikeItem(item.$key)" class="iconmoon icon-icon_detail_like sunmool-color"></i>
+                                      <i *ngIf="item.likes && auth.userData && ( (item.likes[auth.userData.uid] && !item.likes[auth.userData.uid].liked) || !item.likes[auth.userData.uid] )" (click)="common.likeItem(item.$key);" class="iconmoon icon-icon_detail_like"></i>
+                                      <span *ngIf="item.likes">{{common.getLikesNum(item.likes)}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="offer-sunmool-section col-md-12">
+                                <textarea [(ngModel)]="sunmoolStory" class="text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia dictum ligula, et imperdiet arcu egestas in. Etiam a volutpat purus. Nam nec ullamcorper mi. Morbi sed sapien a risus aliquam sollicitudin id vitae erat. Pellentesque sit amet eros eu purus molestie luctus euismod eget massa. Phasellus vel posuere nisi. Cras arcu mi, eleifend id imperdiet sed, porttitor ut sem. Cras et gravida tortor.
+                                </textarea>
+
+                            </div>
+                            <div class="offer-sunmool-bottom col-md-8">
+                                <p class="pull-left">Can we use your story in our blog?</p>
+                                <div class="btn-group pull-right">
+                                    <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                    <span class="caret"></span>
+                                    {{storyOnBlogAccept}}</button>
+                                    <ul class="dropdown-menu">
+                                        <li ><a href="#" (click)="storyOnBlog('yes')">yes</a></li>
+                                        <li ><a href="#" (click)="storyOnBlog('no')">no</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <button *ngIf="item.uid != auth.userData.uid" type="button" [disabled]="storyOnBlogAccept == '' || sunmoolStory == ''" (click)="postSunmoolOffer()" class="col-md-3 button button-google pull-right"><img width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>Ask for Sunmool :)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div (click)="offerOpen()" class="bg-mask" [ngClass]="{'visible': pop, 'hidden': !pop}"></div>
+<div class="offer-section" [ngClass]="{'visible': pop, 'hidden': !pop}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 offer-user-section">
+
+                <i style="color: #fff; float: right; font-size: 30px; cursor: pointer;" class="glyphicon glyphicon-remove" (click)='offerOpen()'></i>
+            </div>
+            <div class="col-md-12 offer-carousel">
+                <div id="carousel-offers" data-interval="false" class="carousel slide">
+                    <a class="up carousel-control" href="#carousel-offers" role="button" data-slide="prev">
+                        <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="down carousel-control" href="#carousel-offers" role="button" data-slide="next">
+                        <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    <div class="carousel-inner product-area" role="listbox">
+                        <!--  inceput carusel sus -->
+                        <div *ngFor="let caruselItem of carouselItems; let i = index;"  class="item  row" [ngClass]="{active : i == 0}">
+                            <div *ngFor="let myItem of caruselItem; let j = index;" class="col-md-3 col-sm-4 col-xs-4 product">
+                                <div  class="product-content" (click) = "selectItems(myItem.$key, myItem.photos[0])">
+                                    <!-- Clasa selectata plus incrementarea numarului -->
+                                    <div *ngIf="itemsSelected[myItem.$key] && itemsSelected[myItem.$key].val" class="active-select">
+
+                                        <p  class="is-clicked">SELECTED</p>
+                                    </div>
+                                    <div *ngIf="myItem.sunmool" class="product-sunmool">
+                                        <img  width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                                    </div>
+                                    <div class="product-image">
+
+                                        <img style="cursor: pointer;" *ngIf="myItem.photos" src="{{configVars.apiServerAdress}}/uploads/{{myItem.photos[0]}}" alt="ceva" />
+                                        <img style="cursor: pointer;" *ngIf="!myItem.photos" src="common/assets/images/main-before-login-image.png" alt="ceva"/>
+                                    </div>
+
+                                    <div class="product-info">
+                                        <div>
+                                            <p>{{myItem.title}}</p>
+                                            <span>{{myItem.category}}</span>
+                                        </div>
+                                        <p class="offer-size">{{myItem.size}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Asta e primul carusel din mijloc -->
+
+                <div id="carousel-middle" class="carousel slide">
+                    <a class="up carousel-control" href="#carousel-middle" role="button" data-slide="prev">
+                        <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="down carousel-control" href="#carousel-middle" role="button" data-slide="next">
+                        <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    <div class="carousel-inner" role="listbox">
+                        <!-- Text if no item is selected  Asta e textul in caz ca sunt goale -->
+                         <div *ngIf="hisSelectedArr.length == 0" class="middle-text">
+                            <h4>First, select the items that you want to exchange from <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items"><span>{{userInfo.displayName}}</span>'s items</a></h4>
+                        </div>
+                        <!-- inceput carusel mijloc -->
+                        <div *ngFor="let caruselItem of hisSelectedArr; let i = index;"  class="item  row" [ngClass]="{active : i == 0}">
+                            <div  class="item-upload">
+                                <img  *ngFor="let myItem of caruselItem; let i = index;" class="img-reponsive" src="{{configVars.apiServerAdress}}/uploads/{{myItem}}" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!--  Asta e carouselul din mijloc -->
+                <div id="carousel-middle" class="carousel slide">
+                    <a class="up carousel-control" href="#carousel-middle" role="button" data-slide="prev">
+                        <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="down carousel-control" href="#carousel-middle" role="button" data-slide="next">
+                        <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    <div class="carousel-inner" role="listbox">
+                        <!-- Text if no item is selected  Asta e textul in caz ca sunt goale -->
+                         <div *ngIf="mySelectedArr.length == 0" class="middle-text">
+                            <h4>Second, click your items that you want to offer</h4>
+                        </div>
+                        <!-- inceput carusel mijloc -->
+                        <div *ngFor="let caruselItem of mySelectedArr; let i = index;"  class="item  row" [ngClass]="{active : i == 0}">
+                            <div  class="item-upload">
+                                <img  *ngFor="let myItem of caruselItem; let i = index;" class="img-reponsive" src="{{configVars.apiServerAdress}}/uploads/{{myItem}}" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Asta e carouselul de jos -->
+                <div id="carousel-bottom" class="carousel slide">
+                    <a class="up carousel-control" href="#carousel-bottom" role="button" data-slide="prev">
+                        <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="down carousel-control" href="#carousel-bottom" role="button" data-slide="next">
+                        <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    <div class="carousel-inner product-area" role="listbox">
+                        <!--  inceput carusel jos -->
+
+                        <div *ngFor="let caruselItem of currentLoggedItems; let i = index;"  class="item  row" [ngClass]="{active : i == 0}">
+                            <div *ngFor="let myItem of caruselItem; let j = index;" class="col-md-3 col-sm-4 col-xs-4 product">
+                                <div class="product-content" (click)="mySelectItems(myItem.$key, myItem.photos[0])">
+                                  <div *ngIf="myItemsSelected[myItem.$key] && myItemsSelected[myItem.$key].val" class="active-select">
+
+                                      <p  class="is-clicked">SELECTED</p>
+                                  </div>
+                                  <div *ngIf="myItem.sunmool" class="product-sunmool">
+                                      <img  width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                                  </div>
+                                  <div class="product-image">
+
+                                      <img style="cursor: pointer;" *ngIf="myItem.photos" src="{{configVars.apiServerAdress}}/uploads/{{myItem.photos[0]}}" alt="ceva"/>
+                                      <img style="cursor: pointer;" *ngIf="!myItem.photos" src="common/assets/images/main-before-login-image.png" alt="ceva"/>
+                                  </div>
+
+                                  <div class="product-info">
+                                      <div>
+                                          <p>{{myItem.title}}</p>
+                                          <span>{{myItem.category}}</span>
+                                      </div>
+                                      <p class="offer-size">{{myItem.size}}</p>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-bottom-info">
+                    <div class="col-md-8 text clearfix">
+                        <p>Third, how many items user can pick from your offer?</p>
+                        <div class="form-group">
+                            <!-- <div class="btn-group">
+                                <button aria-expanded="true" aria-haspopup="true" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" type="button">
+                                <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ><a *ngFor="let itemPhoto of mySelectedArr; let i = index;" (click)="changeItemPickNum(i)" _ngcontent-nap-11="" href="#">{{i+1}}</a>{{itemPickNum}}</li>
+                                </ul>
+                            </div> -->
+                            <!-- Aici ia-te dupa ala de sus. La ala de jos unde am scris "12" trebuie pus numarul selectat din for-ul ala-->
+                            <div class="btn-group">
+                                <button type="button" class="button button-default dropdown-toggle form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{itemPickNum}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ><a href="#" (click)="changeItemPickNum(-1)"> - </a ></li>
+                                    <li ><a href="#" *ngFor="let itemPhoto of mySelectedArrRaw; let i = index;" (click)="changeItemPickNum(i)">{{i+1}}</a ></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button *ngIf="item.uid != auth.userData.uid" type="button" (click)="offerItem()" [disabled]="mySelectedArr.length == 0 || itemPickNum == 0" class="button button-sign-in"><i class="iconmoon icon-add_item_icons_flip-right"></i>OFFER</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="itemDetail container">
+    <div class="row">
+        <div class="col-md-5 col-sm-6 col-xs-6 itemDetail-section">
+            <div class="carousel-active">
+                <img class="img-responsive" *ngIf="currentSelectedPhoto != ''" src="{{configVars.apiServerAdress}}/uploads/{{currentSelectedPhoto}}" alt="ceva"  (click)="imageOpen();"/>
+                <img class="img-responsive" *ngIf="currentSelectedPhoto == ''" src="common/assets/images/main-before-login-image.png" alt="ceva"/>
+                <div class="sunmool-active">
+                    <img *ngIf="item.sunmool" width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                </div>
+            </div>
+            <div id="carousel-example-vertical" class="carousel slide">
+                <div class="carousel-inner" role="listbox">
+                    <div class="item row " *ngFor="let photoSet of photoCarousel; let i = index;" [ngClass]="{active : i == 0}">
+                        <div class="item-upload col-md-4 col-sm-4 col-xs-4" *ngFor="let photoSet of photoCarousel[i]; let j = index;">
+                            <a href="#" (click)="changePicture(photoCarousel[i][j])" target="_blank">
+                                <img width="36px" height="36px" src="{{configVars.apiServerAdress}}/uploads/{{photoCarousel[i][j]}}"  alt="sunmool photo"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a *ngIf="photoCarousel.length != 0 && photoCarousel[0].length > 0" class="up carousel-control" href="#carousel-example-vertical" role="button" data-slide="prev">
+                    <i class="iconmoon icon-icon_detail_arrow_left" aria-hidden="true"></i>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a *ngIf="photoCarousel.length != 0 && photoCarousel[0].length > 0" class="down carousel-control" href="#carousel-example-vertical" role="button" data-slide="next">
+                    <i class="iconmoon icon-icon_detail_arrow_right" aria-hidden="true"></i>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <div class="itemDetail-info hidden-lg hidden-md hide-xs">
+                <div class="comment">
+                    <p>Write a comment</p>
+                    <div class="form-group">
+                        <textarea [(ngModel)]="commentText" class="form-control" id="description" rows="3"></textarea>
+                    </div>
+                    <button (click)="saveComment();" class="button button-default pull-right">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 col-sm-6 col-xs-6 itemDetail-section">
+            <div class="itemDetail-info">
+            <h1 class="itemDetail-title">{{item.title}}</h1>
+            <p class="sunmool-color" *ngIf="item.sunmool">This is a gift(Sunmool) item!</p>
+            <div class="row">
+                <div class="col-md-6 itemDetail-left">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5 col-xs-5 subtitle">
+                            <p>Brand</p>
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-xs-7">
+                            <p>{{item.brandName}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5 col-xs-5 subtitle">
+                            <p>Size</p>
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-xs-7">
+                            <p>{{item.size}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5 col-xs-5 subtitle">
+                            <p>Colors</p>
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-xs-7">
+                            <p>{{item.colors}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5 col-xs-5 subtitle">
+                            <p>Condition</p>
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-xs-7">
+                            <p>{{item.condition}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5 col-xs-5 subtitle">
+                            <p>Location</p>
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-xs-7">
+                            <p>San Francisco, CA</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5 col-xs-5 subtitle">
+                            <p>Original Price</p>
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-xs-7">
+                            <p>{{item.originalPrice}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 subtitle">
+                            <p>Description</p>
+                        </div>
+                        <div class="col-md-12">
+                            <p>{{item.description}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 itemDetail-right">
+                    <p *ngIf="offersNum.length >0">This item has <span class="sunmool-color">{{offersNum.length}}</span> Offers by other users.</p>
+                    <div class="itemDetail-icons">
+                        <i *ngIf="item.likes && auth.userData && item.likes[auth.userData.uid] && item.likes[auth.userData.uid].liked"  (click)="common.unLikeItem(item.$key)" class="iconmoon icon-icon_detail_like sunmool-color"><span *ngIf="item.likes">{{common.getLikesNum(item.likes)}}</span></i>
+                        <i *ngIf="item.likes && auth.userData && ( (item.likes[auth.userData.uid] && !item.likes[auth.userData.uid].liked) || !item.likes[auth.userData.uid] )" (click)="common.likeItem(item.$key);" class="iconmoon icon-icon_detail_like"><span *ngIf="item.likes">{{common.getLikesNum(item.likes)}}</span></i>
+
+
+                        <i *ngIf="userInfo" (click)="sendNewMessage(userInfo.$key)" class="iconmoon icon-icon_detail_message"></i>
+
+                        <i *ngIf="item.favorite"  (click)="unFavoriteItem(item.$key)" class="iconmoon icon-icon_detail_saved_item sunmool-color"></i>
+                        <i *ngIf="!item.favorite" (click)="favoriteItem(item.$key);" class="iconmoon icon-icon_detail_saved_item"></i>
+
+                        <i class="iconmoon icon-icon_detail_social_media"></i>
+                    </div>
+                    <button *ngIf="item.uid != auth.userData.uid && !item.sunmool && item.status != 'inProcess'" (click)="offerOpen();" type="button" class="button button-sign-in"><i class="iconmoon icon-add_item_icons_flip-right"></i>OFFER</button>
+                    <div class="item-self" *ngIf="item.uid == auth.userData.uid && item.status != 'inProcess'">
+                        <button class="button button-google" (click)="common.deleteItem(item.$key, item.uid)"  href="#">DELETE</button>
+                        <button class="button button-sign-in" (click)="common.goEditItem(item.$key);" href="#">EDIT</button>
+                    </div>
+                    <button *ngIf="item.uid != auth.userData.uid && item.sunmool && item.status != 'inProcess'" (click)="sunmoolOpen();"  type="button" class="button button-google"><img width="42" height="42" src="common/assets/images/logo.svg" alt="logo"/>Ask for Sunmool :)</button>
+                    <div *ngIf="item.status == 'inProcess'" style="color: #ff0000;text-align:center;padding:6px;">This item is no longer AVAILABLE</div>
+                    <div class="itemDetail-user">
+                        <div class="itemDetail-user__display">
+                            <div class="itemDetail-user__image">
+                                <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items"><img width="50"  height="50" src="{{userInfo.photoURL}}" class="round"/></a>
+                            </div>
+                            <div class="itemDetail-user__info">
+                                <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items"><p *ngIf="userInfo">{{userInfo.displayName}}</p></a>
+                                <span *ngIf="userInfo">{{userInfo.city}}</span>
+
+                            </div>
+                            <i class="yandy">22</i>
+                        </div>
+                        <small class="last-seen"><span *ngIf="userInfo && userInfo.timestamp">Last seen {{common.time_ago(userInfo.timestamp*1000)}} |</span>   <span *ngIf="userInfo && userInfo.registeredAt" >Member since {{userInfo.registeredAt}}</span></small>
+
+                        <p *ngIf="userInfo && userInfo.description" class="user-description">{{userInfo.description}}</p>
+                        <div class="comment hidden-sm hidden-xs">
+                            <p>Write a comment</p>
+                            <div class="form-group">
+                                <textarea [(ngModel)]="commentText" class="form-control" id="description" rows="3"></textarea>
+                            </div>
+                            <button (click)="saveComment();" class="button button-default pull-right">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-7 col-md-offset-5 col-sm-12 col-xs-12">
+            <div *ngIf="comments.length != 0" class="itemDetail-chat">
+                <div *ngFor="let comment of comments; let i = index;" class="itemDetail-user__chat row">
+                    <div class="col-md-4 col-sm-3 col-xs-4">
+                        <div class="itemDetail-user__image">
+                            <a *ngIf="comment.user" href="#/userProfile/{{comment.user.$key}}/items"><img *ngIf="comment.user && comment.user.photoURL" width="40" height="40" src="{{comment.user.photoURL}}" class="round"/></a>
+                        </div>
+                        <div class="itemDetail-user__info">
+                            <a *ngIf="comment.user" href="#/userProfile/{{comment.user.$key}}/items"><p *ngIf="comment.user && comment.user.displayName">{{comment.user.displayName}}</p></a>
+                            <span>{{common.time_ago(comment.timestamp*1000)}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-9 col-xs-8">
+                        <p class="message">{{comment.comment}}</p>
+                    </div>
+                </div>
+                <div class="itemDetail-chat__icons">
+                    <i class="iconmoon icon-icon_detail_reply"></i>
+                    <i class="glyphicon glyphicon-remove"></i>
+                </div>
+                    <!-- TODO:  <p class="more">More comments</p> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div><b>This is item details</b></div>
+<div>Title: {{item.title}}</div>
+<div>Brand: {{item.brandName}}</div>
+<div>Category: {{item.category}}</div>
+<div>Colors: {{item.colors}}</div>
+<div>Condition: {{item.condition}}</div>
+<div>Description: {{item.description}}</div>
+<div>Original Price: {{item.originalPrice}}</div>
+<div>Size: {{item.size}}</div>
+<div>Style: {{item.style}}</div>
+<div>Sunmool: {{item.sunmool}}</div>
+<br><br>
+<div><b>This is userInfo</b></div>
+<div *ngIf="userInfo" > {{userInfo.displayName}}</div>
+<div *ngIf="userInfo" > <img src="{{userInfo.photoURL}}"/></div>
+
+
+ -->
+
+
+
+
+
+
+<div class="container">
+  <p class="user-info-extend" *ngIf="items.length != 1 && userInfo && auth.userData.uid == userInfo.$key" > Your other items</p>
+  <p class="user-info-extend" *ngIf="items.length != 1 && userInfo && auth.userData.uid != userInfo.$key" > {{userInfo.displayName}}'s other items</p>
+    <div class="row">
+        <div class="col-md-10">
+
+           <div class="row product-area" style="margin-top: 0px;">
+             <div *ngFor="let otherItem of items; let i = index;">
+               <div class="col-md-3 col-sm-4 col-xs-4 product"  *ngIf="otherItem.$key != item.$key" >
+                    <div class="product-content">
+                      <div class="product-sunmool">
+                          <img *ngIf="otherItem.sunmool" width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                      </div>
+                    <!--<div class="product-image" (click)="common.viewItem(otherItem.$key)">-->
+                        <!--<img style="cursor: pointer;" *ngIf="otherItem.photos" src="{{configVars.apiServerAdress}}/uploads/{{otherItem.photos[0]}}" alt="ceva"/>-->
+                        <!--<img style="cursor: pointer;" *ngIf="!otherItem.photos" src="common/assets/images/main-before-login-image.png" alt="ceva"/>-->
+                    <!--</div>-->
+                    <div class="product-image" *ngIf="otherItem.photos" [ngStyle]="{'background':'url(' + configVars.apiServerAdress + '/uploads/' + otherItem.photos[0] + ') no-repeat scroll center center \/cover'}" (click)="common.viewItem(otherItem.$key)">
+                    </div>
+                    <div class="product-image" *ngIf="!otherItem.photos" [ngStyle]="{'background':'url(common/assets/images/main-before-login-image.png) no-repeat scroll center center \/cover'}" (click)="common.viewItem(otherItem.$key)">
+                    </div>
+
+                   <div class="product-info">
+                       <div>
+                           <p>{{otherItem.title}}</p>
+                           <span>{{otherItem.category}}</span>
+                           <p>{{otherItem.size}}</p>
+                       </div>
+                       <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items"><img width="36px" height="36px" *ngIf="userInfo && userInfo.photoURL" src="{{userInfo.photoURL}}" alt="ceva"/></a>
+                       <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items"><img width="36px" height="36px" *ngIf="!userInfo || !userInfo.photoURL" src="common/assets/images/main-before-login-image.png" alt="ceva"/></a>
+                       <div class="product-info__likes">
+                         <i *ngIf="otherItem.likes && auth.userData && otherItem.likes[auth.userData.uid] && otherItem.likes[auth.userData.uid].liked"  (click)="common.unLikeItem(otherItem.$key)" class="iconmoon icon-icon_detail_like sunmool-color"></i>
+                         <i *ngIf="otherItem.likes && auth.userData && ( (otherItem.likes[auth.userData.uid] && !otherItem.likes[auth.userData.uid].liked) || !otherItem.likes[auth.userData.uid] )" (click)="common.likeItem(otherItem.$key);" class="iconmoon icon-icon_detail_like"></i>
+                         <span *ngIf="otherItem.likes">{{common.getLikesNum(otherItem.likes)}}</span>
+                       </div>
+                   </div>
+                   </div>
+               </div>
+             </div>
+           </div>
+
+        </div>
+        <div class="col-md-2 recent-product hidden-sm hidden-xs">
+            <div class="bg-info">
+                <div id="carousel-itemDetail" class="carousel vertical slide">
+                    <a class="up carousel-control" href="#carousel-itemDetail" role="button" data-slide="prev">
+                      <i class="iconmoon icon-main_nav_icon-01" aria-hidden="true"></i>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  <div class="carousel-inner" role="listbox">
+                    <div class="item " *ngFor="let photoSet of photoViewdCarousel; let i = index;" [ngClass]="{active : i == 0}">
+
+                          <p class="ticker-headline">
+                            <a *ngFor="let photoSet of photoViewdCarousel[i]; let j = index;" href="#" (click)="common.viewItem(photoViewdCarousel[i][j].itemId)">
+                                <img *ngIf="photoViewdCarousel[i][j].photo != '' " width="36px" src="{{configVars.apiServerAdress}}/uploads/{{photoViewdCarousel[i][j].photo}}" alt="ceva"/>
+                                <img *ngIf="photoViewdCarousel[i][j].photo == '' " width="36px" src="common/assets/images/main-before-login-image.png" alt="ceva"/>
+                            </a>
+                          </p>
+
+                    </div>
+
+                  </div>
+                  <a class="down carousel-control" href="#carousel-itemDetail" role="button" data-slide="next">
+                    <i class="iconmoon icon-main_nav_icon_arrow_down" aria-hidden="true"></i>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="container" *ngIf="similarItemsList.length > 1">
+  <p class="user-info-extend"> Similar items</p>
+    <div class="row">
+        <div class="col-md-10">
+
+           <div class="row product-area" style="margin-top: 0px;">
+             <div *ngFor="let otherItem of similarItemsList; let i = index;">
+               <div class="col-md-3 col-sm-4 col-xs-4 product"  *ngIf="otherItem.$key != item.$key">
+                    <div class="product-content">
+                      <div class="product-sunmool">
+                          <img *ngIf="otherItem.sunmool" width="40" height="40" src="common/assets/images/logo.svg" alt="logo"/>
+                      </div>
+                    <div class="product-image" (click)="common.viewItem(otherItem.$key)">
+                        <img style="cursor: pointer;" *ngIf="otherItem.photos" src="{{configVars.apiServerAdress}}/uploads/{{otherItem.photos[0]}}" alt="ceva"/>
+                        <img style="cursor: pointer;" *ngIf="!otherItem.photos" src="common/assets/images/main-before-login-image.png" alt="ceva"/>
+                    </div>
+
+                   <div class="product-info">
+                       <div>
+                           <p>{{otherItem.title}}</p>
+                           <span>{{otherItem.category}}</span>
+                           <p>{{otherItem.size}}</p>
+                       </div>
+                       <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items"><img width="36px" height="36px" *ngIf="userInfo && userInfo.photoURL" src="{{userInfo.photoURL}}" alt="ceva"/></a>
+                       <a *ngIf="userInfo" href="#/userProfile/{{userInfo.$key}}/items"><img width="36px" height="36px" *ngIf="!userInfo || !userInfo.photoURL" src="common/assets/images/main-before-login-image.png" alt="ceva"/></a>
+                       <div class="product-info__likes">
+                         <i *ngIf="otherItem.likes && auth.userData && otherItem.likes[auth.userData.uid] && otherItem.likes[auth.userData.uid].liked"  (click)="common.unLikeItem(otherItem.$key)" class="iconmoon icon-icon_detail_like sunmool-color"></i>
+                         <i *ngIf="otherItem.likes && auth.userData && ( (otherItem.likes[auth.userData.uid] && !otherItem.likes[auth.userData.uid].liked) || !otherItem.likes[auth.userData.uid] )" (click)="common.likeItem(otherItem.$key);" class="iconmoon icon-icon_detail_like"></i>
+                         <span *ngIf="otherItem.likes">{{common.getLikesNum(otherItem.likes)}}</span>
+                       </div>
+                   </div>
+                   </div>
+               </div>
+             </div>
+           </div>
+
+        </div>
+    </div>
+</div>
